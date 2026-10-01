@@ -1,4 +1,8 @@
 import { 
+  InteractiveSpotlightCardDemo, LiquidGlassDistortionDemo, 
+  MagneticHoverButtonDemo, SoundReactivePulseDemo 
+} from './renderers/TrendingEffectsRenderers';
+import { 
   DevExpressRibbonDemo, DevExpressPropertyGridDemo, DevExpressFilterEditorDemo, 
   DevExpressDiagramDemo, DevExpressDockingDemo, DevExpressSpreadsheetDemo 
 } from './renderers/DevExpressWpfRenderers';
@@ -191,6 +195,13 @@ export const ComponentRenderer: React.FC<RendererProps> = ({ componentId, isComp
   if (componentId === 'feedback-cookie-consent-banner') return <CookieConsentDemo />;
   if (componentId === 'feedback-rating-star-interactive') return <StarRatingDemo />;
   if (componentId === 'feedback-offline-network-toast') return <OfflineToastDemo />;
+
+  
+  // 2026 Magic UI / Aceternity Trending Interaction Suite
+  if (componentId === 'trending-spotlight-radial-card') return <InteractiveSpotlightCardDemo />;
+  if (componentId === 'trending-liquid-glass-refraction') return <LiquidGlassDistortionDemo />;
+  if (componentId === 'trending-magnetic-hover-button') return <MagneticHoverButtonDemo />;
+  if (componentId === 'trending-sound-reactive-equalizer') return <SoundReactivePulseDemo />;
 
   // 9. THEMES & TOKENS (12)
   if (componentId === 'theme-token-palette') return <ThemePaletteDemo />;

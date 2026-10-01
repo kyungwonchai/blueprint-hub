@@ -1,0 +1,130 @@
+@import "tailwindcss";
+
+:root {
+  color-scheme: dark;
+
+  /* 딥 다크 팔레트 */
+  --bg: #07080d;
+  --bg-soft: #0e1017;
+  --bg-elevated: #151824;
+  --surface: rgba(255, 255, 255, 0.035);
+  --surface-hover: rgba(255, 255, 255, 0.065);
+  --surface-active: rgba(255, 255, 255, 0.09);
+  --border: rgba(255, 255, 255, 0.08);
+  --border-bright: rgba(139, 92, 246, 0.35);
+
+  /* 텍스트 대비 */
+  --text: #f1f3f9;
+  --text-muted: #9ba1b6;
+  --text-dim: #656b82;
+
+  /* 액센트 그라데이션 */
+  --accent: #8b5cf6;
+  --accent-cyan: #06b6d4;
+  --accent-pink: #ec4899;
+  --grad-brand: linear-gradient(135deg, #6366f1 0%, #8b5cf6 50%, #d946ef 100%);
+  --grad-cyan: linear-gradient(135deg, #06b6d4 0%, #3b82f6 100%);
+  --grad-amber: linear-gradient(135deg, #f59e0b 0%, #ef4444 100%);
+  --grad-emerald: linear-gradient(135deg, #10b981 0%, #059669 100%);
+
+  /* 배경 방사형 글로우 */
+  --glow-bg: radial-gradient(1000px 600px at 15% -10%, rgba(99, 102, 241, 0.16), transparent 65%),
+             radial-gradient(900px 600px at 85% 15%, rgba(217, 70, 239, 0.12), transparent 60%),
+             radial-gradient(800px 500px at 50% 110%, rgba(6, 182, 212, 0.1), transparent 55%);
+
+  --radius: 14px;
+  --radius-sm: 8px;
+  --shadow: 0 12px 36px rgba(0, 0, 0, 0.55);
+  --glow: 0 0 0 1px rgba(139, 92, 246, 0.4), 0 0 28px rgba(139, 92, 246, 0.25);
+  --ease: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  background: var(--glow-bg), var(--bg);
+  background-attachment: fixed;
+  color: var(--text);
+  font-family: 'Pretendard', 'Inter', system-ui, -apple-system, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+code, pre, .font-mono {
+  font-family: 'JetBrains Mono', monospace, Consolas;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0.3);
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.15);
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(139, 92, 246, 0.5);
+}
+
+/* Glass Card */
+.glass-panel {
+  background: var(--surface);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow);
+}
+
+.glass-panel-hover {
+  transition: all 0.25s var(--ease);
+}
+.glass-panel-hover:hover {
+  background: var(--surface-hover);
+  border-color: var(--border-bright);
+  transform: translateY(-2px);
+  box-shadow: var(--glow);
+}
+
+/* Gradient Text */
+.grad-text {
+  background: var(--grad-brand);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+.grad-text-cyan {
+  background: var(--grad-cyan);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/* Gradient Button */
+.btn-primary {
+  background: var(--grad-brand);
+  color: #ffffff;
+  font-weight: 700;
+  transition: all 0.2s var(--ease);
+  box-shadow: 0 4px 18px rgba(139, 92, 246, 0.35);
+}
+.btn-primary:hover {
+  filter: brightness(1.12);
+  transform: translateY(-1px);
+  box-shadow: 0 6px 24px rgba(217, 70, 239, 0.45);
+}
+.btn-primary:active {
+  transform: translateY(0);
+}
+
+/* Animation utilities */
+@keyframes pulseGlow {
+  0%, 100% { opacity: 0.6; transform: scale(1); }
+  50% { opacity: 0.9; transform: scale(1.05); }
+}
+.animate-pulse-glow {
+  animation: pulseGlow 4s infinite ease-in-out;
+}

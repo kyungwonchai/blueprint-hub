@@ -1,4 +1,7 @@
 import { 
+  LorenzAttractorDemo, UmapEmbeddingProjectorDemo, PoincareHyperbolicDiskDemo 
+} from './renderers/CosmicMathVizRenderers';
+import { 
   MagneticFerrofluidCanvasDemo, KineticCyberDialDemo, TactileMatrixSwitcherDemo 
 } from './renderers/CuttingEdgeInteractiveRenderers';
 import { 
@@ -116,6 +119,9 @@ export const ComponentRenderer: React.FC<RendererProps> = ({ componentId, isComp
   if (componentId === 'chart-pearson-correlation-matrix') return <CorrelationMatrixDemo />;
   if (componentId === 'chart-sunburst-multitier-defect') return <SunburstDefectTreeDemo />;
   if (componentId === 'chart-hexagonal-equipment-mesh') return <HoneycombEquipmentMeshDemo />;
+  if (componentId === 'chart-lorenz-attractor-3d') return <LorenzAttractorDemo />;
+  if (componentId === 'chart-umap-latent-projector') return <UmapEmbeddingProjectorDemo />;
+  if (componentId === 'chart-poincare-hyperbolic-disk') return <PoincareHyperbolicDiskDemo />;
 
 
 

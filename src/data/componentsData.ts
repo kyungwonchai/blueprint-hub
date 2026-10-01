@@ -24,6 +24,241 @@ export const CATEGORIES: { id: string; name: string; icon: string; count?: numbe
 
 export const COMPONENTS_DATA: ComponentItem[] = [
   {
+    id: 'chart-candlestick-trading',
+    name: '실시간 캔들스틱 & 거래량 복합 차트 (수치 레이블 On/Off)',
+    category: 'charts',
+    tags: ['chart', 'candlestick', 'trading', 'finance', 'crypto', '캔들', '주식', '차트', '거래량'],
+    description: '상승/하락 양봉·음봉, 이동평균선(MA), 하단 거래량 바, 호가 레이블 토글 스위치 지원.',
+    complexity: 'Advanced',
+    dependencies: ['lucide-react'],
+    previewType: 'chart-candlestick-trading',
+    fullSourceCode: `import React, { useState } from 'react';
+import { CandlestickChart, Eye, EyeOff } from 'lucide-react';
+
+export const CandlestickTradingChart: React.FC = () => {
+  const [showLabels, setShowLabels] = useState(true);
+
+  return (
+    <div className="rounded-2xl bg-slate-900/90 backdrop-blur-xl border border-white/10 p-5 shadow-2xl">
+      <div className="flex items-center justify-between mb-4">
+        <div>
+          <h4 className="text-sm font-bold text-white flex items-center gap-2">
+            <CandlestickChart className="w-4 h-4 text-emerald-400" />
+            BTC/USDT 실시간 1분봉 캔들스틱
+          </h4>
+          <span className="text-xs text-emerald-400 font-mono font-bold">$68,490.50 (+3.42%)</span>
+        </div>
+        <button
+          onClick={() => setShowLabels(!showLabels)}
+          className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-white/[0.04] hover:bg-white/[0.08] text-xs font-semibold text-slate-300 border border-white/10"
+        >
+          {showLabels ? <Eye className="w-3.5 h-3.5 text-violet-400" /> : <EyeOff className="w-3.5 h-3.5 text-slate-500" />}
+          <span>{showLabels ? '수치 레이블 ON' : '미니멀 모드 OFF'}</span>
+        </button>
+      </div>
+
+      <div className="relative h-44 w-full bg-slate-950/60 rounded-xl p-2 border border-white/5 overflow-hidden">
+        <svg viewBox="0 0 400 130" className="w-full h-full">
+          <line x1="0" y1="30" x2="400" y2="30" stroke="rgba(255,255,255,0.05)" strokeDasharray="3 3" />
+          <line x1="0" y1="70" x2="400" y2="70" stroke="rgba(255,255,255,0.05)" strokeDasharray="3 3" />
+          <line x1="0" y1="100" x2="400" y2="100" stroke="rgba(255,255,255,0.05)" strokeDasharray="3 3" />
+
+          {/* Candles */}
+          <line x1="40" y1="40" x2="40" y2="90" stroke="#10b981" strokeWidth="1.5" />
+          <rect x="34" y="50" width="12" height="30" fill="#10b981" rx="1" />
+          <line x1="90" y1="30" x2="90" y2="85" stroke="#ef4444" strokeWidth="1.5" />
+          <rect x="84" y="45" width="12" height="25" fill="#ef4444" rx="1" />
+          <line x1="140" y1="20" x2="140" y2="75" stroke="#10b981" strokeWidth="1.5" />
+          <rect x="134" y="30" width="12" height="35" fill="#10b981" rx="1" />
+          <line x1="190" y1="15" x2="190" y2="60" stroke="#10b981" strokeWidth="1.5" />
+          <rect x="184" y="20" width="12" height="30" fill="#10b981" rx="1" />
+          <line x1="240" y1="25" x2="240" y2="70" stroke="#ef4444" strokeWidth="1.5" />
+          <rect x="234" y="35" width="12" height="20" fill="#ef4444" rx="1" />
+          <line x1="290" y1="10" x2="290" y2="60" stroke="#10b981" strokeWidth="1.5" />
+          <rect x="284" y="15" width="12" height="40" fill="#10b981" rx="1" />
+          <line x1="340" y1="5" x2="340" y2="45" stroke="#10b981" strokeWidth="1.5" />
+          <rect x="334" y="10" width="12" height="25" fill="#10b981" rx="1" />
+
+          {/* MA Line */}
+          <path d="M 40 70 Q 140 40, 240 35 T 340 18" fill="none" stroke="#f59e0b" strokeWidth="2" />
+
+          {showLabels && (
+            <>
+              <text x="345" y="15" fill="#10b981" fontSize="10" fontFamily="monospace" fontWeight="bold">68,490</text>
+              <text x="5" y="35" fill="#64748b" fontSize="9" fontFamily="monospace">68,000</text>
+              <text x="5" y="75" fill="#64748b" fontSize="9" fontFamily="monospace">67,500</text>
+              <text x="5" y="105" fill="#64748b" fontSize="9" fontFamily="monospace">67,000</text>
+            </>
+          )}
+        </svg>
+      </div>
+    </div>
+  );
+};`,
+    aiPromptGuidance: `이 컴포넌트는 금융/주식/코인용 캔들스틱 차트입니다. 상승/하락 캔들과 이동평균선, 레이블 토글 스위치를 포함하여 구현하세요.`
+  },
+  {
+    id: 'chart-donut-allocation',
+    name: '도넛 포트폴리오 비중 차트 (인터랙티브 세그먼트)',
+    category: 'charts',
+    tags: ['chart', 'donut', 'pie', 'portfolio', 'allocation', '도넛', '파이', '비중', '원형'],
+    description: '중앙 총액 메트릭, 호버 시 세그먼트 확대, 컬러풀 범례 및 비율(%)이 표시되는 현대적 도넛 차트.',
+    complexity: 'Medium',
+    dependencies: ['lucide-react'],
+    previewType: 'chart-donut-allocation',
+    fullSourceCode: `import React, { useState } from 'react';
+import { PieChart } from 'lucide-react';
+
+const ASSETS = [
+  { name: 'AI Tech Stocks', percent: 45, color: '#8b5cf6' },
+  { name: 'US Treasury Bonds', percent: 25, color: '#06b6d4' },
+  { name: 'Crypto (BTC/ETH)', percent: 20, color: '#f59e0b' },
+  { name: 'Cash / Liquidity', percent: 10, color: '#10b981' },
+];
+
+export const DonutAllocationChart: React.FC = () => {
+  return (
+    <div className="rounded-2xl bg-slate-900/90 backdrop-blur-xl border border-white/10 p-5 shadow-2xl">
+      <div className="flex items-center justify-between mb-4">
+        <h4 className="text-sm font-bold text-white flex items-center gap-2">
+          <PieChart className="w-4 h-4 text-violet-400" />
+          자산 포트폴리오 배분 비중
+        </h4>
+        <span className="text-xs text-slate-400">Total: $100,000</span>
+      </div>
+      <div className="grid grid-cols-1 sm:grid-cols-2 items-center gap-4">
+        <div className="relative w-36 h-36 mx-auto flex items-center justify-center">
+          <svg viewBox="0 0 100 100" className="w-full h-full -rotate-90">
+            <circle cx="50" cy="50" r="38" stroke="#8b5cf6" strokeWidth="14" fill="none" strokeDasharray="107 132" strokeDashoffset="0" />
+            <circle cx="50" cy="50" r="38" stroke="#06b6d4" strokeWidth="14" fill="none" strokeDasharray="60 179" strokeDashoffset="-107" />
+            <circle cx="50" cy="50" r="38" stroke="#f59e0b" strokeWidth="14" fill="none" strokeDasharray="48 191" strokeDashoffset="-167" />
+            <circle cx="50" cy="50" r="38" stroke="#10b981" strokeWidth="14" fill="none" strokeDasharray="24 215" strokeDashoffset="-215" />
+          </svg>
+          <div className="absolute text-center">
+            <span className="text-[10px] text-slate-400 block">총 운용액</span>
+            <span className="text-xs font-extrabold text-white font-mono">$100k</span>
+          </div>
+        </div>
+        <div className="space-y-1.5">
+          {ASSETS.map((a, i) => (
+            <div key={i} className="flex items-center justify-between p-1.5 rounded-lg bg-white/[0.02]">
+              <div className="flex items-center gap-2">
+                <div className="w-2.5 h-2.5 rounded-full" style={{ backgroundColor: a.color }} />
+                <span className="text-xs text-slate-200">{a.name}</span>
+              </div>
+              <span className="text-xs font-mono font-bold text-white">{a.percent}%</span>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  );
+};`,
+    aiPromptGuidance: `이 컴포넌트는 SVG 기반 원형 도넛 비중 차트입니다. 중앙 메트릭과 각 세그먼트 호버 인터랙션, 범례 리스트를 구현하세요.`
+  },
+  {
+    id: 'chart-radar-skills',
+    name: '육각형 레이더/스파이더 다차원 역량 비교 차트',
+    category: 'charts',
+    tags: ['chart', 'radar', 'spider', 'polygon', 'skill', '다각형', '레이더', '역량', '비교'],
+    description: '6개 축(AI, 코드품질, 아키텍처, 속도, 보안, UX) 다차원 폴리곤 비교 시각화.',
+    complexity: 'Advanced',
+    dependencies: ['lucide-react'],
+    previewType: 'chart-radar-skills',
+    fullSourceCode: `import React from 'react';
+import { Target } from 'lucide-react';
+
+export const RadarSkillsChart: React.FC = () => {
+  return (
+    <div className="rounded-2xl bg-slate-900/90 backdrop-blur-xl border border-white/10 p-5 shadow-2xl">
+      <div className="flex items-center justify-between mb-2">
+        <h4 className="text-sm font-bold text-white flex items-center gap-2">
+          <Target className="w-4 h-4 text-cyan-400" />
+          AI 에이전트 다차원 역량 벤치마크
+        </h4>
+        <span className="text-xs text-cyan-400 font-bold">94.2 pts</span>
+      </div>
+      <div className="relative h-44 w-full flex items-center justify-center">
+        <svg viewBox="0 0 200 200" className="w-full h-full">
+          {[1, 0.7, 0.4].map((scale, i) => (
+            <polygon
+              key={i}
+              points="100,20 170,60 170,140 100,180 30,140 30,60"
+              transform={\`scale(\${scale}) translate(\${(1 - scale) * 100}, \${(1 - scale) * 100})\`}
+              fill="none"
+              stroke="rgba(255,255,255,0.1)"
+              strokeWidth="1"
+            />
+          ))}
+          <polygon
+            points="100,30 165,65 150,135 100,165 45,130 40,65"
+            fill="rgba(6, 182, 212, 0.3)"
+            stroke="#06b6d4"
+            strokeWidth="2"
+          />
+          <text x="100" y="14" fill="#94a3b8" fontSize="8" textAnchor="middle">AI 추론</text>
+          <text x="175" y="60" fill="#94a3b8" fontSize="8">코드품질</text>
+          <text x="175" y="145" fill="#94a3b8" fontSize="8">보안</text>
+          <text x="100" y="194" fill="#94a3b8" fontSize="8" textAnchor="middle">속도</text>
+          <text x="25" y="145" fill="#94a3b8" fontSize="8" textAnchor="end">아키텍처</text>
+          <text x="25" y="60" fill="#94a3b8" fontSize="8" textAnchor="end">UX</text>
+        </svg>
+      </div>
+    </div>
+  );
+};`,
+    aiPromptGuidance: `이 컴포넌트는 다축 스킬 레이더(Spider) 차트입니다. 6개 항목 다각형 시각화를 SVG로 깔끔하게 렌더링하도록 작성하세요.`
+  },
+  {
+    id: 'chart-activity-heatmap',
+    name: 'GitHub 스타일 연간 기여도 & 활동 히트맵',
+    category: 'charts',
+    tags: ['chart', 'heatmap', 'activity', 'github', 'commit', '히트맵', '잔디', '활동량'],
+    description: '날짜별/시간대별 활동 밀도를 녹색/보라색 강도로 보여주는 매트릭스 히트맵.',
+    complexity: 'Medium',
+    dependencies: ['lucide-react'],
+    previewType: 'chart-activity-heatmap',
+    fullSourceCode: `import React from 'react';
+import { Flame } from 'lucide-react';
+
+export const ActivityHeatmapChart: React.FC = () => {
+  const weeks = Array.from({ length: 20 }, () => 
+    Array.from({ length: 7 }, () => Math.floor(Math.random() * 5))
+  );
+
+  return (
+    <div className="rounded-2xl bg-slate-900/90 backdrop-blur-xl border border-white/10 p-5 shadow-2xl">
+      <div className="flex items-center justify-between mb-3">
+        <h4 className="text-sm font-bold text-white flex items-center gap-2">
+          <Flame className="w-4 h-4 text-fuchsia-400" />
+          활동 잔디 히트맵 (Activity Heatmap)
+        </h4>
+        <span className="text-xs text-slate-400">1,842 Events</span>
+      </div>
+      <div className="flex gap-1 overflow-x-auto pb-1">
+        {weeks.map((week, wIdx) => (
+          <div key={wIdx} className="flex flex-col gap-1">
+            {week.map((level, dIdx) => (
+              <div
+                key={dIdx}
+                className={\`w-3.5 h-3.5 rounded-sm border \${
+                  level === 4 ? 'bg-fuchsia-500 border-fuchsia-400' :
+                  level === 3 ? 'bg-violet-600 border-violet-500' :
+                  level === 2 ? 'bg-violet-800 border-violet-700' :
+                  level === 1 ? 'bg-violet-950 border-violet-900' :
+                  'bg-white/[0.03] border-white/5'
+                }\`}
+              />
+            ))}
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+};`,
+    aiPromptGuidance: `이 컴포넌트는 GitHub 커밋 잔디 스타일의 연간 활동 히트맵입니다. 주 단위, 일 단위 그리드와 단계별 색상 매핑을 포함하여 작성하세요.`
+  },
+  {
     id: 'kpi-metric-neon',
     name: '2026 네온 글래스 KPI 지표 카드',
     category: 'stats',

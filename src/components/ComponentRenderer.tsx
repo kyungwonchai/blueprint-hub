@@ -14,6 +14,20 @@ interface RendererProps {
 }
 
 export const ComponentRenderer: React.FC<RendererProps> = ({ componentId, isCompact = false }) => {
+  // New Infographic Charts
+  if (componentId === 'chart-candlestick-trading') {
+    return <CandlestickTradingDemo isCompact={isCompact} />;
+  }
+  if (componentId === 'chart-donut-allocation') {
+    return <DonutAllocationDemo isCompact={isCompact} />;
+  }
+  if (componentId === 'chart-radar-skills') {
+    return <RadarSkillsDemo isCompact={isCompact} />;
+  }
+  if (componentId === 'chart-activity-heatmap') {
+    return <ActivityHeatmapDemo isCompact={isCompact} />;
+  }
+
   // 1. kpi-metric-neon
   if (componentId === 'kpi-metric-neon') {
     return (
@@ -372,6 +386,122 @@ const NotificationToastDemo: React.FC = () => {
       <div className="flex-1 text-xs">
         <div className="font-bold text-white">블루프린트 API 배포 완료</div>
         <div className="text-slate-400 text-[10px]">엔드포인트: /api/blueprints/live</div>
+      </div>
+    </div>
+  );
+};
+
+const CandlestickTradingDemo: React.FC<{ isCompact?: boolean }> = () => {
+  const [showLabels, setShowLabels] = useState(true);
+  return (
+    <div className="rounded-2xl bg-slate-900/90 backdrop-blur-xl border border-white/10 p-4 shadow-2xl">
+      <div className="flex items-center justify-between mb-2">
+        <span className="text-xs font-bold text-white flex items-center gap-1.5">
+          <span className="w-2 h-2 rounded-full bg-emerald-400 animate-ping" />
+          BTC/USDT 1분봉
+        </span>
+        <button onClick={() => setShowLabels(!showLabels)} className="text-[10px] text-slate-400 hover:text-white px-2 py-0.5 rounded bg-white/5">
+          {showLabels ? '레이블 ON' : '미니멀 OFF'}
+        </button>
+      </div>
+      <div className="h-28 w-full bg-slate-950/70 rounded-xl p-2 border border-white/5">
+        <svg viewBox="0 0 300 80" className="w-full h-full">
+          <line x1="30" y1="20" x2="30" y2="60" stroke="#10b981" strokeWidth="1.5" />
+          <rect x="25" y="30" width="10" height="20" fill="#10b981" rx="1" />
+          <line x1="70" y1="15" x2="70" y2="55" stroke="#ef4444" strokeWidth="1.5" />
+          <rect x="65" y="25" width="10" height="15" fill="#ef4444" rx="1" />
+          <line x1="110" y1="10" x2="110" y2="50" stroke="#10b981" strokeWidth="1.5" />
+          <rect x="105" y="15" width="10" height="25" fill="#10b981" rx="1" />
+          <line x1="150" y1="8" x2="150" y2="40" stroke="#10b981" strokeWidth="1.5" />
+          <rect x="145" y="12" width="10" height="20" fill="#10b981" rx="1" />
+          <line x1="190" y1="15" x2="190" y2="50" stroke="#ef4444" strokeWidth="1.5" />
+          <rect x="185" y="22" width="10" height="18" fill="#ef4444" rx="1" />
+          <line x1="230" y1="5" x2="230" y2="40" stroke="#10b981" strokeWidth="1.5" />
+          <rect x="225" y="8" width="10" height="25" fill="#10b981" rx="1" />
+          <path d="M 30 45 Q 110 25, 190 25 T 270 12" fill="none" stroke="#f59e0b" strokeWidth="1.5" />
+          {showLabels && <text x="235" y="10" fill="#10b981" fontSize="8" fontFamily="monospace">$68.4k</text>}
+        </svg>
+      </div>
+    </div>
+  );
+};
+
+const DonutAllocationDemo: React.FC<{ isCompact?: boolean }> = () => {
+  return (
+    <div className="rounded-2xl bg-slate-900/90 backdrop-blur-xl border border-white/10 p-4 shadow-2xl">
+      <div className="flex items-center justify-between text-xs font-bold text-white mb-2">
+        <span>자산 배분 비중 (Donut)</span>
+        <span className="text-violet-400 font-mono text-[11px]">$100k</span>
+      </div>
+      <div className="flex items-center gap-3">
+        <div className="relative w-24 h-24 shrink-0 mx-auto">
+          <svg viewBox="0 0 100 100" className="w-full h-full -rotate-90">
+            <circle cx="50" cy="50" r="38" stroke="#8b5cf6" strokeWidth="14" fill="none" strokeDasharray="107 132" strokeDashoffset="0" />
+            <circle cx="50" cy="50" r="38" stroke="#06b6d4" strokeWidth="14" fill="none" strokeDasharray="60 179" strokeDashoffset="-107" />
+            <circle cx="50" cy="50" r="38" stroke="#f59e0b" strokeWidth="14" fill="none" strokeDasharray="48 191" strokeDashoffset="-167" />
+            <circle cx="50" cy="50" r="38" stroke="#10b981" strokeWidth="14" fill="none" strokeDasharray="24 215" strokeDashoffset="-215" />
+          </svg>
+          <div className="absolute inset-0 flex items-center justify-center text-[10px] font-bold text-white">45%</div>
+        </div>
+        <div className="text-[10px] space-y-1 text-slate-300">
+          <div className="flex items-center gap-1"><span className="w-2 h-2 rounded-full bg-violet-500" /> AI Tech: 45%</div>
+          <div className="flex items-center gap-1"><span className="w-2 h-2 rounded-full bg-cyan-400" /> Bonds: 25%</div>
+          <div className="flex items-center gap-1"><span className="w-2 h-2 rounded-full bg-amber-400" /> Crypto: 20%</div>
+          <div className="flex items-center gap-1"><span className="w-2 h-2 rounded-full bg-emerald-400" /> Cash: 10%</div>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+const RadarSkillsDemo: React.FC<{ isCompact?: boolean }> = () => {
+  return (
+    <div className="rounded-2xl bg-slate-900/90 backdrop-blur-xl border border-white/10 p-4 shadow-2xl">
+      <div className="flex items-center justify-between text-xs font-bold text-white mb-1">
+        <span>다차원 레이더 (Radar)</span>
+        <span className="text-cyan-400 text-[10px]">94.2 pts</span>
+      </div>
+      <div className="relative h-28 w-full flex items-center justify-center">
+        <svg viewBox="0 0 160 160" className="w-full h-full">
+          <polygon points="80,15 136,47 136,113 80,145 24,113 24,47" fill="none" stroke="rgba(255,255,255,0.08)" strokeWidth="1" />
+          <polygon points="80,24 130,52 120,110 80,132 38,105 34,52" fill="rgba(6, 182, 212, 0.3)" stroke="#06b6d4" strokeWidth="2" />
+          <text x="80" y="10" fill="#94a3b8" fontSize="7" textAnchor="middle">AI</text>
+          <text x="142" y="50" fill="#94a3b8" fontSize="7">Code</text>
+          <text x="142" y="118" fill="#94a3b8" fontSize="7">Sec</text>
+          <text x="80" y="155" fill="#94a3b8" fontSize="7" textAnchor="middle">Speed</text>
+          <text x="18" y="118" fill="#94a3b8" fontSize="7" textAnchor="end">Archi</text>
+          <text x="18" y="50" fill="#94a3b8" fontSize="7" textAnchor="end">UX</text>
+        </svg>
+      </div>
+    </div>
+  );
+};
+
+const ActivityHeatmapDemo: React.FC<{ isCompact?: boolean }> = () => {
+  const weeks = Array.from({ length: 16 }, () => Array.from({ length: 5 }, () => Math.floor(Math.random() * 5)));
+  return (
+    <div className="rounded-2xl bg-slate-900/90 backdrop-blur-xl border border-white/10 p-4 shadow-2xl">
+      <div className="flex items-center justify-between text-xs font-bold text-white mb-2">
+        <span>활동 잔디 히트맵</span>
+        <span className="text-fuchsia-400 text-[10px]">1,842 Hits</span>
+      </div>
+      <div className="flex gap-1 overflow-x-auto pb-1">
+        {weeks.map((week, wIdx) => (
+          <div key={wIdx} className="flex flex-col gap-1">
+            {week.map((level, dIdx) => (
+              <div
+                key={dIdx}
+                className={`w-3 h-3 rounded-sm border ${
+                  level === 4 ? 'bg-fuchsia-500 border-fuchsia-400' :
+                  level === 3 ? 'bg-violet-600 border-violet-500' :
+                  level === 2 ? 'bg-violet-800 border-violet-700' :
+                  level === 1 ? 'bg-violet-950 border-violet-900' :
+                  'bg-white/[0.03] border-white/5'
+                }`}
+              />
+            ))}
+          </div>
+        ))}
       </div>
     </div>
   );

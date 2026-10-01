@@ -1,66 +1,51 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { 
   Layers, Camera, ArrowLeft, Trash2, Plus, Sparkles, 
-  Move, Maximize2, StickyNote, Grid, Eye, RotateCcw,
-  ZoomIn, ZoomOut, Check, ChevronRight, Layout, HelpCircle
+  Move, StickyNote, Grid, RotateCcw, Folder, User, Check, Edit3, Lock, Globe 
 } from 'lucide-react';
-import { ComponentItem } from '../types';
+import { ComponentItem, BoardData, CanvasBoardItem } from '../types';
 import { ComponentRenderer } from './ComponentRenderer';
 
-interface CanvasItem {
-  id: string; // unique canvas slot instance id
-  componentId: string;
-  name: string;
-  category: string;
-  type: 'component' | 'sticky';
-  x: number;
-  y: number;
-  width: number;
-  height: number;
-  zIndex: number;
-  stickyText?: string;
-  stickyColor?: string;
-}
-
 interface CanvasStudioProps {
-  cartItems: ComponentItem[];
+  board: BoardData;
+  currentUser: string;
+  onUpdateBoard: (updated: BoardData) => void;
   onBackToCatalog: () => void;
+  onOpenBoardManager: () => void;
   onCreateSnapshot: (layoutType: string, slots: { slotId: string; componentId: string; x: number; y: number; width: number; height: number }[]) => void;
   onRemoveItem: (id: string) => void;
 }
 
 export const CanvasStudio: React.FC<CanvasStudioProps> = ({
-  cartItems,
+  board,
+  currentUser,
+  onUpdateBoard,
   onBackToCatalog,
+  onOpenBoardManager,
   onCreateSnapshot,
   onRemoveItem,
 }) => {
-  // Freeform Whiteboard Items state
-  const [boardItems, setBoardItems] = useState<CanvasItem[]>(() => {
-    // Initial cascade placement like sticky notes on a board
-    return cartItems.map((item, idx) => {
-      const col = idx % 2;
-      const row = Math.floor(idx / 2);
-      const isWide = item.category === 'tables' || item.category === 'dashboards';
-
-      return {
-        id: `widget_${item.id}_${idx}_${Date.now()}`,
-        componentId: item.id,
-        name: item.name,
-        category: item.category,
-        type: 'component',
-        x: isWide ? 40 : 40 + col * 480,
-        y: 40 + row * 340 + (isWide && col === 1 ? 340 : 0),
-        width: isWide ? 940 : 450,
-        height: 320,
-        zIndex: idx + 1,
-      };
-    });
-  });
-
+  const [boardItems, setBoardItems] = useState<CanvasBoardItem[]>(board.items || []);
   const [snapToGrid, setSnapToGrid] = useState(true);
   const [activeItemId, setActiveItemId] = useState<string | null>(null);
   const [maxZIndex, setMaxZIndex] = useState(100);
+  const [isEditingTitle, setIsEditingTitle] = useState(false);
+  const [titleInput, setTitleInput] = useState(board.title);
+
+  // Sync with board changes
+  useEffect(() => {
+    setBoardItems(board.items || []);
+    setTitleInput(board.title);
+  }, [board.id]);
+
+  // Notify parent on board items change
+  const notifyBoardChange = (newItems: CanvasBoardItem[]) => {
+    setBoardItems(newItems);
+    onUpdateBoard({
+      ...board,
+      items: newItems,
+    });
+  };
 
   // Dragging state
   const draggingRef = useRef<{
@@ -86,44 +71,51 @@ export const CanvasStudio: React.FC<CanvasStudioProps> = ({
   const handleAddStickyNote = () => {
     const newZ = maxZIndex + 1;
     setMaxZIndex(newZ);
-    const newSticky: CanvasItem = {
+    const newSticky: CanvasBoardItem = {
       id: `sticky_${Date.now()}`,
       componentId: 'sticky-note',
-      name: '💡 기획 메모 / AI 지시사항',
+      name: '💡 기획 포스트잇',
       category: 'feedback',
       type: 'sticky',
-      x: 100 + (boardItems.length % 5) * 30,
-      y: 100 + (boardItems.length % 5) * 30,
+      x: 60 + (boardItems.length % 5) * 40,
+      y: 60 + (boardItems.length % 5) * 40,
       width: 260,
       height: 200,
       zIndex: newZ,
-      stickyText: '여기에 원하는 레이아웃 메모나 AI에게 전달할 요구사항을 적으세요.',
-      stickyColor: '#fef08a', // Yellow sticky
+      stickyText: '여기에 기획 메모나 AI에게 전달할 요구사항을 적으세요.',
+      stickyColor: '#fef08a',
     };
-    setBoardItems(prev => [...prev, newSticky]);
+    const updated = [...boardItems, newSticky];
+    notifyBoardChange(updated);
     setActiveItemId(newSticky.id);
   };
 
-  // Reset to auto cascade alignment
+  // Auto align widgets cascade
   const handleAutoAlign = () => {
-    setBoardItems(prev => {
-      return prev.map((item, idx) => {
-        const col = idx % 2;
-        const row = Math.floor(idx / 2);
-        const isWide = item.width > 600 || item.category === 'tables';
-        return {
-          ...item,
-          x: isWide ? 40 : 40 + col * 490,
-          y: 40 + row * 350,
-          zIndex: idx + 1,
-        };
-      });
+    const aligned = boardItems.map((item, idx) => {
+      const col = idx % 2;
+      const row = Math.floor(idx / 2);
+      const isWide = item.width > 600 || item.category === 'tables';
+      return {
+        ...item,
+        x: isWide ? 40 : 40 + col * 490,
+        y: 40 + row * 350,
+        zIndex: idx + 1,
+      };
     });
+    notifyBoardChange(aligned);
+  };
+
+  // Save Title
+  const handleSaveTitle = () => {
+    if (titleInput.trim()) {
+      onUpdateBoard({ ...board, title: titleInput.trim() });
+      setIsEditingTitle(false);
+    }
   };
 
   // Mouse Down to Start Drag
-  const handleMouseDownItem = (e: React.MouseEvent, item: CanvasItem) => {
-    // If clicking input/textarea or resize handle, don't drag
+  const handleMouseDownItem = (e: React.MouseEvent, item: CanvasBoardItem) => {
     if ((e.target as HTMLElement).tagName === 'TEXTAREA' || (e.target as HTMLElement).tagName === 'INPUT' || (e.target as HTMLElement).tagName === 'BUTTON') {
       return;
     }
@@ -134,7 +126,8 @@ export const CanvasStudio: React.FC<CanvasStudioProps> = ({
     setActiveItemId(item.id);
 
     // Bring to front
-    setBoardItems(prev => prev.map(it => it.id === item.id ? { ...it, zIndex: newZ } : it));
+    const updated = boardItems.map(it => it.id === item.id ? { ...it, zIndex: newZ } : it);
+    setBoardItems(updated);
 
     draggingRef.current = {
       id: item.id,
@@ -149,7 +142,7 @@ export const CanvasStudio: React.FC<CanvasStudioProps> = ({
   };
 
   // Mouse Down on Resize Handle
-  const handleMouseDownResize = (e: React.MouseEvent, item: CanvasItem) => {
+  const handleMouseDownResize = (e: React.MouseEvent, item: CanvasBoardItem) => {
     e.stopPropagation();
     e.preventDefault();
 
@@ -170,14 +163,10 @@ export const CanvasStudio: React.FC<CanvasStudioProps> = ({
   };
 
   const handleMouseMove = (e: MouseEvent) => {
-    // 1. Handling Drag
     if (draggingRef.current) {
       const { id, startX, startY, initialItemX, initialItemY } = draggingRef.current;
-      const deltaX = e.clientX - startX;
-      const deltaY = e.clientY - startY;
-
-      let newX = Math.max(10, initialItemX + deltaX);
-      let newY = Math.max(10, initialItemY + deltaY);
+      let newX = Math.max(10, initialItemX + (e.clientX - startX));
+      let newY = Math.max(10, initialItemY + (e.clientY - startY));
 
       if (snapToGrid) {
         newX = Math.round(newX / 20) * 20;
@@ -187,14 +176,10 @@ export const CanvasStudio: React.FC<CanvasStudioProps> = ({
       setBoardItems(prev => prev.map(it => it.id === id ? { ...it, x: newX, y: newY } : it));
     }
 
-    // 2. Handling Resize
     if (resizingRef.current) {
       const { id, startX, startY, initialWidth, initialHeight } = resizingRef.current;
-      const deltaX = e.clientX - startX;
-      const deltaY = e.clientY - startY;
-
-      let newWidth = Math.max(220, initialWidth + deltaX);
-      let newHeight = Math.max(160, initialHeight + deltaY);
+      let newWidth = Math.max(220, initialWidth + (e.clientX - startX));
+      let newHeight = Math.max(160, initialHeight + (e.clientY - startY));
 
       if (snapToGrid) {
         newWidth = Math.round(newWidth / 20) * 20;
@@ -206,6 +191,13 @@ export const CanvasStudio: React.FC<CanvasStudioProps> = ({
   };
 
   const handleMouseUp = () => {
+    if (draggingRef.current || resizingRef.current) {
+      // Sync finalized coordinates with server
+      setBoardItems(currentItems => {
+        onUpdateBoard({ ...board, items: currentItems });
+        return currentItems;
+      });
+    }
     draggingRef.current = null;
     resizingRef.current = null;
     window.removeEventListener('mousemove', handleMouseMove);
@@ -214,18 +206,19 @@ export const CanvasStudio: React.FC<CanvasStudioProps> = ({
 
   // Remove Item
   const handleRemoveBoardItem = (id: string, compId: string) => {
-    setBoardItems(prev => prev.filter(it => it.id !== id));
+    const updated = boardItems.filter(it => it.id !== id);
+    notifyBoardChange(updated);
     onRemoveItem(compId);
   };
 
   // Sticky text change
   const handleStickyTextChange = (id: string, text: string) => {
-    setBoardItems(prev => prev.map(it => it.id === id ? { ...it, stickyText: text } : it));
+    const updated = boardItems.map(it => it.id === id ? { ...it, stickyText: text } : it);
+    notifyBoardChange(updated);
   };
 
   // Create Snapshot from Freeform Layout
   const handleSnapshotClick = () => {
-    // Sort items by Y then X for logical document flow
     const sorted = [...boardItems].sort((a, b) => (a.y - b.y) || (a.x - b.x));
     const slots = sorted.map((s, idx) => ({
       slotId: `slot_${idx + 1}`,
@@ -239,86 +232,101 @@ export const CanvasStudio: React.FC<CanvasStudioProps> = ({
   };
 
   return (
-    <div className="min-h-screen bg-[#06070b] flex flex-col text-slate-100 font-sans select-none overflow-x-hidden">
+    <div className="min-h-screen bg-[#06070b] flex flex-col text-slate-100 font-sans select-none overflow-x-hidden animate-fade-in">
       
-      {/* Studio Top Floating Toolbar */}
-      <header className="sticky top-0 z-40 bg-[#0c0e18]/95 backdrop-blur-2xl border-b border-white/10 px-4 sm:px-6 py-3 shadow-2xl">
-        <div className="max-w-7xl mx-auto flex flex-wrap items-center justify-between gap-4">
-          
-          <div className="flex items-center gap-3">
-            <button
-              onClick={onBackToCatalog}
-              className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-white/[0.05] hover:bg-white/[0.1] text-xs font-semibold text-slate-300 hover:text-white border border-white/10 transition-all active:scale-95"
-            >
-              <ArrowLeft className="w-4 h-4" />
-              <span>카탈로그 추가</span>
-            </button>
-            <div className="h-4 w-px bg-white/10 hidden sm:block" />
-            <h2 className="text-sm font-black text-white flex items-center gap-2">
-              <div className="p-1.5 rounded-lg bg-gradient-to-tr from-fuchsia-600 to-violet-600 shadow-[0_0_12px_rgba(217,70,239,0.5)]">
-                <StickyNote className="w-4 h-4 text-white" />
-              </div>
-              <span>포스트잇 칠판 프리폼 캔버스</span>
-              <span className="text-[10px] font-bold px-2 py-0.5 rounded-full bg-fuchsia-500/20 text-fuchsia-300 border border-fuchsia-500/30">
-                자유 드래그 & 리사이즈
-              </span>
-            </h2>
-          </div>
+      {/* Studio Top Floating Sub-Bar */}
+      <div className="sticky top-[58px] z-30 bg-[#0c0e18]/95 backdrop-blur-2xl border-b border-white/10 px-4 sm:px-6 py-2.5 shadow-2xl flex flex-wrap items-center justify-between gap-4">
+        
+        <div className="flex items-center gap-3">
+          <button
+            onClick={onOpenBoardManager}
+            className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-white/[0.05] hover:bg-white/[0.1] text-xs font-semibold text-slate-300 hover:text-white border border-white/10"
+            title="다른 칠판으로 전환 또는 새 칠판 만들기"
+          >
+            <Folder className="w-4 h-4 text-fuchsia-400" />
+            <span>칠판 목록 ({board.author})</span>
+          </button>
 
-          {/* Whiteboard Controls */}
-          <div className="flex items-center gap-2">
-            <button
-              onClick={handleAddStickyNote}
-              className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-amber-500/20 hover:bg-amber-500/30 text-amber-300 border border-amber-500/40 text-xs font-bold transition-all shadow-sm active:scale-95"
-            >
-              <StickyNote className="w-3.5 h-3.5" />
-              <span>+ 메모 포스트잇 붙이기</span>
-            </button>
+          <div className="h-4 w-px bg-white/10 hidden sm:block" />
 
+          {/* Board Title Inline Edit */}
+          {isEditingTitle ? (
+            <div className="flex items-center gap-1">
+              <input
+                type="text"
+                value={titleInput}
+                onChange={(e) => setTitleInput(e.target.value)}
+                onBlur={handleSaveTitle}
+                onKeyDown={(e) => e.key === 'Enter' && handleSaveTitle()}
+                autoFocus
+                className="px-2.5 py-1 bg-black/80 border border-violet-500 rounded-lg text-xs font-bold text-white focus:outline-none"
+              />
+              <button onClick={handleSaveTitle} className="text-emerald-400 p-1"><Check className="w-4 h-4" /></button>
+            </div>
+          ) : (
             <button
-              onClick={handleAutoAlign}
-              className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-white/[0.05] hover:bg-white/[0.1] text-slate-300 hover:text-white border border-white/10 text-xs font-semibold transition-all"
-              title="칠판의 모든 위젯을 깔끔하게 자동 정렬"
+              onClick={() => setIsEditingTitle(true)}
+              className="flex items-center gap-1.5 text-xs font-extrabold text-white hover:text-violet-300 group"
+              title="더블클릭 또는 클릭하여 칠판 이름 수정"
             >
-              <RotateCcw className="w-3.5 h-3.5" />
-              <span className="hidden md:inline">자동 정돈</span>
+              <span>{board.title}</span>
+              <Edit3 className="w-3 h-3 text-slate-500 group-hover:text-violet-400" />
             </button>
-
-            <button
-              onClick={() => setSnapToGrid(!snapToGrid)}
-              className={`flex items-center gap-1 px-3 py-1.5 rounded-xl text-xs font-bold border transition-all ${
-                snapToGrid 
-                  ? 'bg-violet-600/30 border-violet-500/50 text-violet-300' 
-                  : 'bg-white/[0.03] border-white/10 text-slate-400'
-              }`}
-              title="20px 모눈 격자 자석 스냅"
-            >
-              <Grid className="w-3.5 h-3.5" />
-              <span>격자 스냅 {snapToGrid ? 'ON' : 'OFF'}</span>
-            </button>
-
-            {/* Snapshot API Button */}
-            <button
-              onClick={handleSnapshotClick}
-              disabled={boardItems.length === 0}
-              className="flex items-center gap-2 px-4 py-2 rounded-xl bg-gradient-to-r from-violet-600 to-fuchsia-600 hover:brightness-110 text-white text-xs font-black shadow-[0_0_20px_rgba(139,92,246,0.5)] transition-all active:scale-95 disabled:opacity-30"
-            >
-              <Camera className="w-4 h-4" />
-              <span>칠판 스냅샷 API 발행</span>
-            </button>
-          </div>
+          )}
         </div>
-      </header>
 
-      {/* Guide Banner */}
-      <div className="bg-violet-950/30 border-b border-violet-500/20 px-4 py-2 text-center text-xs text-violet-300 flex items-center justify-center gap-2">
-        <Sparkles className="w-3.5 h-3.5 text-fuchsia-400" />
-        <span>
-          💡 <strong>포스트잇 칠판 모드:</strong> 원하는 곳 어디든 마우스로 자유롭게 끌어다 놓고(Drag), 우측 하단 핸들(↘)로 크기를 조절하세요!
-        </span>
+        {/* Action Buttons */}
+        <div className="flex items-center gap-2">
+          <button
+            onClick={onBackToCatalog}
+            className="flex items-center gap-1 px-3 py-1.5 rounded-xl bg-violet-600/20 hover:bg-violet-600/30 text-violet-300 border border-violet-500/30 text-xs font-bold transition-all"
+          >
+            <Plus className="w-3.5 h-3.5" />
+            <span>+ 컴포넌트 추가</span>
+          </button>
+
+          <button
+            onClick={handleAddStickyNote}
+            className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-amber-500/20 hover:bg-amber-500/30 text-amber-300 border border-amber-500/40 text-xs font-bold transition-all"
+          >
+            <StickyNote className="w-3.5 h-3.5" />
+            <span>+ 포스트잇 메모</span>
+          </button>
+
+          <button
+            onClick={handleAutoAlign}
+            className="flex items-center gap-1 px-3 py-1.5 rounded-xl bg-white/[0.04] hover:bg-white/[0.08] text-slate-300 hover:text-white border border-white/10 text-xs font-semibold"
+            title="바둑판식 자동 정렬"
+          >
+            <RotateCcw className="w-3.5 h-3.5" />
+            <span className="hidden md:inline">자동 정돈</span>
+          </button>
+
+          <button
+            onClick={() => setSnapToGrid(!snapToGrid)}
+            className={`flex items-center gap-1 px-2.5 py-1.5 rounded-xl text-xs font-bold border ${
+              snapToGrid 
+                ? 'bg-violet-600/30 border-violet-500/50 text-violet-300' 
+                : 'bg-white/[0.03] border-white/10 text-slate-400'
+            }`}
+          >
+            <Grid className="w-3.5 h-3.5" />
+            <span>자석 {snapToGrid ? 'ON' : 'OFF'}</span>
+          </button>
+
+          {/* Snapshot API Button */}
+          <button
+            onClick={handleSnapshotClick}
+            disabled={boardItems.length === 0}
+            className="flex items-center gap-1.5 px-4 py-1.5 rounded-xl bg-gradient-to-r from-violet-600 to-fuchsia-600 hover:brightness-110 text-white text-xs font-black shadow-[0_0_16px_rgba(139,92,246,0.4)] transition-all active:scale-95 disabled:opacity-30"
+          >
+            <Camera className="w-4 h-4" />
+            <span>스냅샷 API 발행</span>
+          </button>
+        </div>
       </div>
 
-      {/* The Infinite Freeform Board (Miro / Whiteboard Style) */}
+      {/* Infinite Freeform Canvas */}
       <main 
         ref={boardRef}
         className="flex-1 relative w-full min-h-[1400px] overflow-auto bg-[#07080d]"
@@ -332,9 +340,9 @@ export const CanvasStudio: React.FC<CanvasStudioProps> = ({
         {boardItems.length === 0 ? (
           <div className="h-96 flex flex-col items-center justify-center text-center p-8 rounded-3xl border-2 border-dashed border-white/10 bg-white/[0.01] max-w-lg mx-auto mt-20">
             <StickyNote className="w-16 h-16 text-slate-600 stroke-1 mb-4 animate-bounce" />
-            <h3 className="text-lg font-bold text-white mb-2">칠판이 비어 있습니다</h3>
+            <h3 className="text-lg font-bold text-white mb-2">이 칠판이 비어 있습니다</h3>
             <p className="text-xs text-slate-400 max-w-md mb-6 leading-relaxed">
-              카탈로그에서 UI 컴포넌트들을 담아오시거나, 상단의 [+ 메모 포스트잇 붙이기]를 눌러 칠판에 자유롭게 배치해보세요.
+              카탈로그에서 컴포넌트를 담아오시거나 상단의 [+ 포스트잇 메모]를 눌러 칠판에 아이디어를 붙여보세요.
             </p>
             <button
               onClick={onBackToCatalog}
@@ -347,7 +355,7 @@ export const CanvasStudio: React.FC<CanvasStudioProps> = ({
           boardItems.map((item) => {
             const isSelected = activeItemId === item.id;
 
-            // Render Sticky Memo Note
+            // 1. Sticky Post-it
             if (item.type === 'sticky') {
               return (
                 <div
@@ -367,20 +375,18 @@ export const CanvasStudio: React.FC<CanvasStudioProps> = ({
                     color: '#1e293b',
                   }}
                 >
-                  {/* Sticky Header */}
                   <div className="flex items-center justify-between pb-2 border-b border-amber-300/60">
                     <span className="text-xs font-black tracking-tight flex items-center gap-1 text-amber-900">
                       📌 기획 포스트잇
                     </span>
                     <button
-                      onClick={() => setBoardItems(prev => prev.filter(it => it.id !== item.id))}
+                      onClick={() => handleRemoveBoardItem(item.id, item.componentId)}
                       className="text-amber-700 hover:text-rose-600 p-1 rounded"
                     >
                       <Trash2 className="w-3.5 h-3.5" />
                     </button>
                   </div>
 
-                  {/* Sticky Textarea */}
                   <textarea
                     value={item.stickyText || ''}
                     onChange={(e) => handleStickyTextChange(item.id, e.target.value)}
@@ -388,7 +394,6 @@ export const CanvasStudio: React.FC<CanvasStudioProps> = ({
                     className="w-full flex-1 bg-transparent text-xs font-medium text-amber-950 placeholder-amber-700/60 focus:outline-none resize-none pt-2 font-sans leading-relaxed"
                   />
 
-                  {/* Resize Handle */}
                   <div
                     onMouseDown={(e) => handleMouseDownResize(e, item)}
                     className="absolute bottom-1 right-1 w-4 h-4 cursor-se-resize flex items-center justify-center text-amber-600 hover:text-amber-900"
@@ -400,7 +405,7 @@ export const CanvasStudio: React.FC<CanvasStudioProps> = ({
               );
             }
 
-            // Render Real Component Widget on Freeform Board
+            // 2. Real Component Widget
             return (
               <div
                 key={item.id}
@@ -419,7 +424,6 @@ export const CanvasStudio: React.FC<CanvasStudioProps> = ({
                     : 'border-white/15 hover:border-violet-400/60'
                 }`}
               >
-                {/* Freeform Header (Drag Handle) */}
                 <div className="flex items-center justify-between pb-2.5 mb-3 border-b border-white/10 cursor-grab active:cursor-grabbing">
                   <div className="flex items-center gap-2">
                     <div className="p-1 rounded-md bg-white/[0.08] text-violet-400 group-hover:text-white">
@@ -445,12 +449,10 @@ export const CanvasStudio: React.FC<CanvasStudioProps> = ({
                   </div>
                 </div>
 
-                {/* Rendered Live Component */}
                 <div className="w-full flex-1 overflow-hidden pointer-events-auto">
                   <ComponentRenderer componentId={item.componentId} isCompact={false} />
                 </div>
 
-                {/* Freeform Resize Handle (Bottom Right) */}
                 <div
                   onMouseDown={(e) => handleMouseDownResize(e, item)}
                   className="absolute bottom-1.5 right-1.5 w-5 h-5 cursor-se-resize flex items-center justify-center text-slate-500 hover:text-fuchsia-400 bg-white/[0.04] hover:bg-fuchsia-500/20 rounded-md transition-colors"

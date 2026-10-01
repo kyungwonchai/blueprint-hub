@@ -99,16 +99,16 @@ export const MasterEnterpriseApp: React.FC<MasterEnterpriseAppProps> = ({
         <div className="relative z-10 flex flex-wrap items-center justify-between gap-6">
           <div className="space-y-2 max-w-2xl">
             <div className="flex items-center gap-2">
-              <span className="px-3 py-1 rounded-full bg-gradient-to-r from-emerald-500 via-cyan-500 to-indigo-500 text-black text-[10px] font-black uppercase tracking-wider shadow-lg animate-pulse">
-                ● 2026 World-Class Autonomous Enterprise Hub
+              <span className="px-3 py-1 rounded-full bg-gradient-to-r from-cyan-500 via-indigo-500 to-fuchsia-500 text-black text-[10px] font-black uppercase tracking-wider shadow-lg">
+                ● 2026 AUTONOMOUS SCADA MATRIX
               </span>
-              <span className="text-xs text-slate-400 font-mono">Realtime SCADA / Mathematical Physics / Digital Twin</span>
+              <span className="text-xs text-slate-400 font-mono tracking-widest uppercase">Telemetry // Chaos Physics // Neural Topology</span>
             </div>
             <h2 className="text-2xl sm:text-3xl lg:text-4xl font-black text-white tracking-tight leading-tight">
-              회사 동료들의 뇌리에 1년은 남을 <span className="grad-text">초격차 산업용 관제탑</span>
+              차세대 <span className="grad-text">오토노머스 인더스트리얼 매트릭스</span>
             </h2>
-            <p className="text-xs sm:text-sm text-slate-300 leading-relaxed">
-              단순한 데모가 아닌, 4K 초고화질 비전 AI 카메라 · 3D 카오스 로렌츠 궤적 · D3 코드 다이어그램 · UMAP 잠재 공간 프로젝터 · 엔터프라이즈 정밀 제어가 결합된 세상에 없던 통합 엔터프라이즈 종합 앱입니다.
+            <p className="text-xs sm:text-sm text-slate-300 leading-relaxed font-mono">
+              4K 초고속 AI 비전 스트림 · 3D 비선형 동역학 로렌츠 어트랙터 · D3 위상 수학 토폴로지 · UMAP 잠재 공간 프로젝터 · 엔터프라이즈 정밀 제어 그리드
             </p>
           </div>
 

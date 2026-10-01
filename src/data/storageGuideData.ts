@@ -130,7 +130,7 @@ await redis.set('cache_key', JSON.stringify(data), { EX: 300 }); // 300초 만�
     scalability: 'Cloud Scale',
     pros: [
       '단순 키워드 일치가 아닌 문맥과 의미(Semantic)를 파악한 고차원 코사인 유사도 검색',
-      'LLM과 연동하여 회사 내부 문서를 AI가 검색하고 답변하게 하는 RAG의 필수 인프라'
+      'LLM 파이프라인과 연동하여 대규모 엔터프라이즈 코퍼스를 벡터 검색하는 RAG 인프라'
     ],
     cons: [
       '임베딩 모델(OpenAI text-embedding-3 등)을 거쳐 벡터 변환하는 파이프라인 필요'

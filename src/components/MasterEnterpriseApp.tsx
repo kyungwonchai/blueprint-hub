@@ -1,8 +1,9 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { 
   BarChart3, Activity, Layers, ShoppingBag, Check, Plus, Sparkles, 
   ArrowUpRight, Shield, Zap, RefreshCw, Eye, Search, Filter,
-  DollarSign, Server, Globe, Bot, Play, CheckCircle2
+  DollarSign, Server, Globe, Bot, Play, CheckCircle2, Sliders,
+  TrendingUp, ArrowDownRight, Terminal, Cpu, HardDrive
 } from 'lucide-react';
 import { COMPONENTS_DATA } from '../data/componentsData';
 import { ComponentItem } from '../types';
@@ -20,6 +21,23 @@ export const MasterEnterpriseApp: React.FC<MasterEnterpriseAppProps> = ({
   onOpenDetailModal,
 }) => {
   const [activeWorkspace, setActiveWorkspace] = useState<'trading' | 'bi' | 'devops' | 'ai'>('trading');
+  const [liveTicker, setLiveTicker] = useState(68490);
+  const [orderQty, setOrderQty] = useState('0.5');
+  const [orderSide, setOrderSide] = useState<'BUY' | 'SELL'>('BUY');
+  const [orderSuccess, setOrderSuccess] = useState<string | null>(null);
+
+  // Auto live tick for Enterprise authenticity
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setLiveTicker(p => p + (Math.floor(Math.random() * 30) - 14));
+    }, 2000);
+    return () => clearInterval(timer);
+  }, []);
+
+  const handlePlaceOrder = () => {
+    setOrderSuccess(`✔ ${orderSide} ${orderQty} BTC @ $${liveTicker.toLocaleString()} 체결 완료!`);
+    setTimeout(() => setOrderSuccess(null), 3000);
+  };
 
   const getComponent = (id: string) => COMPONENTS_DATA.find(c => c.id === id);
 
@@ -29,17 +47,17 @@ export const MasterEnterpriseApp: React.FC<MasterEnterpriseAppProps> = ({
     const inCart = cartItems.some(x => x.id === item.id);
 
     return (
-      <div className="relative group/slot rounded-2xl bg-white/[0.02] hover:bg-white/[0.04] border border-white/10 hover:border-violet-500/50 p-3 shadow-xl transition-all">
+      <div className="relative group/slot rounded-2xl bg-white/[0.025] hover:bg-white/[0.05] border border-white/10 hover:border-violet-500/50 p-3.5 shadow-xl transition-all flex flex-col justify-between">
         {/* Quick Inspector Ribbon */}
-        <div className="flex items-center justify-between mb-2 pb-2 border-b border-white/5">
-          <div className="flex items-center gap-1.5">
-            <span className="w-2 h-2 rounded-full bg-violet-400" />
-            <span className="text-[11px] font-bold text-white tracking-tight truncate">
+        <div className="flex items-center justify-between mb-2.5 pb-2 border-b border-white/5">
+          <div className="flex items-center gap-1.5 min-w-0">
+            <span className="w-2 h-2 rounded-full bg-violet-400 shrink-0" />
+            <span className="text-xs font-extrabold text-white tracking-tight truncate">
               {customTitle || item.name}
             </span>
           </div>
 
-          <div className="flex items-center gap-1">
+          <div className="flex items-center gap-1 shrink-0 ml-2">
             <button
               onClick={() => onOpenDetailModal(item)}
               className="p-1 rounded-md bg-white/5 hover:bg-white/10 text-slate-400 hover:text-white transition-colors"
@@ -50,10 +68,10 @@ export const MasterEnterpriseApp: React.FC<MasterEnterpriseAppProps> = ({
 
             <button
               onClick={() => onAddToCart(item)}
-              className={`flex items-center gap-1 px-2 py-0.5 rounded-md text-[10px] font-bold transition-all ${
+              className={`flex items-center gap-1 px-2.5 py-1 rounded-md text-[10px] font-bold transition-all ${
                 inCart
-                  ? 'bg-fuchsia-500 text-white shadow-sm'
-                  : 'bg-white/[0.06] hover:bg-white/[0.12] text-slate-300 hover:text-white border border-white/10'
+                  ? 'bg-fuchsia-500 text-white shadow-md'
+                  : 'bg-white/[0.08] hover:bg-white/[0.16] text-white border border-white/15'
               }`}
             >
               {inCart ? <Check className="w-2.5 h-2.5" /> : <Plus className="w-2.5 h-2.5" />}
@@ -73,23 +91,23 @@ export const MasterEnterpriseApp: React.FC<MasterEnterpriseAppProps> = ({
   return (
     <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 space-y-6 animate-fade-in">
       {/* Top App Bar with Workspace Switcher */}
-      <div className="p-4 rounded-3xl bg-slate-900/80 backdrop-blur-2xl border border-white/10 shadow-2xl flex flex-wrap items-center justify-between gap-4">
+      <div className="p-5 rounded-3xl bg-slate-900/80 backdrop-blur-2xl border border-white/10 shadow-2xl flex flex-wrap items-center justify-between gap-4">
         <div>
           <div className="flex items-center gap-2 mb-1">
-            <span className="px-2.5 py-0.5 rounded-full bg-gradient-to-r from-emerald-500 to-cyan-500 text-black text-[10px] font-black uppercase tracking-wider">
-              Live Master System
+            <span className="px-2.5 py-0.5 rounded-full bg-gradient-to-r from-emerald-500 to-cyan-500 text-black text-[10px] font-black uppercase tracking-wider animate-pulse">
+              ● Live Master Enterprise
             </span>
             <h2 className="text-base sm:text-lg font-black text-white">
-              2026 엔터프라이즈 실시간 관제 마스터 허브
+              2026 엔터프라이즈 실시간 통합 관제 시스템
             </h2>
           </div>
           <p className="text-xs text-slate-400">
-            실제 운영 중인 통합 앱 안에서 개별 컨트롤들의 실시간 상호작용과 역할을 직접 체험하고 원하는 컴포넌트를 즉시 장바구니에 담으세요.
+            실제 유스케이스 환경에서 100% 작동하는 데이터 기반 컨트롤들을 직접 조작해보고, 필요한 부품을 장바구니에 담으세요.
           </p>
         </div>
 
         {/* Workspace Switcher */}
-        <div className="flex items-center gap-1.5 p-1 rounded-2xl bg-black/60 border border-white/10">
+        <div className="flex items-center gap-1.5 p-1.5 rounded-2xl bg-black/60 border border-white/10">
           <button
             onClick={() => setActiveWorkspace('trading')}
             className={`flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-bold transition-all ${
@@ -123,7 +141,7 @@ export const MasterEnterpriseApp: React.FC<MasterEnterpriseAppProps> = ({
             }`}
           >
             <Server className="w-3.5 h-3.5" />
-            <span>DevOps & 인프라 관제탑</span>
+            <span>DevOps & 관제탑</span>
           </button>
 
           <button
@@ -151,7 +169,7 @@ export const MasterEnterpriseApp: React.FC<MasterEnterpriseAppProps> = ({
             {renderComponentWrapper('chart-sparkline-mini-badge')}
           </div>
 
-          {/* Main Chart + Orderbook Split */}
+          {/* Main Chart + Order Execution Console */}
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
             <div className="lg:col-span-2 space-y-4">
               {renderComponentWrapper('chart-candlestick-trading')}
@@ -160,14 +178,63 @@ export const MasterEnterpriseApp: React.FC<MasterEnterpriseAppProps> = ({
                 {renderComponentWrapper('chart-bubble-market-map')}
               </div>
             </div>
+
+            {/* Live Orderbook + Interactive Trade Execution Desk */}
             <div className="space-y-4">
               {renderComponentWrapper('table-compact-crypto-orderbook')}
-              {renderComponentWrapper('form-credit-card-live-preview')}
+              
+              {/* Interactive Live Trading Desk Widget */}
+              <div className="rounded-2xl bg-slate-900/90 backdrop-blur-xl border border-white/10 p-4 shadow-2xl space-y-3">
+                <div className="flex justify-between items-center text-xs font-bold text-white">
+                  <span>⚡ 원클릭 초단타 주문 데스크</span>
+                  <span className="font-mono text-emerald-400 font-bold">${liveTicker.toLocaleString()}</span>
+                </div>
+                <div className="grid grid-cols-2 gap-2">
+                  <button
+                    onClick={() => setOrderSide('BUY')}
+                    className={`py-2 rounded-xl text-xs font-black transition-all ${
+                      orderSide === 'BUY' ? 'bg-emerald-600 text-white shadow-[0_0_12px_#10b981]' : 'bg-white/5 text-slate-400'
+                    }`}
+                  >
+                    매수 (BUY LONG)
+                  </button>
+                  <button
+                    onClick={() => setOrderSide('SELL')}
+                    className={`py-2 rounded-xl text-xs font-black transition-all ${
+                      orderSide === 'SELL' ? 'bg-rose-600 text-white shadow-[0_0_12px_#ef4444]' : 'bg-white/5 text-slate-400'
+                    }`}
+                  >
+                    매도 (SELL SHORT)
+                  </button>
+                </div>
+                <div className="flex items-center gap-2 bg-slate-950 p-2 rounded-xl border border-white/10">
+                  <span className="text-slate-400 text-xs font-mono">수량:</span>
+                  <input
+                    type="text"
+                    value={orderQty}
+                    onChange={e => setOrderQty(e.target.value)}
+                    className="bg-transparent text-white font-mono font-bold text-xs focus:outline-none flex-1 text-right"
+                  />
+                  <span className="text-slate-500 text-xs font-mono">BTC</span>
+                </div>
+                <button
+                  onClick={handlePlaceOrder}
+                  className="w-full py-2.5 rounded-xl bg-gradient-to-r from-violet-600 to-fuchsia-600 text-white text-xs font-black hover:opacity-95 shadow-lg active:scale-95 transition-all"
+                >
+                  {orderSide} {orderQty} BTC 주문 즉시 전송
+                </button>
+                {orderSuccess && (
+                  <div className="p-2 rounded-lg bg-emerald-500/20 border border-emerald-500/40 text-emerald-300 text-[11px] font-bold text-center animate-fade-in">
+                    {orderSuccess}
+                  </div>
+                )}
+              </div>
+
               {renderComponentWrapper('chart-gauge-speedometer')}
             </div>
           </div>
 
-          {/* Bottom Full Grid */}
+          {/* Bottom Grid */}
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
             {renderComponentWrapper('table-sticky-column-finance')}
             {renderComponentWrapper('chart-waterfall-cashflow')}

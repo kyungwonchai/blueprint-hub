@@ -27,9 +27,12 @@ import {
 
 // 4. Form & AI Renderers
 import { 
-  GlassStepperDemo, CreditCard3DDemo, PasswordMeterDemo, DateRangePickerDemo, 
-  DualRangeSliderDemo, MarkdownEditorDemo, OtpVerifyDemo, TagComboboxDemo, 
-  AiDiffInspectorDemo, AiAudioWaveformDemo 
+  GlassStepperDemo, DragDropUploadDemo, TagComboboxDemo, CreditCard3DDemo, 
+  PasswordMeterDemo, DateRangePickerDemo, DualRangeSliderDemo, MarkdownEditorDemo, 
+  OtpVerifyDemo, AddressSmartSearchDemo, PermissionMatrixDemo, SurveyNpsDemo,
+  AiPromptCommanderDemo, InteractiveTerminalDemo, AiDiffInspectorDemo, AiChatThreadDemo,
+  AiVectorSearchDemo, AiAgentDagFlowDemo, AiImageStudioDemo, AiAudioWaveformDemo,
+  AiFunctionCallDemo, AiPromptVaultDemo, AiTokenCostDemo, AiSentimentRadarDemo
 } from './renderers/FormAiRenderers';
 
 // 5. Stat Card Renderers
@@ -42,8 +45,14 @@ import {
 // 6. Nav, Feedback & Theme Renderers
 import { 
   FloatingNavDemo, SidebarCollapsibleDemo, BreadcrumbDemo, CommandPaletteDemo, 
-  NotificationToastDemo, DestructiveModalDemo, SkeletonShimmerDemo, StarRatingDemo, 
-  ThemePaletteDemo, BorderBeamDemo, BentoGridDemo, ThemeToggleDemo 
+  MegaMenuDemo, SegmentedControlDemo, DockMagnificationDemo, PaginationDemo, 
+  MobileBottomBarDemo, TocScrollspyDemo, StepperProgressDemo, RadialWheelDemo,
+  NotificationToastDemo, DestructiveModalDemo, SystemAlertBannerDemo, EmptyStateDemo,
+  SkeletonShimmerDemo, BottomSheetDrawerDemo, PulsingBadgeDemo, ConfettiCelebrationDemo,
+  RichHoverTooltipDemo, CookieConsentDemo, StarRatingDemo, OfflineToastDemo,
+  ThemePaletteDemo, GlassmorphismDemo, NeonGlowDemo, TypographyScaleDemo,
+  GradientMeshDemo, BorderBeamDemo, ThemeToggleDemo, GridDotMatrixDemo,
+  NeumorphismDemo, BentoGridDemo, ClaymorphismDemo, NoiseOverlayDemo
 } from './renderers/NavFeedbackThemeRenderers';
 
 interface RendererProps {
@@ -52,7 +61,7 @@ interface RendererProps {
 }
 
 export const ComponentRenderer: React.FC<RendererProps> = ({ componentId, isCompact = false }) => {
-  // 1. CHARTS & VISUALIZATIONS
+  // 1. CHARTS (12)
   if (componentId === 'chart-candlestick-trading') return <CandlestickTradingDemo />;
   if (componentId === 'chart-donut-allocation') return <DonutAllocationDemo />;
   if (componentId === 'chart-radar-skills') return <RadarSkillsDemo />;
@@ -66,7 +75,7 @@ export const ComponentRenderer: React.FC<RendererProps> = ({ componentId, isComp
   if (componentId === 'chart-waterfall-cashflow') return <WaterfallCashflowDemo />;
   if (componentId === 'chart-sparkline-mini-badge') return <SparklineMiniBadgeDemo />;
 
-  // 2. TABLES, DATAGRIDS & PIVOTS
+  // 2. TABLES & PIVOTS (12)
   if (componentId === 'datagrid-realtime-pro') return <DataGridDemo />;
   if (componentId === 'table-pivot-matrix-analysis') return <PivotMatrixDemo />;
   if (componentId === 'table-expandable-tree-rows') return <TreeTableDemo />;
@@ -80,7 +89,7 @@ export const ComponentRenderer: React.FC<RendererProps> = ({ componentId, isComp
   if (componentId === 'table-inventory-stock-batch') return <InventoryStockTableDemo />;
   if (componentId === 'table-leaderboard-ranking') return <LeaderboardTableDemo />;
 
-  // 3. DASHBOARDS & METRICS
+  // 3. DASHBOARDS & METRICS (12)
   if (componentId === 'circular-gauge-monitor') return <MultiGaugeHardwareDemo />;
   if (componentId === 'dashboard-grid-overview') return <ExecutiveOverviewDemo />;
   if (componentId === 'dashboard-api-gateway-traffic') return <GlobalEdgeTrafficDemo />;
@@ -94,21 +103,35 @@ export const ComponentRenderer: React.FC<RendererProps> = ({ componentId, isComp
   if (componentId === 'dashboard-iot-smart-facility') return <IotSmartFacilityDemo />;
   if (componentId === 'dashboard-ai-model-inference-stats') return <AiInferenceStatsDemo />;
 
-  // 4. FORMS & INPUTS
+  // 4. FORMS & INPUTS (12)
   if (componentId === 'glass-form-stepper') return <GlassStepperDemo />;
+  if (componentId === 'form-drag-drop-file-zone') return <DragDropUploadDemo />;
+  if (componentId === 'form-tag-combobox-autocomplete') return <TagComboboxDemo />;
   if (componentId === 'form-credit-card-live-preview') return <CreditCard3DDemo />;
   if (componentId === 'form-password-strength-meter') return <PasswordMeterDemo />;
   if (componentId === 'form-date-range-quick-picker') return <DateRangePickerDemo />;
   if (componentId === 'form-dual-range-slider-filter') return <DualRangeSliderDemo />;
   if (componentId === 'form-rich-markdown-editor') return <MarkdownEditorDemo />;
   if (componentId === 'form-phone-country-otp-verify') return <OtpVerifyDemo />;
-  if (componentId === 'form-tag-combobox-autocomplete') return <TagComboboxDemo />;
+  if (componentId === 'form-address-smart-search') return <AddressSmartSearchDemo />;
+  if (componentId === 'form-toggle-permission-matrix') return <PermissionMatrixDemo />;
+  if (componentId === 'form-survey-nps-rating') return <SurveyNpsDemo />;
 
-  // 5. AI WIDGETS
+  // 5. AI WIDGETS (12)
+  if (componentId === 'ai-prompt-commander') return <AiPromptCommanderDemo />;
+  if (componentId === 'interactive-terminal-card') return <InteractiveTerminalDemo />;
   if (componentId === 'ai-code-diff-inspector') return <AiDiffInspectorDemo />;
+  if (componentId === 'ai-chat-thread-bubble-feed') return <AiChatThreadDemo />;
+  if (componentId === 'ai-vector-search-explorer') return <AiVectorSearchDemo />;
+  if (componentId === 'ai-agent-task-dag-flow') return <AiAgentDagFlowDemo />;
+  if (componentId === 'ai-image-generator-studio') return <AiImageStudioDemo />;
   if (componentId === 'ai-audio-voice-waveform') return <AiAudioWaveformDemo />;
+  if (componentId === 'ai-function-calling-json-schema') return <AiFunctionCallDemo />;
+  if (componentId === 'ai-prompt-template-vault') return <AiPromptVaultDemo />;
+  if (componentId === 'ai-token-cost-calculator') return <AiTokenCostDemo />;
+  if (componentId === 'ai-sentiment-emotion-radar') return <AiSentimentRadarDemo />;
 
-  // 6. STATS & KPI CARDS
+  // 6. STATS & KPI CARDS (12)
   if (componentId === 'kpi-metric-neon') return <KpiMetricNeonDemo />;
   if (componentId === 'stat-revenue-growth-gradient') return <StatRevenueDemo />;
   if (componentId === 'stat-server-latency-ms') return <StatLatencyDemo />;
@@ -122,30 +145,47 @@ export const ComponentRenderer: React.FC<RendererProps> = ({ componentId, isComp
   if (componentId === 'stat-storage-disk-usage-bar') return <StatDiskUsageDemo />;
   if (componentId === 'stat-customer-satisfaction-csat') return <StatCsatDemo />;
 
-  // 7. NAVIGATION & FEEDBACK
+  // 7. NAVIGATION (12)
   if (componentId === 'floating-tab-navigation') return <FloatingNavDemo />;
   if (componentId === 'nav-sidebar-collapsible-dark') return <SidebarCollapsibleDemo />;
   if (componentId === 'nav-breadcrumb-trail-path') return <BreadcrumbDemo />;
   if (componentId === 'nav-command-palette-cmd-k') return <CommandPaletteDemo />;
+  if (componentId === 'nav-mega-menu-product-dropdown') return <MegaMenuDemo />;
+  if (componentId === 'nav-segmented-control-pill') return <SegmentedControlDemo />;
+  if (componentId === 'nav-dock-magnification-bar') return <DockMagnificationDemo />;
+  if (componentId === 'nav-pagination-smart-jump') return <PaginationDemo />;
+  if (componentId === 'nav-mobile-bottom-tab-bar') return <MobileBottomBarDemo />;
+  if (componentId === 'nav-toc-scrollspy-article') return <TocScrollspyDemo />;
+  if (componentId === 'nav-stepper-progress-milestones') return <StepperProgressDemo />;
+  if (componentId === 'nav-context-radial-wheel') return <RadialWheelDemo />;
+
+  // 8. FEEDBACK & MODALS (12)
   if (componentId === 'notification-toast-feed') return <NotificationToastDemo />;
   if (componentId === 'modal-confirm-destructive-dialog') return <DestructiveModalDemo />;
+  if (componentId === 'feedback-banner-system-alert') return <SystemAlertBannerDemo />;
+  if (componentId === 'feedback-empty-state-placeholder') return <EmptyStateDemo />;
   if (componentId === 'feedback-skeleton-shimmer-loader') return <SkeletonShimmerDemo />;
+  if (componentId === 'feedback-drawer-bottom-sheet') return <BottomSheetDrawerDemo />;
+  if (componentId === 'feedback-badge-status-pulsing') return <PulsingBadgeDemo />;
+  if (componentId === 'feedback-confetti-celebration-popup') return <ConfettiCelebrationDemo />;
+  if (componentId === 'feedback-tooltip-rich-hover-card') return <RichHoverTooltipDemo />;
+  if (componentId === 'feedback-cookie-consent-banner') return <CookieConsentDemo />;
   if (componentId === 'feedback-rating-star-interactive') return <StarRatingDemo />;
+  if (componentId === 'feedback-offline-network-toast') return <OfflineToastDemo />;
 
-  // 8. THEMES & TOKENS
+  // 9. THEMES & TOKENS (12)
   if (componentId === 'theme-token-palette') return <ThemePaletteDemo />;
+  if (componentId === 'theme-glassmorphism-blur-spec') return <GlassmorphismDemo />;
+  if (componentId === 'theme-neon-glow-shadow-matrix') return <NeonGlowDemo />;
+  if (componentId === 'theme-typography-scale-spec') return <TypographyScaleDemo />;
+  if (componentId === 'theme-gradient-mesh-canvas') return <GradientMeshDemo />;
   if (componentId === 'theme-border-gradient-beam') return <BorderBeamDemo />;
-  if (componentId === 'theme-bento-grid-card-layout') return <BentoGridDemo />;
   if (componentId === 'theme-dark-light-mode-toggle') return <ThemeToggleDemo />;
+  if (componentId === 'theme-grid-dot-pattern-canvas') return <GridDotMatrixDemo />;
+  if (componentId === 'theme-neumorphism-soft-ui') return <NeumorphismDemo />;
+  if (componentId === 'theme-bento-grid-card-layout') return <BentoGridDemo />;
+  if (componentId === 'theme-claymorphism-3d-card') return <ClaymorphismDemo />;
+  if (componentId === 'theme-noise-texture-overlay') return <NoiseOverlayDemo />;
 
-  // Fallback for remaining customized items
-  return (
-    <div className="w-full rounded-2xl bg-slate-900/90 backdrop-blur-xl border border-white/10 p-4 shadow-2xl flex items-center justify-between">
-      <div className="flex items-center gap-2">
-        <Sparkles className="w-4 h-4 text-violet-400" />
-        <span className="text-xs font-bold text-white capitalize">{componentId.replace(/-/g, ' ')}</span>
-      </div>
-      <span className="text-[10px] px-2 py-0.5 rounded-full bg-violet-500/10 text-violet-300 border border-violet-500/20 font-bold">2026 UI</span>
-    </div>
-  );
+  return null;
 };

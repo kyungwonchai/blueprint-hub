@@ -6,7 +6,7 @@ import {
   SpcQualityControlDemo, DonutAllocationDemo, RadarSkillsDemo, 
   ActivityHeatmapDemo, StreamAreaDemo, DualBarComparisonDemo, 
   BubbleMarketMapDemo, FunnelConversionDemo, TreemapPortfolioDemo, 
-  SpeedometerGaugeDemo, WaterfallCashflowDemo, SparklineMiniBadgeDemo 
+  SpeedometerGaugeDemo, WaterfallCashflowDemo, SparklineMiniBadgeDemo, SankeyFlowDemo, SunburstHierarchyDemo, BoxplotOutlierDemo, BulletPerformanceDemo 
 } from './renderers/ChartRenderers';
 
 // 2. Table Renderers
@@ -74,6 +74,12 @@ export const ComponentRenderer: React.FC<RendererProps> = ({ componentId, isComp
   if (componentId === 'chart-gauge-speedometer') return <SpeedometerGaugeDemo />;
   if (componentId === 'chart-waterfall-cashflow') return <WaterfallCashflowDemo />;
   if (componentId === 'chart-sparkline-mini-badge') return <SparklineMiniBadgeDemo />;
+  // Exotic Advanced Visualizations (D3 / SciPy / Few Standard)
+  if (componentId === 'chart-sankey-flow') return <SankeyFlowDemo />;
+  if (componentId === 'chart-sunburst-hierarchy') return <SunburstHierarchyDemo />;
+  if (componentId === 'chart-boxplot-outlier') return <BoxplotOutlierDemo />;
+  if (componentId === 'chart-bullet-performance') return <BulletPerformanceDemo />;
+
 
   // 2. TABLES & PIVOTS (12)
   if (componentId === 'datagrid-realtime-pro') return <DataGridDemo />;

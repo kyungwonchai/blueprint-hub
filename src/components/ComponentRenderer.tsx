@@ -1,4 +1,7 @@
 import { 
+  RidgelineDensityDemo, CorrelationMatrixDemo, SunburstDefectTreeDemo, HoneycombEquipmentMeshDemo 
+} from './renderers/MathematicalVizRenderers';
+import { 
   ChordDiagramDemo, ViolinDistributionPlotDemo, ParallelCoordinatesDemo, 
   ParliamentGridDemo, DependencyWheelDemo, NetworkTopologyDemo 
 } from './renderers/AdvancedSciVizRenderers';
@@ -106,6 +109,10 @@ export const ComponentRenderer: React.FC<RendererProps> = ({ componentId, isComp
   if (componentId === 'chart-parliament-item-grid') return <ParliamentGridDemo />;
   if (componentId === 'chart-dependency-wheel-bom') return <DependencyWheelDemo />;
   if (componentId === 'chart-network-force-topology') return <NetworkTopologyDemo />;
+  if (componentId === 'chart-ridgeline-cycle-time') return <RidgelineDensityDemo />;
+  if (componentId === 'chart-pearson-correlation-matrix') return <CorrelationMatrixDemo />;
+  if (componentId === 'chart-sunburst-multitier-defect') return <SunburstDefectTreeDemo />;
+  if (componentId === 'chart-hexagonal-equipment-mesh') return <HoneycombEquipmentMeshDemo />;
 
 
 

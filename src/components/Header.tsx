@@ -142,7 +142,7 @@ export const Header: React.FC<HeaderProps> = ({
             }`}
           >
             <Layers className="w-3.5 h-3.5" />
-            <span>108종 카탈로그</span>
+            <span>글로벌 마스터 카탈로그</span>
           </button>
 
           <button
@@ -251,7 +251,7 @@ export const Header: React.FC<HeaderProps> = ({
                 type="text"
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                placeholder="108개 컴포넌트 검색..."
+                placeholder="컴포넌트 & 비주얼 컨트롤 검색..."
                 className="w-full pl-8 pr-3 py-1.5 bg-white/[0.04] border border-white/10 rounded-xl text-xs text-white placeholder-slate-500 focus:outline-none focus:border-violet-500 transition-all"
               />
             </div>

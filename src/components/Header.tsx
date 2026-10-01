@@ -6,7 +6,7 @@ import {
 import { CATEGORIES } from '../data/componentsData';
 import { CategoryId } from '../types';
 
-export type MainTabMode = 'catalog' | 'canvas' | 'techstack' | 'storage' | 'expo';
+export type MainTabMode = 'master' | 'catalog' | 'canvas' | 'expo' | 'techstack' | 'storage';
 
 interface HeaderProps {
   currentTab: MainTabMode;
@@ -89,8 +89,20 @@ export const Header: React.FC<HeaderProps> = ({
           </div>
         </div>
 
-        {/* Navigation Tabs (Catalog, Canvas, Expo, Tech Stack, Storage Guide) */}
+        {/* Navigation Tabs (Master App, Catalog, Canvas, Expo, Tech Stack, Storage Guide) */}
         <nav className="flex items-center gap-1 bg-black/60 p-1 rounded-2xl border border-white/10">
+          <button
+            onClick={() => setCurrentTab('master')}
+            className={`flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-bold transition-all ${
+              currentTab === 'master'
+                ? 'bg-gradient-to-r from-emerald-600 to-teal-600 text-white shadow-md'
+                : 'text-slate-400 hover:text-white'
+            }`}
+          >
+            <Sparkles className="w-3.5 h-3.5 text-emerald-300" />
+            <span>🖥️ 실전 마스터앱</span>
+          </button>
+
           <button
             onClick={() => setCurrentTab('catalog')}
             className={`flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-bold transition-all ${

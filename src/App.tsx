@@ -9,6 +9,7 @@ import { RecentBlueprintsModal } from './components/RecentBlueprintsModal';
 import { TechStackTab } from './components/TechStackTab';
 import { StorageGuideTab } from './components/StorageGuideTab';
 import { WebTechExpoTab } from './components/WebTechExpoTab';
+import { MasterEnterpriseApp } from './components/MasterEnterpriseApp';
 import { BoardManagerModal } from './components/BoardManagerModal';
 import { COMPONENTS_DATA } from './data/componentsData';
 import { ComponentItem, CategoryId, BlueprintSnapshot, BoardData, CanvasBoardItem } from './types';
@@ -299,6 +300,14 @@ export default function App() {
       />
 
       {/* Main Tab View Switcher */}
+      {currentTab === 'master' && (
+        <MasterEnterpriseApp
+          onAddToCart={toggleCart}
+          cartItems={cartItems}
+          onOpenDetailModal={(item) => setActiveDemoItem(item)}
+        />
+      )}
+
       {currentTab === 'canvas' && (
         <CanvasStudio
           board={currentBoard}

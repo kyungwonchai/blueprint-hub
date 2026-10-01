@@ -40,6 +40,12 @@ import {
   CpkCpProcessCapabilityDemo, PiezoelectricUltrasonicDopplerDemo,
   GanttCriticalPathCpmDemo, OptoelectronicInterferometerDemo
 } from './renderers/CreativeAIControlsWave3';
+import {
+  BandedMultiHeaderMasterDetailGridDemo, OlapPivotSlicerMatrixDemo,
+  HighFrequencyTickOrderbookGridDemo, TreeListGanttTimelineGridDemo,
+  InCellMicroSparklineHeatmapGridDemo, MultiColumnPinningVirtualGridDemo,
+  InteractiveCellFormulaCalcMatrixDemo
+} from './renderers/ComplexEnterpriseGrids';
 import React from 'react';
 import { Sparkles } from 'lucide-react';
 
@@ -150,7 +156,7 @@ export const ComponentRenderer: React.FC<RendererProps> = ({ componentId, isComp
   if (componentId === 'enterprise-docking-layout-mdi' || componentId === 'devexpress-docking-layout-mdi') return <DevExpressDockingDemo />;
   if (componentId === 'enterprise-excel-spreadsheet-matrix' || componentId === 'devexpress-excel-spreadsheet-matrix') return <DevExpressSpreadsheetDemo />;
 
-  // 2. TABLES & PIVOTS (12)
+  // 2. TABLES & PIVOTS (12 + Complex Enterprise Grids)
   if (componentId === 'datagrid-realtime-pro') return <DataGridDemo />;
   if (componentId === 'table-pivot-matrix-analysis') return <PivotMatrixDemo />;
   if (componentId === 'table-expandable-tree-rows') return <TreeTableDemo />;
@@ -163,6 +169,15 @@ export const ComponentRenderer: React.FC<RendererProps> = ({ componentId, isComp
   if (componentId === 'table-file-manager-explorer') return <FileManagerTableDemo />;
   if (componentId === 'table-inventory-stock-batch') return <InventoryStockTableDemo />;
   if (componentId === 'table-leaderboard-ranking') return <LeaderboardTableDemo />;
+
+  // 2026 Ultra-Complex Enterprise High-Density Table Suite
+  if (componentId === 'table-banded-multiheader-hierarchical') return <BandedMultiHeaderMasterDetailGridDemo />;
+  if (componentId === 'table-olap-multi-dimensional-pivot') return <OlapPivotSlicerMatrixDemo />;
+  if (componentId === 'table-high-freq-orderbook-depth') return <HighFrequencyTickOrderbookGridDemo />;
+  if (componentId === 'table-treelist-gantt-milestone-matrix') return <TreeListGanttTimelineGridDemo />;
+  if (componentId === 'table-incell-sparkline-heatmap-matrix') return <InCellMicroSparklineHeatmapGridDemo />;
+  if (componentId === 'table-virtual-pinning-multi-grouping') return <MultiColumnPinningVirtualGridDemo />;
+  if (componentId === 'table-interactive-formula-calculation-engine') return <InteractiveCellFormulaCalcMatrixDemo />;
 
   
   // Mega Suite Exotic & Industrial Web Controls

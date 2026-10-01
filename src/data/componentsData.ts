@@ -3681,5 +3681,89 @@ export const COMPONENTS_DATA: ComponentItem[] = [
   "previewType": "science-michelson-interferometer",
   "aiPromptGuidance": "동심원 간섭 줄무늬 애니메이션과 레이저 파장 기준 나노 변위 측정 HUD를 제작하세요.",
   "fullSourceCode": "// Michelson Interferometer Code"
+},
+{
+  "id": "table-banded-multiheader-hierarchical",
+  "name": "다단 복합 헤더 & 마스터-디테일 서브그리드 (Banded Master-Detail)",
+  "category": "tables",
+  "tags": ["banded", "multiheader", "master-detail", "hierarchical", "다단헤더", "마스터디테일", "계층형", "서브테이블"],
+  "description": "공정정보, 실시간 치수 Cpk, 불량검사 등 3계층 다단 밴디드 헤더와 행 클릭 시 펼쳐지는 하위 바코드 시리얼 서브그리드.",
+  "complexity": "Advanced",
+  "dependencies": ["lucide-react"],
+  "previewType": "table-banded-multiheader-hierarchical",
+  "aiPromptGuidance": "다단 밴디드 헤더와 클릭 시 서브 테이블이 펼쳐지는 엔터프라이즈 마스터 디테일 그리드를 제작하세요.",
+  "fullSourceCode": "// Banded Master Detail Code"
+},
+{
+  "id": "table-olap-multi-dimensional-pivot",
+  "name": "다차원 OLAP 피벗 큐브 슬라이서 (Multi-Dimensional OLAP Matrix)",
+  "category": "tables",
+  "tags": ["olap", "pivot", "cube", "matrix", "slicer", "피벗", "다차원", "슬라이서", "집계"],
+  "description": "생산 거점별, 분기별 실적과 지표(매출, 생산량, 이익률)를 동적으로 전환하는 다차원 OLAP 피벗 매트릭스.",
+  "complexity": "Advanced",
+  "dependencies": ["lucide-react"],
+  "previewType": "table-olap-multi-dimensional-pivot",
+  "aiPromptGuidance": "지표 슬라이서 토글과 행/열 소계 및 연간 총계(Grand Total)를 산출하는 OLAP 피벗 그리드를 구현하세요.",
+  "fullSourceCode": "// OLAP Pivot Code"
+},
+{
+  "id": "table-high-freq-orderbook-depth",
+  "name": "초고속 L2 오더북 뎁스 호가 매트릭스 (L2 Orderbook Depth)",
+  "category": "tables",
+  "tags": ["orderbook", "depth", "tick", "hft", "호가창", "오더북", "뎁스", "금융"],
+  "description": "마이크로초 단위 실시간 체결가 틱 스트림과 매수/매도 잔량 누적 깊이(Depth) 시각화 호가 매트릭스.",
+  "complexity": "Advanced",
+  "dependencies": ["lucide-react"],
+  "previewType": "table-high-freq-orderbook-depth",
+  "aiPromptGuidance": "매수/매도 잔량 누적 히트맵 바와 실시간 체결가 변동 틱 애니메이션이 적용된 오더북을 제작하세요.",
+  "fullSourceCode": "// Orderbook Depth Code"
+},
+{
+  "id": "table-treelist-gantt-milestone-matrix",
+  "name": "트리리스트 공정 간트 차트 연동 그리드 (TreeList Gantt Matrix)",
+  "category": "tables",
+  "tags": ["treelist", "gantt", "wbs", "milestone", "트리리스트", "간트", "공정표", "일정"],
+  "description": "WBS 계층형 트리 테이블과 행 내부 공정 기간 간트 타임라인 바가 일체형으로 연동된 엔터프라이즈 일정 매트릭스.",
+  "complexity": "Advanced",
+  "dependencies": ["lucide-react"],
+  "previewType": "table-treelist-gantt-milestone-matrix",
+  "aiPromptGuidance": "계층형 WBS 트리 컬럼과 인셀(In-Cell) 간트 진행률 바를 동기화하여 렌더링하세요.",
+  "fullSourceCode": "// TreeList Gantt Code"
+},
+{
+  "id": "table-incell-sparkline-heatmap-matrix",
+  "name": "셀 내장 마이크로 스파크라인 & 히트맵 그리드 (In-Cell Sparklines)",
+  "category": "tables",
+  "tags": ["sparkline", "heatmap", "incell", "trend", "스파크라인", "인셀차트", "히트맵", "추세"],
+  "description": "각 데이터 행마다 24시간 실시간 센서 계측 추세 마이크로 SVG 스파크라인과 상태 히트맵 뱃지를 내장.",
+  "complexity": "Advanced",
+  "dependencies": ["lucide-react"],
+  "previewType": "table-incell-sparkline-heatmap-matrix",
+  "aiPromptGuidance": "테이블 각 셀 내부에 미니 스파크라인 폴리라인 그래프와 상태별 컬러 히트맵을 렌더링하세요.",
+  "fullSourceCode": "// InCell Sparklines Code"
+},
+{
+  "id": "table-virtual-pinning-multi-grouping",
+  "name": "양방향 컬럼 고정 & 그룹핑 가상 그리드 (Dual-Pinning Grid)",
+  "category": "tables",
+  "tags": ["pinning", "freeze", "virtual", "grouping", "컬럼고정", "좌우고정", "가상스크롤", "그룹핑"],
+  "description": "좌측 식별자 컬럼과 우측 조치 액션 컬럼을 동시 고정(Sticky Freeze)하고 가로 스크롤 시에도 유지되는 엔터프라이즈 그리드.",
+  "complexity": "Advanced",
+  "dependencies": ["lucide-react"],
+  "previewType": "table-virtual-pinning-multi-grouping",
+  "aiPromptGuidance": "좌우 양방향 Sticky Freeze 고정 컬럼과 중앙 유동 영역을 가진 가상 그리드를 제작하세요.",
+  "fullSourceCode": "// Dual Pinning Code"
+},
+{
+  "id": "table-interactive-formula-calculation-engine",
+  "name": "엔터프라이즈 셀 수식 계산 엔진 매트릭스 (Formula Calc Engine)",
+  "category": "tables",
+  "tags": ["formula", "calculation", "excel", "engine", "수식계산", "원가계산", "스프레드시트", "동적계산"],
+  "description": "원가, 마진율, 환율 변동 시 셀 내부 수식(=Cost*(1+Markup))이 실시간 반응하여 최종 납품가격을 재계산.",
+  "complexity": "Advanced",
+  "dependencies": ["lucide-react"],
+  "previewType": "table-interactive-formula-calculation-engine",
+  "aiPromptGuidance": "입력값 변경 시 수식이 즉각 동적 재계산되는 엔터프라이즈 포뮬러 매트릭스 그리드를 구현하세요.",
+  "fullSourceCode": "// Formula Calc Code"
 }
 ];

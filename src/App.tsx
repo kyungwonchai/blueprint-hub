@@ -488,7 +488,7 @@ export default function App() {
                 <p className="text-xs text-slate-400">다른 검색어나 카테고리 필터를 선택해보세요.</p>
               </div>
             ) : (
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 gap-5">
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 gap-7">
                 {filteredComponents.map((item) => (
                   <ComponentCard
                     key={item.id}

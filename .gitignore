@@ -15,3 +15,5 @@ __pycache__/
 *.mkv
 *.zip
 *.tar.gz
+
+.system_generated/

@@ -8,499 +8,173 @@ import {
 } from 'lucide-react';
 import { THEME_PRESETS } from '../data/componentsData';
 
+// Modular Renderer Imports
+import { 
+  CandlestickTradingDemo, DonutAllocationDemo, RadarSkillsDemo, 
+  ActivityHeatmapDemo, StreamAreaDemo, DualBarComparisonDemo, 
+  BubbleMarketMapDemo, FunnelConversionDemo, TreemapPortfolioDemo, 
+  SpeedometerGaugeDemo, WaterfallCashflowDemo, SparklineMiniBadgeDemo 
+} from './renderers/ChartRenderers';
+
+import { 
+  DataGridDemo, PivotMatrixDemo, TreeTableDemo, InlineEditTableDemo, 
+  StickyFreezeTableDemo, VirtualScrollTableDemo, OrderbookTableDemo, 
+  PricingPlanTableDemo, AuditLogTableDemo, FileManagerTableDemo, 
+  InventoryStockTableDemo, LeaderboardTableDemo 
+} from './renderers/TableRenderers';
+
+import { 
+  GlassStepperDemo, CreditCard3DDemo, PasswordMeterDemo, DateRangePickerDemo, 
+  DualRangeSliderDemo, MarkdownEditorDemo, OtpVerifyDemo, TagComboboxDemo, 
+  AiDiffInspectorDemo, AiAudioWaveformDemo 
+} from './renderers/FormAiRenderers';
+
+import { 
+  MultiGaugeHardwareDemo, GlobalEdgeTrafficDemo, SecurityWafDemo, 
+  BorderBeamDemo, BentoGridDemo, ThemeToggleDemo 
+} from './renderers/OtherRenderers';
+
 interface RendererProps {
   componentId: string;
   isCompact?: boolean;
 }
 
 export const ComponentRenderer: React.FC<RendererProps> = ({ componentId, isCompact = false }) => {
-  // New Infographic Charts
-  if (componentId === 'chart-candlestick-trading') {
-    return <CandlestickTradingDemo isCompact={isCompact} />;
-  }
-  if (componentId === 'chart-donut-allocation') {
-    return <DonutAllocationDemo isCompact={isCompact} />;
-  }
-  if (componentId === 'chart-radar-skills') {
-    return <RadarSkillsDemo isCompact={isCompact} />;
-  }
-  if (componentId === 'chart-activity-heatmap') {
-    return <ActivityHeatmapDemo isCompact={isCompact} />;
-  }
+  // 1. CHARTS & VISUALIZATIONS
+  if (componentId === 'chart-candlestick-trading') return <CandlestickTradingDemo />;
+  if (componentId === 'chart-donut-allocation') return <DonutAllocationDemo />;
+  if (componentId === 'chart-radar-skills') return <RadarSkillsDemo />;
+  if (componentId === 'chart-activity-heatmap') return <ActivityHeatmapDemo />;
+  if (componentId === 'analytics-chart-stream') return <StreamAreaDemo />;
+  if (componentId === 'chart-bar-comparison-dual') return <DualBarComparisonDemo />;
+  if (componentId === 'chart-bubble-market-map') return <BubbleMarketMapDemo />;
+  if (componentId === 'chart-funnel-conversion') return <FunnelConversionDemo />;
+  if (componentId === 'chart-treemap-portfolio') return <TreemapPortfolioDemo />;
+  if (componentId === 'chart-gauge-speedometer') return <SpeedometerGaugeDemo />;
+  if (componentId === 'chart-waterfall-cashflow') return <WaterfallCashflowDemo />;
+  if (componentId === 'chart-sparkline-mini-badge') return <SparklineMiniBadgeDemo />;
 
-  // 1. kpi-metric-neon
-  if (componentId === 'kpi-metric-neon') {
-    return (
-      <div className="relative group overflow-hidden rounded-2xl bg-white/[0.03] backdrop-blur-xl border border-white/10 p-5 shadow-2xl hover:border-violet-500/50 transition-all duration-300">
-        <div className="absolute top-0 right-0 w-32 h-32 bg-violet-500/10 rounded-full blur-2xl group-hover:bg-violet-500/20 transition-all duration-500" />
-        <div className="flex items-center justify-between mb-3">
-          <span className="text-xs font-semibold tracking-wider text-slate-400 uppercase">실시간 활성 유저 (MAU)</span>
-          <div className="p-2 rounded-xl bg-violet-500/10 text-violet-400 border border-violet-500/20">
-            <Activity className="w-4 h-4" />
-          </div>
-        </div>
-        <div className="flex items-baseline gap-3 mb-2">
-          <span className="text-3xl font-extrabold text-white tracking-tight">128,490</span>
-          <span className="inline-flex items-center text-xs font-bold text-emerald-400 bg-emerald-500/10 px-2 py-0.5 rounded-full border border-emerald-500/20">
-            <ArrowUpRight className="w-3 h-3 mr-0.5" />
-            +14.2%
-          </span>
-        </div>
-        <p className="text-xs text-slate-500 font-medium">전월 대비 +16,020명 증가</p>
-      </div>
-    );
-  }
+  // 2. TABLES & GRIDS
+  if (componentId === 'datagrid-realtime-pro') return <DataGridDemo />;
+  if (componentId === 'table-pivot-matrix-analysis') return <PivotMatrixDemo />;
+  if (componentId === 'table-expandable-tree-rows') return <TreeTableDemo />;
+  if (componentId === 'table-inline-editable-cell') return <InlineEditTableDemo />;
+  if (componentId === 'table-sticky-column-finance') return <StickyFreezeTableDemo />;
+  if (componentId === 'table-virtualized-infinite-scroll') return <VirtualScrollTableDemo />;
+  if (componentId === 'table-compact-crypto-orderbook') return <OrderbookTableDemo />;
+  if (componentId === 'table-comparison-pricing-plan') return <PricingPlanTableDemo />;
+  if (componentId === 'table-audit-log-timeline') return <AuditLogTableDemo />;
+  if (componentId === 'table-file-manager-explorer') return <FileManagerTableDemo />;
+  if (componentId === 'table-inventory-stock-batch') return <InventoryStockTableDemo />;
+  if (componentId === 'table-leaderboard-ranking') return <LeaderboardTableDemo />;
 
-  // 2. ai-prompt-commander
-  if (componentId === 'ai-prompt-commander') {
-    return <AiPromptCommanderDemo isCompact={isCompact} />;
-  }
+  // 3. FORMS & INPUTS
+  if (componentId === 'glass-form-stepper') return <GlassStepperDemo />;
+  if (componentId === 'form-credit-card-live-preview') return <CreditCard3DDemo />;
+  if (componentId === 'form-password-strength-meter') return <PasswordMeterDemo />;
+  if (componentId === 'form-date-range-quick-picker') return <DateRangePickerDemo />;
+  if (componentId === 'form-dual-range-slider-filter') return <DualRangeSliderDemo />;
+  if (componentId === 'form-rich-markdown-editor') return <MarkdownEditorDemo />;
+  if (componentId === 'form-phone-country-otp-verify') return <OtpVerifyDemo />;
+  if (componentId === 'form-tag-combobox-autocomplete') return <TagComboboxDemo />;
 
-  // 3. datagrid-realtime-pro
-  if (componentId === 'datagrid-realtime-pro') {
-    return <DataGridDemo isCompact={isCompact} />;
-  }
+  // 4. AI WIDGETS
+  if (componentId === 'ai-prompt-commander') return <AiPromptCommanderDemo isCompact={isCompact} />;
+  if (componentId === 'interactive-terminal-card') return <TerminalCardDemo isCompact={isCompact} />;
+  if (componentId === 'ai-code-diff-inspector') return <AiDiffInspectorDemo />;
+  if (componentId === 'ai-audio-voice-waveform') return <AiAudioWaveformDemo />;
 
-  // 4. analytics-chart-stream
-  if (componentId === 'analytics-chart-stream') {
-    return <AnalyticsChartDemo isCompact={isCompact} />;
-  }
+  // 5. DASHBOARDS & STATS
+  if (componentId === 'circular-gauge-monitor') return <MultiGaugeHardwareDemo />;
+  if (componentId === 'dashboard-api-gateway-traffic') return <GlobalEdgeTrafficDemo />;
+  if (componentId === 'dashboard-security-audit-threat') return <SecurityWafDemo />;
+  if (componentId === 'kpi-metric-neon') return <KpiMetricNeonDemo />;
+  if (componentId === 'stat-revenue-growth-gradient') return <StatRevenueDemo />;
+  if (componentId === 'stat-server-latency-ms') return <StatLatencyDemo />;
 
-  // 5. glass-form-stepper
-  if (componentId === 'glass-form-stepper') {
-    return <GlassFormDemo isCompact={isCompact} />;
-  }
+  // 6. THEMES & DESIGN TOKENS
+  if (componentId === 'theme-token-palette') return <ThemePaletteDemo />;
+  if (componentId === 'theme-border-gradient-beam') return <BorderBeamDemo />;
+  if (componentId === 'theme-bento-grid-card-layout') return <BentoGridDemo />;
+  if (componentId === 'theme-dark-light-mode-toggle') return <ThemeToggleDemo />;
 
-  // 6. theme-token-palette
-  if (componentId === 'theme-token-palette') {
-    return <ThemePaletteDemo />;
-  }
+  // 7. NAVIGATION & FEEDBACK
+  if (componentId === 'floating-tab-navigation') return <FloatingNavDemo />;
+  if (componentId === 'notification-toast-feed') return <NotificationToastDemo />;
 
-  // 7. circular-gauge-monitor
-  if (componentId === 'circular-gauge-monitor') {
-    return <GaugeMonitorDemo isCompact={isCompact} />;
-  }
-
-  // 8. interactive-terminal-card
-  if (componentId === 'interactive-terminal-card') {
-    return <TerminalCardDemo isCompact={isCompact} />;
-  }
-
-  // 9. floating-tab-navigation
-  if (componentId === 'floating-tab-navigation') {
-    return <FloatingNavDemo />;
-  }
-
-  // 10. notification-toast-feed
-  if (componentId === 'notification-toast-feed') {
-    return <NotificationToastDemo />;
-  }
-
-  // Dynamic visual preview for all 108 components based on ID patterns & categories
-  return <GenericComponentPreview componentId={componentId} isCompact={isCompact} />;
+  // Dynamic Clean Visualizer for extended items
+  return <DistinctControlFallback componentId={componentId} />;
 };
 
-const GenericComponentPreview: React.FC<{ componentId: string; isCompact?: boolean }> = ({ componentId, isCompact }) => {
-  const [active, setActive] = useState(true);
+/* --- Built-in Clean Demos --- */
 
-  if (componentId.startsWith('chart-')) {
-    return (
-      <div className="w-full rounded-2xl bg-slate-900/90 backdrop-blur-xl border border-white/10 p-4 shadow-2xl">
-        <div className="flex items-center justify-between mb-2">
-          <div className="flex items-center gap-2">
-            <BarChart3 className="w-4 h-4 text-cyan-400" />
-            <span className="text-xs font-bold text-white uppercase tracking-wider">{componentId.replace('chart-', '').replace(/-/g, ' ')}</span>
-          </div>
-          <span className="text-[10px] text-cyan-400 font-mono font-bold">● LIVE 60fps</span>
-        </div>
-        <div className="h-28 w-full bg-slate-950/60 rounded-xl p-2 border border-white/5 flex items-end justify-between gap-1">
-          {[40, 65, 30, 85, 45, 90, 60, 75, 95, 50, 70, 85].map((h, i) => (
-            <div key={i} className="flex-1 bg-gradient-to-t from-cyan-500/20 to-cyan-400 rounded-t-sm transition-all hover:brightness-125" style={{ height: `${h}%` }} />
-          ))}
-        </div>
-      </div>
-    );
-  }
-
-  if (componentId.startsWith('dashboard-')) {
-    return (
-      <div className="w-full rounded-2xl bg-slate-900/90 backdrop-blur-xl border border-white/10 p-4 shadow-2xl space-y-3">
-        <div className="flex items-center justify-between">
-          <div className="flex items-center gap-2">
-            <LayoutGrid className="w-4 h-4 text-violet-400" />
-            <span className="text-xs font-bold text-white capitalize">{componentId.replace('dashboard-', '').replace(/-/g, ' ')}</span>
-          </div>
-          <span className="text-[10px] px-2 py-0.5 rounded-full bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 font-bold">정상 가동</span>
-        </div>
-        <div className="grid grid-cols-2 gap-2">
-          <div className="p-2.5 rounded-xl bg-white/[0.02] border border-white/5">
-            <span className="text-[10px] text-slate-400 block">초당 처리량</span>
-            <span className="text-sm font-bold text-white font-mono">14.8k RPS</span>
-          </div>
-          <div className="p-2.5 rounded-xl bg-white/[0.02] border border-white/5">
-            <span className="text-[10px] text-slate-400 block">평균 레이턴시</span>
-            <span className="text-sm font-bold text-emerald-400 font-mono">12 ms</span>
-          </div>
-        </div>
-      </div>
-    );
-  }
-
-  if (componentId.startsWith('table-')) {
-    return (
-      <div className="w-full rounded-2xl bg-slate-900/90 backdrop-blur-xl border border-white/10 overflow-hidden shadow-2xl">
-        <div className="p-3 border-b border-white/10 flex items-center justify-between bg-white/[0.02]">
-          <span className="text-xs font-bold text-white capitalize">{componentId.replace('table-', '').replace(/-/g, ' ')}</span>
-          <span className="text-[10px] text-slate-400 font-mono">3 Rows Active</span>
-        </div>
-        <div className="p-2 space-y-1.5 font-mono text-[11px]">
-          <div className="flex items-center justify-between p-1.5 rounded-lg bg-white/[0.02] text-slate-300">
-            <span>#001 auth-cluster</span>
-            <span className="text-emerald-400 font-bold">ONLINE</span>
-          </div>
-          <div className="flex items-center justify-between p-1.5 rounded-lg bg-white/[0.02] text-slate-300">
-            <span>#002 redis-cache</span>
-            <span className="text-emerald-400 font-bold">ONLINE</span>
-          </div>
-          <div className="flex items-center justify-between p-1.5 rounded-lg bg-white/[0.02] text-slate-300">
-            <span>#003 vector-db</span>
-            <span className="text-cyan-400 font-bold">SYNCING</span>
-          </div>
-        </div>
-      </div>
-    );
-  }
-
-  if (componentId.startsWith('form-')) {
-    return (
-      <div className="w-full rounded-2xl bg-slate-900/90 backdrop-blur-xl border border-white/10 p-4 shadow-2xl space-y-3">
-        <div className="flex items-center justify-between">
-          <span className="text-xs font-bold text-white capitalize">{componentId.replace('form-', '').replace(/-/g, ' ')}</span>
-          <CheckCircle2 className="w-3.5 h-3.5 text-violet-400" />
-        </div>
-        <div className="space-y-2">
-          <input
-            type="text"
-            readOnly
-            value="입력 파라미터 값 설정..."
-            className="w-full px-3 py-1.5 rounded-xl bg-slate-950/60 border border-white/10 text-xs text-slate-300 focus:outline-none"
-          />
-          <button className="w-full py-1.5 rounded-xl bg-gradient-to-r from-violet-600 to-fuchsia-600 text-white text-xs font-bold shadow-lg">
-            실행 및 적용
-          </button>
-        </div>
-      </div>
-    );
-  }
-
-  if (componentId.startsWith('stat-') || componentId.startsWith('kpi-')) {
-    return (
-      <div className="w-full rounded-2xl bg-white/[0.03] backdrop-blur-xl border border-white/10 p-5 shadow-2xl hover:border-violet-500/40 transition-all">
-        <div className="flex items-center justify-between mb-2">
-          <span className="text-xs font-semibold text-slate-400 uppercase tracking-wider">{componentId.replace('stat-', '').replace(/-/g, ' ')}</span>
-          <Activity className="w-4 h-4 text-emerald-400" />
-        </div>
-        <div className="flex items-baseline gap-2 mb-1">
-          <span className="text-2xl font-extrabold text-white font-mono tracking-tight">99.98%</span>
-          <span className="text-xs font-bold text-emerald-400 bg-emerald-500/10 px-2 py-0.5 rounded-full border border-emerald-500/20">+4.2%</span>
-        </div>
-        <span className="text-[11px] text-slate-500">실시간 텔레메트리 연동</span>
-      </div>
-    );
-  }
-
-  if (componentId.startsWith('nav-')) {
-    return (
-      <div className="w-full rounded-2xl bg-slate-900/90 backdrop-blur-xl border border-white/10 p-3 shadow-2xl flex items-center justify-between">
-        <div className="flex items-center gap-1">
-          <button className="px-3 py-1.5 rounded-lg bg-violet-600 text-white text-xs font-bold shadow-md">Main</button>
-          <button className="px-3 py-1.5 rounded-lg text-slate-400 hover:text-white text-xs font-medium">Docs</button>
-          <button className="px-3 py-1.5 rounded-lg text-slate-400 hover:text-white text-xs font-medium">API</button>
-        </div>
-        <span className="text-[10px] text-slate-500 font-mono">2026 Nav</span>
-      </div>
-    );
-  }
-
-  if (componentId.startsWith('feedback-') || componentId.startsWith('modal-')) {
-    return (
-      <div className="w-full rounded-2xl bg-slate-900/90 backdrop-blur-xl border border-violet-500/30 p-4 shadow-2xl flex items-center gap-3">
-        <div className="p-2 rounded-xl bg-violet-500/10 text-violet-400 border border-violet-500/20 shrink-0">
-          <Bell className="w-4 h-4" />
-        </div>
-        <div className="flex-1">
-          <h5 className="text-xs font-bold text-white">{componentId.replace('feedback-', '').replace(/-/g, ' ')}</h5>
-          <p className="text-[11px] text-slate-400">시스템 이벤트 알림 피드백 채널</p>
-        </div>
-      </div>
-    );
-  }
-
-  if (componentId.startsWith('theme-')) {
-    return (
-      <div className="w-full rounded-2xl bg-slate-900/90 backdrop-blur-xl border border-white/10 p-4 shadow-2xl space-y-3">
-        <div className="flex items-center justify-between">
-          <span className="text-xs font-bold text-white capitalize">{componentId.replace('theme-', '').replace(/-/g, ' ')}</span>
-          <Palette className="w-3.5 h-3.5 text-fuchsia-400" />
-        </div>
-        <div className="flex items-center gap-2">
-          <div className="w-6 h-6 rounded-full bg-violet-500 shadow-[0_0_12px_#8b5cf6]" />
-          <div className="w-6 h-6 rounded-full bg-cyan-400 shadow-[0_0_12px_#06b6d4]" />
-          <div className="w-6 h-6 rounded-full bg-amber-400 shadow-[0_0_12px_#f59e0b]" />
-          <div className="w-6 h-6 rounded-full bg-emerald-400 shadow-[0_0_12px_#10b981]" />
-        </div>
-      </div>
-    );
-  }
-
+const KpiMetricNeonDemo: React.FC = () => {
   return (
-    <div className="w-full rounded-2xl bg-slate-900/90 backdrop-blur-xl border border-white/10 p-4 shadow-2xl flex items-center justify-between">
-      <div className="flex items-center gap-2">
-        <Sparkles className="w-4 h-4 text-violet-400" />
-        <span className="text-xs font-bold text-white">{componentId}</span>
+    <div className="relative group overflow-hidden rounded-2xl bg-white/[0.03] backdrop-blur-xl border border-white/10 p-5 shadow-2xl hover:border-violet-500/50 transition-all duration-300">
+      <div className="absolute top-0 right-0 w-32 h-32 bg-violet-500/10 rounded-full blur-2xl group-hover:bg-violet-500/20 transition-all duration-500" />
+      <div className="flex items-center justify-between mb-3">
+        <span className="text-xs font-semibold tracking-wider text-slate-400 uppercase">실시간 활성 유저 (MAU)</span>
+        <div className="p-2 rounded-xl bg-violet-500/10 text-violet-400 border border-violet-500/20">
+          <Activity className="w-4 h-4" />
+        </div>
       </div>
-      <span className="text-[10px] text-emerald-400 font-mono">READY</span>
+      <div className="flex items-baseline gap-3 mb-2">
+        <span className="text-3xl font-extrabold text-white tracking-tight">128,490</span>
+        <span className="inline-flex items-center text-xs font-bold text-emerald-400 bg-emerald-500/10 px-2 py-0.5 rounded-full border border-emerald-500/20">
+          <ArrowUpRight className="w-3 h-3 mr-0.5" />
+          +14.2%
+        </span>
+      </div>
+      <p className="text-xs text-slate-500 font-medium">전월 대비 +16,020명 증가</p>
     </div>
   );
 };
 
-/* --- Internal Sub Demos for Interactive Experience --- */
+const StatRevenueDemo: React.FC = () => {
+  return (
+    <div className="rounded-2xl bg-gradient-to-br from-violet-950/40 via-slate-900/90 to-fuchsia-950/30 backdrop-blur-xl border border-violet-500/30 p-5 shadow-2xl space-y-2">
+      <div className="flex justify-between text-xs font-bold text-slate-400">
+        <span>월간 반복 매출 (MRR)</span>
+        <span className="text-violet-400">Target 88%</span>
+      </div>
+      <div className="text-2xl font-black text-white font-mono">$128,400.00</div>
+      <div className="w-full bg-slate-800 rounded-full h-1.5 overflow-hidden">
+        <div className="bg-gradient-to-r from-violet-500 to-fuchsia-500 h-full rounded-full w-[88%]" />
+      </div>
+    </div>
+  );
+};
+
+const StatLatencyDemo: React.FC = () => {
+  return (
+    <div className="rounded-2xl bg-slate-900/90 backdrop-blur-xl border border-emerald-500/30 p-5 shadow-2xl flex items-center justify-between">
+      <div>
+        <span className="text-xs text-slate-400 block mb-1">글로벌 응답 지연</span>
+        <span className="text-2xl font-black text-white font-mono">18 <span className="text-sm font-normal text-emerald-400">ms</span></span>
+      </div>
+      <span className="px-3 py-1 bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 text-xs font-bold rounded-xl animate-pulse">Ultra Fast</span>
+    </div>
+  );
+};
 
 const AiPromptCommanderDemo: React.FC<{ isCompact?: boolean }> = ({ isCompact }) => {
   const [prompt, setPrompt] = useState('');
-  const [model, setModel] = useState<'flash' | 'pro'>('pro');
-
   return (
-    <div className="w-full rounded-2xl bg-slate-900/90 backdrop-blur-2xl border border-violet-500/30 p-3 shadow-[0_0_30px_rgba(139,92,246,0.15)]">
-      <div className="flex items-center gap-2 mb-2 px-1">
-        <span className="flex items-center gap-1 text-[11px] font-bold text-violet-400 uppercase tracking-wider">
-          <Sparkles className="w-3.5 h-3.5" /> AI Command Center
-        </span>
-        <div className="ml-auto flex items-center gap-1 bg-slate-800/80 p-0.5 rounded-lg border border-white/5">
-          <button 
-            onClick={() => setModel('flash')}
-            className={`px-2 py-0.5 text-[11px] font-semibold rounded-md transition-all ${model === 'flash' ? 'bg-violet-600 text-white shadow-md' : 'text-slate-400 hover:text-white'}`}
-          >
-            Flash 3.7
-          </button>
-          <button 
-            onClick={() => setModel('pro')}
-            className={`px-2 py-0.5 text-[11px] font-semibold rounded-md transition-all ${model === 'pro' ? 'bg-gradient-to-r from-violet-600 to-fuchsia-600 text-white shadow-md' : 'text-slate-400 hover:text-white'}`}
-          >
-            Pro 3.7
-          </button>
-        </div>
+    <div className="w-full rounded-2xl bg-slate-900/90 backdrop-blur-2xl border border-violet-500/30 p-3 shadow-2xl">
+      <div className="flex items-center gap-2 mb-2 px-1 text-xs font-bold text-violet-400">
+        <Sparkles className="w-3.5 h-3.5" /> AI Command Center
       </div>
-      <div className="flex items-center gap-2 bg-slate-950/60 rounded-xl p-2 border border-white/5 focus-within:border-violet-500/50 transition-all">
-        <textarea
-          rows={isCompact ? 1 : 2}
+      <div className="flex items-center gap-2 bg-slate-950/60 rounded-xl p-2 border border-white/5">
+        <input
+          type="text"
           value={prompt}
           onChange={(e) => setPrompt(e.target.value)}
           placeholder="AI에게 무엇이든 지시하세요..."
-          className="flex-1 bg-transparent text-xs text-slate-100 placeholder-slate-500 focus:outline-none resize-none px-1"
+          className="flex-1 bg-transparent text-xs text-slate-100 placeholder-slate-500 focus:outline-none px-1"
         />
-        <div className="flex items-center gap-1 self-end">
-          <button className="p-1.5 rounded-lg text-slate-400 hover:text-white hover:bg-white/5 transition-colors">
-            <Mic className="w-3.5 h-3.5" />
-          </button>
-          <button className="p-2 rounded-xl bg-gradient-to-r from-violet-600 to-fuchsia-600 text-white font-semibold shadow-lg hover:brightness-110 active:scale-95 transition-all">
-            <ArrowRight className="w-3.5 h-3.5" />
-          </button>
-        </div>
-      </div>
-    </div>
-  );
-};
-
-const DataGridDemo: React.FC<{ isCompact?: boolean }> = ({ isCompact }) => {
-  const [search, setSearch] = useState('');
-  const [selectedIds, setSelectedIds] = useState<string[]>(['1', '2']);
-
-  const rows = [
-    { id: '1', service: 'OAuth-Auth-Server', type: 'Microservice', status: 'active', load: '14%', uptime: '99.98%' },
-    { id: '2', service: 'Trading-Execution', type: 'WebSocket', status: 'active', load: '48%', uptime: '100%' },
-    { id: '3', service: 'Payment-Gateway', type: 'REST API', status: 'warning', load: '82%', uptime: '98.50%' },
-    { id: '4', service: 'LLM-Vector-Search', type: 'VectorDB', status: 'active', load: '26%', uptime: '99.95%' },
-  ].filter(r => r.service.toLowerCase().includes(search.toLowerCase()));
-
-  return (
-    <div className="w-full rounded-2xl bg-slate-900/80 backdrop-blur-xl border border-white/10 overflow-hidden shadow-2xl">
-      <div className="p-3 border-b border-white/10 flex items-center justify-between gap-2">
-        <div className="relative flex-1 max-w-xs">
-          <Search className="w-3.5 h-3.5 absolute left-2.5 top-1/2 -translate-y-1/2 text-slate-400" />
-          <input
-            type="text"
-            placeholder="서비스 필터링..."
-            value={search}
-            onChange={(e) => setSearch(e.target.value)}
-            className="w-full pl-8 pr-3 py-1.5 bg-slate-950/60 border border-white/10 rounded-lg text-xs text-white placeholder-slate-500 focus:outline-none focus:border-violet-500"
-          />
-        </div>
-        <span className="text-[11px] text-slate-400">선택 {selectedIds.length}건</span>
-      </div>
-      <div className="overflow-x-auto">
-        <table className="w-full text-left text-xs text-slate-300">
-          <thead className="bg-white/[0.02] text-slate-400 uppercase text-[10px] font-semibold border-b border-white/10">
-            <tr>
-              <th className="p-2.5 w-8 text-center">선택</th>
-              <th className="p-2.5">서비스명</th>
-              <th className="p-2.5">상태</th>
-              <th className="p-2.5">CPU</th>
-              <th className="p-2.5">가동률</th>
-            </tr>
-          </thead>
-          <tbody className="divide-y divide-white/5">
-            {rows.map(row => (
-              <tr key={row.id} className="hover:bg-white/[0.03] transition-colors">
-                <td className="p-2.5 text-center">
-                  <input
-                    type="checkbox"
-                    checked={selectedIds.includes(row.id)}
-                    onChange={() => setSelectedIds(prev => prev.includes(row.id) ? prev.filter(x => x !== row.id) : [...prev, row.id])}
-                    className="accent-violet-500 rounded"
-                  />
-                </td>
-                <td className="p-2.5 font-bold text-white flex items-center gap-1.5">
-                  <div className="w-1.5 h-1.5 rounded-full bg-violet-400" />
-                  {row.service}
-                </td>
-                <td className="p-2.5">
-                  <span className={`inline-flex items-center px-1.5 py-0.5 rounded text-[10px] font-bold ${row.status === 'active' ? 'bg-emerald-500/10 text-emerald-400 border border-emerald-500/20' : 'bg-amber-500/10 text-amber-400 border border-amber-500/20'}`}>
-                    {row.status.toUpperCase()}
-                  </span>
-                </td>
-                <td className="p-2.5 font-mono text-slate-300">{row.load}</td>
-                <td className="p-2.5 font-mono text-emerald-400 font-bold">{row.uptime}</td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
-      </div>
-    </div>
-  );
-};
-
-const AnalyticsChartDemo: React.FC<{ isCompact?: boolean }> = ({ isCompact }) => {
-  return (
-    <div className="w-full rounded-2xl bg-slate-900/80 backdrop-blur-xl border border-white/10 p-4 shadow-2xl">
-      <div className="flex items-center justify-between mb-3">
-        <h4 className="text-xs font-bold text-white flex items-center gap-1.5">
-          <BarChart3 className="w-3.5 h-3.5 text-cyan-400" />
-          초당 요청 처리량 (RPS)
-        </h4>
-        <span className="text-[11px] text-emerald-400 font-bold">+18.4% Peak</span>
-      </div>
-      <div className="relative h-28 w-full">
-        <svg viewBox="0 0 400 120" className="w-full h-full overflow-visible">
-          <defs>
-            <linearGradient id="chartGradDemo" x1="0" y1="0" x2="0" y2="1">
-              <stop offset="0%" stopColor="#06b6d4" stopOpacity="0.4" />
-              <stop offset="100%" stopColor="#06b6d4" stopOpacity="0.0" />
-            </linearGradient>
-          </defs>
-          <path
-            d="M 0 90 Q 60 30, 120 70 T 240 35 T 340 55 T 400 15 L 400 120 L 0 120 Z"
-            fill="url(#chartGradDemo)"
-          />
-          <path
-            d="M 0 90 Q 60 30, 120 70 T 240 35 T 340 55 T 400 15"
-            fill="none"
-            stroke="#06b6d4"
-            strokeWidth="2.5"
-            strokeLinecap="round"
-          />
-          <circle cx="400" cy="15" r="4" className="fill-cyan-400 stroke-slate-900 stroke-2" />
-        </svg>
-      </div>
-    </div>
-  );
-};
-
-const GlassFormDemo: React.FC<{ isCompact?: boolean }> = () => {
-  const [step, setStep] = useState(1);
-  return (
-    <div className="rounded-2xl bg-slate-900/90 backdrop-blur-2xl border border-white/10 p-4 shadow-2xl">
-      <div className="flex items-center justify-between mb-4">
-        {[1, 2, 3].map(s => (
-          <div key={s} className="flex items-center gap-1.5 text-[11px]">
-            <div className={`w-5 h-5 rounded-full flex items-center justify-center font-bold ${step >= s ? 'bg-violet-600 text-white' : 'bg-slate-800 text-slate-500'}`}>
-              {s}
-            </div>
-            <span className={step >= s ? 'text-slate-200' : 'text-slate-500'}>
-              {s === 1 ? '계정' : s === 2 ? '보안키' : '완료'}
-            </span>
-          </div>
-        ))}
-      </div>
-      {step === 1 && (
-        <input
-          type="text"
-          placeholder="사용자명 입력..."
-          className="w-full px-3 py-2 bg-slate-950/60 border border-white/10 rounded-xl text-xs text-white placeholder-slate-500 mb-3"
-        />
-      )}
-      {step === 2 && (
-        <input
-          type="password"
-          placeholder="API Key 입력..."
-          className="w-full px-3 py-2 bg-slate-950/60 border border-white/10 rounded-xl text-xs text-white placeholder-slate-500 mb-3 font-mono"
-        />
-      )}
-      {step === 3 && (
-        <div className="text-center py-2 text-xs text-emerald-400 font-bold">
-          ✔ 모든 설정이 완료되었습니다!
-        </div>
-      )}
-      <div className="flex justify-between items-center pt-2 border-t border-white/10">
-        <button onClick={() => setStep(Math.max(1, step - 1))} className="text-[11px] text-slate-400 hover:text-white">이전</button>
-        <button onClick={() => setStep(step < 3 ? step + 1 : 1)} className="px-3 py-1 bg-violet-600 text-white rounded-lg text-xs font-bold">
-          {step < 3 ? '다음' : '재시작'}
+        <button className="p-2 rounded-xl bg-violet-600 text-white font-semibold shadow-lg">
+          <ArrowRight className="w-3.5 h-3.5" />
         </button>
-      </div>
-    </div>
-  );
-};
-
-const ThemePaletteDemo: React.FC = () => {
-  const [activeTheme, setActiveTheme] = useState('cyber-violet');
-  return (
-    <div className="rounded-2xl bg-slate-900/80 backdrop-blur-xl border border-white/10 p-4 shadow-2xl">
-      <div className="flex items-center gap-1.5 mb-3 text-xs font-bold text-white">
-        <Palette className="w-3.5 h-3.5 text-violet-400" />
-        테마 프리셋 선택
-      </div>
-      <div className="grid grid-cols-2 gap-2">
-        {THEME_PRESETS.map((t: { id: string; name: string; accent: string }) => (
-          <button
-            key={t.id}
-            onClick={() => setActiveTheme(t.id)}
-            className={`p-2 rounded-xl border text-left flex items-center gap-2 ${activeTheme === t.id ? 'border-violet-500 bg-white/[0.08]' : 'border-white/5 bg-white/[0.02]'}`}
-          >
-            <div className="w-3.5 h-3.5 rounded-full" style={{ backgroundColor: t.accent }} />
-            <span className="text-[11px] font-bold text-white">{t.name}</span>
-          </button>
-        ))}
-      </div>
-    </div>
-  );
-};
-
-const GaugeMonitorDemo: React.FC<{ isCompact?: boolean }> = () => {
-  return (
-    <div className="rounded-2xl bg-slate-900/80 backdrop-blur-xl border border-white/10 p-4 shadow-2xl">
-      <div className="flex items-center justify-between text-xs font-bold text-white mb-3">
-        <span>CPU / RAM 모니터</span>
-        <span className="text-emerald-400 text-[10px]">● 안정</span>
-      </div>
-      <div className="grid grid-cols-2 gap-3 text-center">
-        <div className="p-3 bg-white/[0.02] rounded-xl border border-white/5">
-          <div className="text-xl font-extrabold text-violet-400">38%</div>
-          <div className="text-[10px] text-slate-400 mt-0.5">CPU 점유율</div>
-        </div>
-        <div className="p-3 bg-white/[0.02] rounded-xl border border-white/5">
-          <div className="text-xl font-extrabold text-cyan-400">62%</div>
-          <div className="text-[10px] text-slate-400 mt-0.5">RAM 점유율</div>
-        </div>
       </div>
     </div>
   );
@@ -508,34 +182,47 @@ const GaugeMonitorDemo: React.FC<{ isCompact?: boolean }> = () => {
 
 const TerminalCardDemo: React.FC<{ isCompact?: boolean }> = () => {
   return (
-    <div className="rounded-2xl bg-black/90 backdrop-blur-2xl border border-white/15 overflow-hidden font-mono text-[11px] p-3 shadow-2xl">
-      <div className="flex items-center gap-1.5 mb-2 pb-2 border-b border-white/10 text-slate-400">
+    <div className="w-full rounded-2xl bg-black/90 backdrop-blur-2xl border border-white/15 overflow-hidden shadow-2xl font-mono text-xs">
+      <div className="bg-white/[0.04] px-4 py-2 border-b border-white/10 flex items-center gap-2">
         <div className="w-2.5 h-2.5 rounded-full bg-rose-500/80" />
         <div className="w-2.5 h-2.5 rounded-full bg-amber-500/80" />
         <div className="w-2.5 h-2.5 rounded-full bg-emerald-500/80" />
-        <span className="ml-1 text-[10px]">bash - agy agent</span>
+        <span className="text-slate-400 text-[10px] ml-2">bash — 80x24</span>
       </div>
-      <div className="text-emerald-400 font-bold">$ agy --approval-mode=yolo</div>
-      <div className="text-cyan-400 text-[10px] mt-1">✔ Blueprint layout generated (0% error)</div>
+      <div className="p-3 text-[11px] text-slate-300 space-y-1">
+        <div className="text-emerald-400">kw@blueprint:~$ agy --approval-mode=yolo</div>
+        <div className="text-cyan-400 pl-2">✔ DevExpress Grade Controls Ready (100% Verified)</div>
+      </div>
+    </div>
+  );
+};
+
+const ThemePaletteDemo: React.FC = () => {
+  return (
+    <div className="rounded-2xl bg-slate-900/90 backdrop-blur-xl border border-white/10 p-4 shadow-2xl space-y-2">
+      <div className="text-xs font-bold text-white flex items-center justify-between">
+        <span>테마 디자인 토큰</span>
+        <Palette className="w-3.5 h-3.5 text-fuchsia-400" />
+      </div>
+      <div className="flex gap-2">
+        {THEME_PRESETS.map((t) => (
+          <div key={t.id} className="flex-1 h-10 rounded-xl flex items-center justify-center text-[10px] font-bold text-white border border-white/10 shadow-md" style={{ backgroundColor: t.bg }}>
+            <span style={{ color: t.accent }}>● {t.name.split(' ')[0]}</span>
+          </div>
+        ))}
+      </div>
     </div>
   );
 };
 
 const FloatingNavDemo: React.FC = () => {
-  const [active, setActive] = useState('overview');
   return (
-    <div className="flex justify-center p-2">
-      <div className="flex items-center gap-1 bg-slate-900/90 p-1.5 rounded-full border border-white/10">
-        {['overview', 'analytics', 'settings'].map(tab => (
-          <button
-            key={tab}
-            onClick={() => setActive(tab)}
-            className={`px-3 py-1 rounded-full text-xs font-bold transition-all ${active === tab ? 'bg-violet-600 text-white shadow-lg' : 'text-slate-400 hover:text-white'}`}
-          >
-            {tab.toUpperCase()}
-          </button>
-        ))}
-      </div>
+    <div className="flex items-center justify-center p-2">
+      <nav className="flex items-center gap-1 p-1 rounded-full bg-slate-900/90 border border-white/10 shadow-2xl">
+        <button className="px-3 py-1.5 rounded-full bg-violet-600 text-white text-xs font-bold shadow-md">Overview</button>
+        <button className="px-3 py-1.5 rounded-full text-slate-400 text-xs hover:text-white">Analytics</button>
+        <button className="px-3 py-1.5 rounded-full text-slate-400 text-xs hover:text-white">Settings</button>
+      </nav>
     </div>
   );
 };
@@ -543,127 +230,25 @@ const FloatingNavDemo: React.FC = () => {
 const NotificationToastDemo: React.FC = () => {
   return (
     <div className="rounded-2xl bg-slate-900/90 backdrop-blur-xl border border-emerald-500/30 p-3.5 shadow-2xl flex items-center gap-3">
-      <CheckCircle2 className="w-5 h-5 text-emerald-400 shrink-0" />
-      <div className="flex-1 text-xs">
-        <div className="font-bold text-white">블루프린트 API 배포 완료</div>
-        <div className="text-slate-400 text-[10px]">엔드포인트: /api/blueprints/live</div>
+      <div className="p-2 rounded-xl bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">
+        <CheckCircle2 className="w-4 h-4" />
+      </div>
+      <div>
+        <h5 className="text-xs font-bold text-white">AI 청사진 동기화 완료</h5>
+        <p className="text-[11px] text-slate-400">포스트잇 칠판이 실시간 저장되었습니다.</p>
       </div>
     </div>
   );
 };
 
-const CandlestickTradingDemo: React.FC<{ isCompact?: boolean }> = () => {
-  const [showLabels, setShowLabels] = useState(true);
+const DistinctControlFallback: React.FC<{ componentId: string }> = ({ componentId }) => {
   return (
-    <div className="rounded-2xl bg-slate-900/90 backdrop-blur-xl border border-white/10 p-4 shadow-2xl">
-      <div className="flex items-center justify-between mb-2">
-        <span className="text-xs font-bold text-white flex items-center gap-1.5">
-          <span className="w-2 h-2 rounded-full bg-emerald-400 animate-ping" />
-          BTC/USDT 1분봉
-        </span>
-        <button onClick={() => setShowLabels(!showLabels)} className="text-[10px] text-slate-400 hover:text-white px-2 py-0.5 rounded bg-white/5">
-          {showLabels ? '레이블 ON' : '미니멀 OFF'}
-        </button>
+    <div className="w-full rounded-2xl bg-slate-900/90 backdrop-blur-xl border border-white/10 p-4 shadow-2xl flex items-center justify-between">
+      <div className="flex items-center gap-2">
+        <Sparkles className="w-4 h-4 text-violet-400" />
+        <span className="text-xs font-bold text-white capitalize">{componentId.replace(/-/g, ' ')}</span>
       </div>
-      <div className="h-28 w-full bg-slate-950/70 rounded-xl p-2 border border-white/5">
-        <svg viewBox="0 0 300 80" className="w-full h-full">
-          <line x1="30" y1="20" x2="30" y2="60" stroke="#10b981" strokeWidth="1.5" />
-          <rect x="25" y="30" width="10" height="20" fill="#10b981" rx="1" />
-          <line x1="70" y1="15" x2="70" y2="55" stroke="#ef4444" strokeWidth="1.5" />
-          <rect x="65" y="25" width="10" height="15" fill="#ef4444" rx="1" />
-          <line x1="110" y1="10" x2="110" y2="50" stroke="#10b981" strokeWidth="1.5" />
-          <rect x="105" y="15" width="10" height="25" fill="#10b981" rx="1" />
-          <line x1="150" y1="8" x2="150" y2="40" stroke="#10b981" strokeWidth="1.5" />
-          <rect x="145" y="12" width="10" height="20" fill="#10b981" rx="1" />
-          <line x1="190" y1="15" x2="190" y2="50" stroke="#ef4444" strokeWidth="1.5" />
-          <rect x="185" y="22" width="10" height="18" fill="#ef4444" rx="1" />
-          <line x1="230" y1="5" x2="230" y2="40" stroke="#10b981" strokeWidth="1.5" />
-          <rect x="225" y="8" width="10" height="25" fill="#10b981" rx="1" />
-          <path d="M 30 45 Q 110 25, 190 25 T 270 12" fill="none" stroke="#f59e0b" strokeWidth="1.5" />
-          {showLabels && <text x="235" y="10" fill="#10b981" fontSize="8" fontFamily="monospace">$68.4k</text>}
-        </svg>
-      </div>
-    </div>
-  );
-};
-
-const DonutAllocationDemo: React.FC<{ isCompact?: boolean }> = () => {
-  return (
-    <div className="rounded-2xl bg-slate-900/90 backdrop-blur-xl border border-white/10 p-4 shadow-2xl">
-      <div className="flex items-center justify-between text-xs font-bold text-white mb-2">
-        <span>자산 배분 비중 (Donut)</span>
-        <span className="text-violet-400 font-mono text-[11px]">$100k</span>
-      </div>
-      <div className="flex items-center gap-3">
-        <div className="relative w-24 h-24 shrink-0 mx-auto">
-          <svg viewBox="0 0 100 100" className="w-full h-full -rotate-90">
-            <circle cx="50" cy="50" r="38" stroke="#8b5cf6" strokeWidth="14" fill="none" strokeDasharray="107 132" strokeDashoffset="0" />
-            <circle cx="50" cy="50" r="38" stroke="#06b6d4" strokeWidth="14" fill="none" strokeDasharray="60 179" strokeDashoffset="-107" />
-            <circle cx="50" cy="50" r="38" stroke="#f59e0b" strokeWidth="14" fill="none" strokeDasharray="48 191" strokeDashoffset="-167" />
-            <circle cx="50" cy="50" r="38" stroke="#10b981" strokeWidth="14" fill="none" strokeDasharray="24 215" strokeDashoffset="-215" />
-          </svg>
-          <div className="absolute inset-0 flex items-center justify-center text-[10px] font-bold text-white">45%</div>
-        </div>
-        <div className="text-[10px] space-y-1 text-slate-300">
-          <div className="flex items-center gap-1"><span className="w-2 h-2 rounded-full bg-violet-500" /> AI Tech: 45%</div>
-          <div className="flex items-center gap-1"><span className="w-2 h-2 rounded-full bg-cyan-400" /> Bonds: 25%</div>
-          <div className="flex items-center gap-1"><span className="w-2 h-2 rounded-full bg-amber-400" /> Crypto: 20%</div>
-          <div className="flex items-center gap-1"><span className="w-2 h-2 rounded-full bg-emerald-400" /> Cash: 10%</div>
-        </div>
-      </div>
-    </div>
-  );
-};
-
-const RadarSkillsDemo: React.FC<{ isCompact?: boolean }> = () => {
-  return (
-    <div className="rounded-2xl bg-slate-900/90 backdrop-blur-xl border border-white/10 p-4 shadow-2xl">
-      <div className="flex items-center justify-between text-xs font-bold text-white mb-1">
-        <span>다차원 레이더 (Radar)</span>
-        <span className="text-cyan-400 text-[10px]">94.2 pts</span>
-      </div>
-      <div className="relative h-28 w-full flex items-center justify-center">
-        <svg viewBox="0 0 160 160" className="w-full h-full">
-          <polygon points="80,15 136,47 136,113 80,145 24,113 24,47" fill="none" stroke="rgba(255,255,255,0.08)" strokeWidth="1" />
-          <polygon points="80,24 130,52 120,110 80,132 38,105 34,52" fill="rgba(6, 182, 212, 0.3)" stroke="#06b6d4" strokeWidth="2" />
-          <text x="80" y="10" fill="#94a3b8" fontSize="7" textAnchor="middle">AI</text>
-          <text x="142" y="50" fill="#94a3b8" fontSize="7">Code</text>
-          <text x="142" y="118" fill="#94a3b8" fontSize="7">Sec</text>
-          <text x="80" y="155" fill="#94a3b8" fontSize="7" textAnchor="middle">Speed</text>
-          <text x="18" y="118" fill="#94a3b8" fontSize="7" textAnchor="end">Archi</text>
-          <text x="18" y="50" fill="#94a3b8" fontSize="7" textAnchor="end">UX</text>
-        </svg>
-      </div>
-    </div>
-  );
-};
-
-const ActivityHeatmapDemo: React.FC<{ isCompact?: boolean }> = () => {
-  const weeks = Array.from({ length: 16 }, () => Array.from({ length: 5 }, () => Math.floor(Math.random() * 5)));
-  return (
-    <div className="rounded-2xl bg-slate-900/90 backdrop-blur-xl border border-white/10 p-4 shadow-2xl">
-      <div className="flex items-center justify-between text-xs font-bold text-white mb-2">
-        <span>활동 잔디 히트맵</span>
-        <span className="text-fuchsia-400 text-[10px]">1,842 Hits</span>
-      </div>
-      <div className="flex gap-1 overflow-x-auto pb-1">
-        {weeks.map((week, wIdx) => (
-          <div key={wIdx} className="flex flex-col gap-1">
-            {week.map((level, dIdx) => (
-              <div
-                key={dIdx}
-                className={`w-3 h-3 rounded-sm border ${
-                  level === 4 ? 'bg-fuchsia-500 border-fuchsia-400' :
-                  level === 3 ? 'bg-violet-600 border-violet-500' :
-                  level === 2 ? 'bg-violet-800 border-violet-700' :
-                  level === 1 ? 'bg-violet-950 border-violet-900' :
-                  'bg-white/[0.03] border-white/5'
-                }`}
-              />
-            ))}
-          </div>
-        ))}
-      </div>
+      <span className="text-[10px] px-2 py-0.5 rounded-full bg-violet-500/10 text-violet-300 border border-violet-500/20 font-bold">2026 UI</span>
     </div>
   );
 };

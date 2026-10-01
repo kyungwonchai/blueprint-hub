@@ -5,7 +5,7 @@
     "description": "네온 지표 카드 + 실시간 RPS 스트림 차트 + 데이터그리드 배치",
     "author": "kw",
     "isPublic": true,
-    "updatedAt": "2026-10-01T14:50:55.872Z",
+    "updatedAt": "2026-10-01T15:33:25.900Z",
     "createdAt": "2026-10-01T14:44:03.752Z",
     "items": [
       {
@@ -26,8 +26,8 @@
         "name": "실시간 스트리밍 시각화 차트 패널",
         "category": "charts",
         "type": "component",
-        "x": 1060,
-        "y": 300,
+        "x": 1160,
+        "y": 560,
         "width": 500,
         "height": 280,
         "zIndex": 102
@@ -38,11 +38,11 @@
         "name": "실시간 인터랙티브 데이터 그리드",
         "category": "tables",
         "type": "component",
-        "x": 120,
-        "y": 400,
+        "x": 260,
+        "y": 780,
         "width": 980,
         "height": 380,
-        "zIndex": 105
+        "zIndex": 101
       },
       {
         "id": "sticky_note_1",

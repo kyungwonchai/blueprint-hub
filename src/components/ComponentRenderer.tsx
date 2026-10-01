@@ -1,4 +1,8 @@
 import { 
+  ChordDiagramDemo, ViolinDistributionPlotDemo, ParallelCoordinatesDemo, 
+  ParliamentGridDemo, DependencyWheelDemo, NetworkTopologyDemo 
+} from './renderers/AdvancedSciVizRenderers';
+import { 
   PolarRoseChartDemo, TernaryPlotDemo, VoronoiMeshDemo, ThermalContourDemo, 
   HighchartsMatrixDemo, EchartsGaugeClusterDemo, AgGridTreeGroupingDemo, 
   Anamorphic3DCardDemo, RaymarchingShaderDemo, DroneSwarmFleetDemo 
@@ -96,6 +100,12 @@ export const ComponentRenderer: React.FC<RendererProps> = ({ componentId, isComp
   if (componentId === 'chart-hexbin-density') return <HexbinDensityDemo />;
   if (componentId === 'chart-dendrogram-cluster') return <DendrogramClusterDemo />;
   if (componentId === 'chart-bump-ranking') return <BumpRankingDemo />;
+  if (componentId === 'chart-chord-matrix-flow') return <ChordDiagramDemo />;
+  if (componentId === 'chart-violin-tolerance-distribution') return <ViolinDistributionPlotDemo />;
+  if (componentId === 'chart-parallel-coordinates-multidim') return <ParallelCoordinatesDemo />;
+  if (componentId === 'chart-parliament-item-grid') return <ParliamentGridDemo />;
+  if (componentId === 'chart-dependency-wheel-bom') return <DependencyWheelDemo />;
+  if (componentId === 'chart-network-force-topology') return <NetworkTopologyDemo />;
 
 
 

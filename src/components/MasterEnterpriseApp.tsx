@@ -91,7 +91,7 @@ export const MasterEnterpriseApp: React.FC<MasterEnterpriseAppProps> = ({
   };
 
   return (
-    <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 space-y-6 animate-fade-in font-sans">
+    <div className="w-full max-w-[1920px] mx-auto px-4 sm:px-6 lg:px-8 py-6 space-y-6 animate-fade-in font-sans">
       
       {/* 1. Ultra-Impact Header Banner */}
       <div className="relative overflow-hidden rounded-3xl bg-slate-900/90 border border-violet-500/30 shadow-2xl p-6 sm:p-8 backdrop-blur-3xl">

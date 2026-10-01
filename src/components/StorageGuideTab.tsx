@@ -17,7 +17,7 @@ export const StorageGuideTab: React.FC = () => {
   };
 
   return (
-    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-8 animate-fade-in">
+    <div className="w-full max-w-[1920px] mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-8 animate-fade-in">
       {/* Header Banner */}
       <div className="p-6 rounded-3xl bg-gradient-to-r from-cyan-950/40 via-slate-900/40 to-violet-950/40 border border-cyan-500/20 shadow-2xl flex flex-wrap items-center justify-between gap-4">
         <div>

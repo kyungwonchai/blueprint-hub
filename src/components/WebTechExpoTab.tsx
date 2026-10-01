@@ -16,7 +16,7 @@ export const WebTechExpoTab: React.FC = () => {
   };
 
   return (
-    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-8 animate-fade-in font-sans">
+    <div className="w-full max-w-[1920px] mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-8 animate-fade-in font-sans">
       
       {/* Expo Header Banner */}
       <div className="p-6 sm:p-8 rounded-3xl bg-gradient-to-r from-fuchsia-950/40 via-violet-950/30 to-cyan-950/40 border border-fuchsia-500/30 shadow-2xl flex flex-wrap items-center justify-between gap-4">
@@ -47,8 +47,8 @@ export const WebTechExpoTab: React.FC = () => {
         </div>
       </div>
 
-      {/* Expo Booth Cards Grid */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      {/* Expo Booth Cards Grid (Expanded to 4 Columns for Ultra-Wide PC Monitors) */}
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
         {WEB_TECH_EXPO_DATA.map((item) => {
           return (
             <div

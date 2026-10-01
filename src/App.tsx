@@ -417,8 +417,8 @@ export default function App() {
             </div>
           </section>
 
-          {/* Component Catalog Grid */}
-          <main className="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-8">
+          {/* Component Catalog Grid (Ultra-Wide PC 4K Expansion) */}
+          <main className="flex-1 w-full max-w-[1920px] mx-auto px-4 sm:px-6 lg:px-8 py-8">
             {/* Interactive Era Filter & Sort Controls Bar */}
             <div className="flex flex-wrap items-center justify-between gap-4 p-4 rounded-2xl bg-white/[0.03] border border-white/10 mb-6 backdrop-blur-md shadow-lg">
               <div className="flex flex-wrap items-center gap-2">
@@ -488,7 +488,7 @@ export default function App() {
                 <p className="text-xs text-slate-400">다른 검색어나 카테고리 필터를 선택해보세요.</p>
               </div>
             ) : (
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 gap-5">
                 {filteredComponents.map((item) => (
                   <ComponentCard
                     key={item.id}

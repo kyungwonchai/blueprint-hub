@@ -56,14 +56,32 @@ export const WebTechExpoTab: React.FC = () => {
               className="group relative flex flex-col justify-between rounded-3xl bg-[#0c0e18]/90 hover:bg-[#121524] backdrop-blur-2xl border border-white/10 hover:border-fuchsia-500/50 p-6 shadow-2xl transition-all duration-300 hover:shadow-[0_0_35px_rgba(217,70,239,0.25)] hover:-translate-y-1"
             >
               <div>
-                {/* Booth Header */}
-                <div className="flex items-center justify-between mb-3">
-                  <span className="text-[10px] font-bold px-2.5 py-0.5 rounded-lg bg-fuchsia-500/10 text-fuchsia-300 border border-fuchsia-500/20">
-                    {item.category}
-                  </span>
-                  <span className="text-[10px] font-mono font-bold text-cyan-400 bg-cyan-500/10 px-2 py-0.5 rounded border border-cyan-500/20">
-                    {item.badge}
-                  </span>
+                {/* Booth Thumbnail & Category */}
+                <div className="relative w-full h-40 rounded-2xl overflow-hidden mb-4 border border-white/10 group-hover:border-fuchsia-500/40 transition-colors shadow-inner">
+                  <img
+                    src={item.thumbnail}
+                    alt={item.title}
+                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                    loading="lazy"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-[#0c0e18] via-transparent to-black/40" />
+                  
+                  <div className="absolute top-2.5 left-2.5 right-2.5 flex items-center justify-between">
+                    <span className="text-[10px] font-bold px-2 py-0.5 rounded-lg bg-black/70 backdrop-blur-md text-fuchsia-300 border border-fuchsia-500/30">
+                      {item.category}
+                    </span>
+                    <span className="text-[10px] font-mono font-bold text-cyan-300 bg-black/70 backdrop-blur-md px-2 py-0.5 rounded border border-cyan-500/30">
+                      {item.badge}
+                    </span>
+                  </div>
+
+                  <button
+                    onClick={() => setActiveBooth(item)}
+                    className="absolute bottom-2.5 right-2.5 p-2 rounded-xl bg-fuchsia-600 hover:bg-fuchsia-500 text-white shadow-lg transition-transform active:scale-90 flex items-center gap-1 text-[11px] font-bold"
+                  >
+                    <Play className="w-3.5 h-3.5 fill-current" />
+                    <span>체험하기</span>
+                  </button>
                 </div>
 
                 <h3 className="text-base font-extrabold text-white group-hover:text-fuchsia-300 transition-colors mb-2">

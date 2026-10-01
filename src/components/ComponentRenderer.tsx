@@ -14,7 +14,7 @@ import {
   SpcQualityControlDemo, DonutAllocationDemo, RadarSkillsDemo, 
   ActivityHeatmapDemo, StreamAreaDemo, DualBarComparisonDemo, 
   BubbleMarketMapDemo, FunnelConversionDemo, TreemapPortfolioDemo, 
-  SpeedometerGaugeDemo, WaterfallCashflowDemo, SparklineMiniBadgeDemo, SankeyFlowDemo, SunburstHierarchyDemo, BoxplotOutlierDemo, BulletPerformanceDemo 
+  SpeedometerGaugeDemo, WaterfallCashflowDemo, SparklineMiniBadgeDemo, SankeyFlowDemo, SunburstHierarchyDemo, BoxplotOutlierDemo, BulletPerformanceDemo, MarimekkoMosaicDemo, HexbinDensityDemo, DendrogramClusterDemo, BumpRankingDemo 
 } from './renderers/ChartRenderers';
 
 // 2. Table Renderers
@@ -87,6 +87,11 @@ export const ComponentRenderer: React.FC<RendererProps> = ({ componentId, isComp
   if (componentId === 'chart-sunburst-hierarchy') return <SunburstHierarchyDemo />;
   if (componentId === 'chart-boxplot-outlier') return <BoxplotOutlierDemo />;
   if (componentId === 'chart-bullet-performance') return <BulletPerformanceDemo />;
+  if (componentId === 'chart-marimekko-mosaic') return <MarimekkoMosaicDemo />;
+  if (componentId === 'chart-hexbin-density') return <HexbinDensityDemo />;
+  if (componentId === 'chart-dendrogram-cluster') return <DendrogramClusterDemo />;
+  if (componentId === 'chart-bump-ranking') return <BumpRankingDemo />;
+
 
 
   

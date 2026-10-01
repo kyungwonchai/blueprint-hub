@@ -38,7 +38,7 @@ export default function DashboardCounter() {
   return (
     <button 
       onClick={handleOptimisticUpdate}
-      className="px-4 py-2 bg-violet-600 hover:bg-violet-500 text-white rounded-xl font-bold shadow-lg"
+      className="px-4 py-2 bg-violet-600 hover:bg-violet-500 text-white rounded-xl font-bold shadow-lg transition-all"
     >
       {isPending ? '동기화 중...' : \`클릭 수: \${count}\`}
     </button>
@@ -130,6 +130,54 @@ export default async function ServerDashboard() {
     aiDirectiveTemplate: `"Svelte 5 최신 Runes 문법($state, $derived, $effect)을 사용하여 초경량 반응형 컴포넌트를 작성해줘."`
   },
   {
+    id: 'threejs-webgpu-glsl',
+    name: 'Three.js + WebGPU / GLSL Shaders',
+    category: 'Graphics & 3D',
+    yearTrend: '2026 3D 인터랙티브 & 피지컬 웹 표준',
+    tagline: '브라우저에서 GPU 하드웨어 가속 레이트레이싱, 입체 아나몰픽, 5천 대 파티클 연산',
+    badge: 'WebGPU Hardware Accel',
+    pros: [
+      '네이티브 그래픽 카드 셰이더(Fragment/Vertex) 파워를 브라우저에서 60FPS로 온전히 활용',
+      '영화급 물리 반사(PBR), 굴절 렌즈, 유체 역학 파티클을 3차원 공간에 구현',
+      'Three.js의 방대한 3D 지오메트리, 카메라 컨트롤, 조명 생태계'
+    ],
+    cons: [
+      '일반 웹 개발자에게는 3차원 벡터 선형대수 및 행렬 변환 러닝커브가 존재함'
+    ],
+    bundleSize: '~120 KB (WebGL 엔진)',
+    performanceScore: 98,
+    aiEaseScore: 92,
+    whenToUse: '3D 제품 360 쇼룸, 스마트 팩토리 디지털 트윈, 공간 군집 드론쇼, 실시간 물리 시뮬레이션.',
+    sampleCode: `// Three.js + WebGL 3D Mesh Animation
+import * as THREE from 'three';
+
+const scene = new THREE.Scene();
+const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+renderer.setSize(400, 300);
+
+const geometry = new THREE.TorusKnotGeometry(10, 3, 100, 16);
+const material = new THREE.MeshPhysicalMaterial({
+  color: 0x8b5cf6,
+  metalness: 0.9,
+  roughness: 0.1,
+  clearcoat: 1.0
+});
+const torus = new THREE.Mesh(geometry, material);
+scene.add(torus);
+
+camera.position.z = 30;
+
+function animate() {
+  requestAnimationFrame(animate);
+  torus.rotation.x += 0.01;
+  torus.rotation.y += 0.02;
+  renderer.render(scene, camera);
+}
+animate();`,
+    aiDirectiveTemplate: `"Three.js와 WebGL을 사용하여, 사용자의 마우스 회전에 반응하고 물리적 반사광(MeshPhysicalMaterial)이 빛나는 3D 인터랙티브 씬을 구현해줘."`
+  },
+  {
     id: 'fastapi-uvicorn-python',
     name: 'FastAPI + Uvicorn (Python 비동기 백엔드)',
     category: 'Backend',
@@ -162,5 +210,40 @@ class BlueprintRequest(BaseModel):
 async def generate_blueprint(req: BlueprintRequest):
     return {"status": "success", "id": "bp_2026_fast", "title": req.title}`,
     aiDirectiveTemplate: `"FastAPI와 Python 3.12, Pydantic v2를 사용해서 비동기(async def) REST API 백엔드를 구현해줘. Swagger docs 연동을 위해 응답 모델과 타입 힌트를 엄격하게 작성해줘."`
+  },
+  {
+    id: 'd3-observable-data-viz',
+    name: 'D3.js + Observable Plot (과학/통계 시각화)',
+    category: 'Graphics & 3D',
+    yearTrend: '2026 데이터 저널리즘 & 비스포크 차트의 절대 기준',
+    tagline: '픽셀 단위 100% 제어권, 쌍곡 기하학·코드 다이어그램·위상수학 렌더링',
+    badge: 'Pure Data Grammar',
+    pros: [
+      '상용 차트 툴의 한계를 벗어나 어떤 기하학적·수학적 형태의 시각화도 생성 가능',
+      '데이터 기반 SVG/Canvas 바인딩 및 부드러운 전이 애니메이션(Transition)',
+      '수학 공식(베지어, 극좌표, 쌍곡기하, 트리맵)과의 완벽한 융합'
+    ],
+    cons: [
+      '기본 차트 설정에 필요한 보일러플레이트와 수학적 스케일 계산 이해 필요'
+    ],
+    bundleSize: '~70 KB (Modular D3)',
+    performanceScore: 95,
+    aiEaseScore: 94,
+    whenToUse: '공정간 원자재 이동 코드 다이어그램, 릿지라인 조이플롯, 다차원 평행 좌표계 등 독창적 분석 차트 구축 시.',
+    sampleCode: `// D3.js SVG Curve Generator
+import * as d3 from 'd3';
+
+const data = [10, 25, 45, 80, 120, 95, 60, 30, 10];
+const xScale = d3.scaleLinear().domain([0, 8]).range([0, 300]);
+const yScale = d3.scaleLinear().domain([0, 120]).range([150, 0]);
+
+const lineGenerator = d3.line<number>()
+  .x((_, i) => xScale(i))
+  .y(d => yScale(d))
+  .curve(d3.curveBasis);
+
+const pathD = lineGenerator(data);
+// <path d={pathD} stroke="#8b5cf6" fill="none" />`,
+    aiDirectiveTemplate: `"D3.js의 scaleLinear와 d3.line 곡선 생성기를 사용하여, 부드러운 스플라인 곡선과 영역 채우기를 제공하는 데이터 시각화 컴포넌트를 작성해줘."`
   }
 ];

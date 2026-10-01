@@ -77,7 +77,7 @@ export interface BlueprintSnapshot {
 export interface TechStackItem {
   id: string;
   name: string;
-  category: 'Frontend' | 'Backend' | 'Rendering Strategy' | 'Styling';
+  category: 'Frontend' | 'Backend' | 'Rendering Strategy' | 'Styling' | 'Graphics & 3D' | 'Data Visualization';
   yearTrend: string;
   tagline: string;
   badge: string;

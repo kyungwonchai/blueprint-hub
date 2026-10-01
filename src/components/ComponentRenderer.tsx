@@ -1,4 +1,7 @@
 import { 
+  MagneticFerrofluidCanvasDemo, KineticCyberDialDemo, TactileMatrixSwitcherDemo 
+} from './renderers/CuttingEdgeInteractiveRenderers';
+import { 
   RidgelineDensityDemo, CorrelationMatrixDemo, SunburstDefectTreeDemo, HoneycombEquipmentMeshDemo 
 } from './renderers/MathematicalVizRenderers';
 import { 
@@ -256,6 +259,11 @@ export const ComponentRenderer: React.FC<RendererProps> = ({ componentId, isComp
   if (componentId === 'theme-bento-grid-card-layout') return <BentoGridDemo />;
   if (componentId === 'theme-claymorphism-3d-card') return <ClaymorphismDemo />;
   if (componentId === 'theme-noise-texture-overlay') return <NoiseOverlayDemo />;
+  
+  // 2026 Cutting-Edge Interactive & Canvas Physics
+  if (componentId === 'theme-magnetic-ferrofluid-canvas') return <MagneticFerrofluidCanvasDemo />;
+  if (componentId === 'nav-kinetic-cyberpunk-dial') return <KineticCyberDialDemo />;
+  if (componentId === 'feedback-tactile-brutalism-switcher') return <TactileMatrixSwitcherDemo />;
 
   return null;
 };

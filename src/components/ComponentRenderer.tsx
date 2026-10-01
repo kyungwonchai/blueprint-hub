@@ -3,7 +3,7 @@ import { Sparkles } from 'lucide-react';
 
 // 1. Chart Renderers
 import { 
-  CandlestickTradingDemo, DonutAllocationDemo, RadarSkillsDemo, 
+  SpcQualityControlDemo, DonutAllocationDemo, RadarSkillsDemo, 
   ActivityHeatmapDemo, StreamAreaDemo, DualBarComparisonDemo, 
   BubbleMarketMapDemo, FunnelConversionDemo, TreemapPortfolioDemo, 
   SpeedometerGaugeDemo, WaterfallCashflowDemo, SparklineMiniBadgeDemo 
@@ -62,7 +62,7 @@ interface RendererProps {
 
 export const ComponentRenderer: React.FC<RendererProps> = ({ componentId, isCompact = false }) => {
   // 1. CHARTS (12)
-  if (componentId === 'chart-candlestick-trading') return <CandlestickTradingDemo />;
+  if (componentId === 'chart-candlestick-trading') return <SpcQualityControlDemo />;
   if (componentId === 'chart-donut-allocation') return <DonutAllocationDemo />;
   if (componentId === 'chart-radar-skills') return <RadarSkillsDemo />;
   if (componentId === 'chart-activity-heatmap') return <ActivityHeatmapDemo />;

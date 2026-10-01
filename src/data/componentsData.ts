@@ -109,7 +109,7 @@ export const CATEGORIES: { id: string; name: string; icon: string; count?: numbe
 export const COMPONENTS_DATA: ComponentItem[] = [
   {
     "id": "chart-candlestick-trading",
-    "name": "실시간 캔들스틱 & 거래량 복합 차트 (MA이동평균 + 호가 스위치)",
+    "name": "실시간 SPC 통계적 공정 관리도 (X-bar & R 관리한계선 UCL/LCL)",
     "category": "charts",
     "tags": [
       "chart",
@@ -122,7 +122,7 @@ export const COMPONENTS_DATA: ComponentItem[] = [
       "차트",
       "거래량"
     ],
-    "description": "상승/하락 양봉·음봉, 이동평균선(MA), 하단 거래량 바, 호가 레이블 토글 스위치 지원.",
+    "description": "중심선(CL) 및 상/하한 관리선(UCL/LCL) 기준 실시간 불량 이상치(Anomaly) 자동 감지 및 보간 선형 관리도.",
     "complexity": "Advanced",
     "dependencies": [
       "lucide-react"

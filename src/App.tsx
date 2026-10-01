@@ -12,6 +12,7 @@ import { WebTechExpoTab } from './components/WebTechExpoTab';
 import { MasterEnterpriseApp } from './components/MasterEnterpriseApp';
 import { BoardManagerModal } from './components/BoardManagerModal';
 import { COMPONENTS_DATA } from './data/componentsData';
+import { getComponentMetadata } from './data/componentMetadata';
 import { ComponentItem, CategoryId, BlueprintSnapshot, BoardData, CanvasBoardItem } from './types';
 import { 
   Sparkles, Layers, Box, Terminal, ArrowRight, 
@@ -193,10 +194,17 @@ export default function App() {
     } catch (e) {}
   };
 
-  // Filter components with smart search
+  const [selectedEra, setSelectedEra] = useState<string>('all');
+  const [sortOrder, setSortOrder] = useState<'default' | 'newest' | 'complexity' | 'name'>('newest');
+
+  // Filter components with smart search, category, era, and sorting
   const filteredComponents = useMemo(() => {
-    return COMPONENTS_DATA.filter((item) => {
+    let list = COMPONENTS_DATA.filter((item) => {
+      const meta = getComponentMetadata(item);
       if (selectedCategory !== 'all' && item.category !== selectedCategory) {
+        return false;
+      }
+      if (selectedEra !== 'all' && meta.releaseEra !== selectedEra) {
         return false;
       }
       if (!searchQuery.trim()) return true;
@@ -204,10 +212,29 @@ export default function App() {
       const matchName = item.name.toLowerCase().includes(q);
       const matchDesc = item.description.toLowerCase().includes(q);
       const matchId = item.id.toLowerCase().includes(q);
+      const matchEra = meta.releaseEra.toLowerCase().includes(q);
+      const matchOrigin = meta.techOrigin.toLowerCase().includes(q);
       const matchTags = item.tags.some((t: string) => t.toLowerCase().includes(q));
-      return matchName || matchDesc || matchId || matchTags;
+      return matchName || matchDesc || matchId || matchEra || matchOrigin || matchTags;
     });
-  }, [searchQuery, selectedCategory]);
+
+    if (sortOrder === 'newest') {
+      list = [...list].sort((a, b) => {
+        const aMeta = getComponentMetadata(a);
+        const bMeta = getComponentMetadata(b);
+        const aScore = aMeta.releaseEra.includes('2026') ? 3 : aMeta.releaseEra.includes('2025') ? 2 : 1;
+        const bScore = bMeta.releaseEra.includes('2026') ? 3 : bMeta.releaseEra.includes('2025') ? 2 : 1;
+        return bScore - aScore;
+      });
+    } else if (sortOrder === 'complexity') {
+      const order = { 'Advanced': 3, 'Medium': 2, 'Simple': 1 };
+      list = [...list].sort((a, b) => order[b.complexity] - order[a.complexity]);
+    } else if (sortOrder === 'name') {
+      list = [...list].sort((a, b) => a.name.localeCompare(b.name, 'ko'));
+    }
+
+    return list;
+  }, [searchQuery, selectedCategory, selectedEra, sortOrder]);
 
   // Toggle component in cart and append to active board
   const toggleCart = (item: ComponentItem) => {
@@ -392,6 +419,47 @@ export default function App() {
 
           {/* Component Catalog Grid */}
           <main className="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-8">
+            {/* Interactive Era Filter & Sort Controls Bar */}
+            <div className="flex flex-wrap items-center justify-between gap-4 p-4 rounded-2xl bg-white/[0.03] border border-white/10 mb-6 backdrop-blur-md shadow-lg">
+              <div className="flex flex-wrap items-center gap-2">
+                <span className="text-xs font-bold text-slate-400 mr-1">시각/출시 분류:</span>
+                {[
+                  { id: 'all', label: '전체 시대 (All)' },
+                  { id: '2026 Cosmic Math', label: '🌌 2026 카오스/우주수학' },
+                  { id: '2026 Awwwards Experimental', label: '✨ 2026 실험적 셰이더/물리' },
+                  { id: '2026 AI-Native', label: '🤖 2026 AI 네이티브' },
+                  { id: '2025-2026 Advanced SciViz', label: '📊 2025-2026 D3 과학시각화' },
+                  { id: 'Enterprise Commercial', label: '🏢 DevExpress 엔터프라이즈' },
+                ].map((era) => (
+                  <button
+                    key={era.id}
+                    onClick={() => setSelectedEra(era.id)}
+                    className={`px-3 py-1 rounded-xl text-xs font-bold transition-all ${
+                      selectedEra === era.id
+                        ? 'bg-gradient-to-r from-amber-500 to-orange-500 text-black shadow-md font-black scale-105'
+                        : 'bg-white/[0.04] text-slate-300 hover:bg-white/[0.08] hover:text-white border border-white/5'
+                    }`}
+                  >
+                    {era.label}
+                  </button>
+                ))}
+              </div>
+
+              <div className="flex items-center gap-2">
+                <span className="text-xs font-bold text-slate-400">정렬 기준:</span>
+                <select
+                  value={sortOrder}
+                  onChange={(e) => setSortOrder(e.target.value as any)}
+                  className="px-3 py-1.5 bg-slate-900 border border-white/15 rounded-xl text-xs text-white focus:outline-none focus:border-violet-500"
+                >
+                  <option value="newest">⏳ 최신 트렌드/2026년순</option>
+                  <option value="complexity">⚡ 난이도/복잡도순 (Advanced 우선)</option>
+                  <option value="name">🔤 가나다 이름순</option>
+                  <option value="default">📋 카탈로그 기본순</option>
+                </select>
+              </div>
+            </div>
+
             <div className="flex items-center justify-between mb-6">
               <div>
                 <h3 className="text-lg font-black text-white flex items-center gap-2">

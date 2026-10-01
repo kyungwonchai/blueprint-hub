@@ -22,6 +22,8 @@ export interface ComponentItem {
   demoProps?: Record<string, any>;
   fullSourceCode: string;
   aiPromptGuidance: string;
+  releaseEra?: string;
+  techOrigin?: string;
 }
 
 export interface CanvasBoardItem {

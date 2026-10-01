@@ -8,6 +8,7 @@ import { SnapshotModal } from './components/SnapshotModal';
 import { RecentBlueprintsModal } from './components/RecentBlueprintsModal';
 import { TechStackTab } from './components/TechStackTab';
 import { StorageGuideTab } from './components/StorageGuideTab';
+import { WebTechExpoTab } from './components/WebTechExpoTab';
 import { BoardManagerModal } from './components/BoardManagerModal';
 import { COMPONENTS_DATA } from './data/componentsData';
 import { ComponentItem, CategoryId, BlueprintSnapshot, BoardData, CanvasBoardItem } from './types';
@@ -316,6 +317,10 @@ export default function App() {
 
       {currentTab === 'storage' && (
         <StorageGuideTab />
+      )}
+
+      {currentTab === 'expo' && (
+        <WebTechExpoTab />
       )}
 
       {currentTab === 'catalog' && (

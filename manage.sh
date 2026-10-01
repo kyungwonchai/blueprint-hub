@@ -33,7 +33,7 @@ start_app() {
   fi
 
   echo "🚀 [BlueprintHub] 서버 구동 중..."
-  setsid /usr/bin/node server.mjs </dev/null >> "$LOG_FILE" 2>&1 &
+  nohup /usr/bin/node "$APP_DIR/server.mjs" > "$LOG_FILE" 2>&1 &
   NEW_PID=$!
   echo $NEW_PID > "$PID_FILE"
   echo "✅ [BlueprintHub] 실행 완료 (PID: $NEW_PID, Port: $PORT)"

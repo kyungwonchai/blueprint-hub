@@ -1,12 +1,12 @@
 import React from 'react';
 import { 
   Sparkles, Search, ShoppingBag, LayoutTemplate, Layers, 
-  History, Terminal, RefreshCw, X, Folder, Zap, Database, User, CloudCheck, CheckCircle2 
+  History, Terminal, RefreshCw, X, Folder, Zap, Database, User, CloudCheck, CheckCircle2, Compass 
 } from 'lucide-react';
 import { CATEGORIES } from '../data/componentsData';
 import { CategoryId } from '../types';
 
-export type MainTabMode = 'catalog' | 'canvas' | 'techstack' | 'storage';
+export type MainTabMode = 'catalog' | 'canvas' | 'techstack' | 'storage' | 'expo';
 
 interface HeaderProps {
   currentTab: MainTabMode;
@@ -89,7 +89,7 @@ export const Header: React.FC<HeaderProps> = ({
           </div>
         </div>
 
-        {/* Navigation Tabs (Catalog, Canvas, Tech Stack, Storage Guide) */}
+        {/* Navigation Tabs (Catalog, Canvas, Expo, Tech Stack, Storage Guide) */}
         <nav className="flex items-center gap-1 bg-black/60 p-1 rounded-2xl border border-white/10">
           <button
             onClick={() => setCurrentTab('catalog')}
@@ -112,7 +112,19 @@ export const Header: React.FC<HeaderProps> = ({
             }`}
           >
             <Sparkles className="w-3.5 h-3.5 text-fuchsia-300" />
-            <span>포스트잇 칠판 캔버스</span>
+            <span>포스트잇 칠판</span>
+          </button>
+
+          <button
+            onClick={() => setCurrentTab('expo')}
+            className={`flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-bold transition-all ${
+              currentTab === 'expo'
+                ? 'bg-gradient-to-r from-pink-600 to-rose-600 text-white shadow-md'
+                : 'text-slate-400 hover:text-white'
+            }`}
+          >
+            <Compass className="w-3.5 h-3.5 text-pink-300" />
+            <span>🌌 웹기술 전시장</span>
           </button>
 
           <button
@@ -124,7 +136,7 @@ export const Header: React.FC<HeaderProps> = ({
             }`}
           >
             <Zap className="w-3.5 h-3.5 text-amber-300" />
-            <span className="hidden sm:inline">2026 기술스택 랩</span>
+            <span className="hidden sm:inline">2026 스택랩</span>
           </button>
 
           <button

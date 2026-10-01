@@ -257,8 +257,15 @@ function handlePostBlueprint(req, res) {
   });
 });
 
-// Static assets serving (dist folder)
+// Static assets serving (dist folder & aitrend expo)
 const distPath = path.join(__dirname, 'dist');
+const aitrendPath = '/home/kw/kwsoft/aitrend';
+
+if (fs.existsSync(aitrendPath)) {
+  app.use('/blueprint-hub/aitrend', express.static(aitrendPath));
+  app.use('/aitrend', express.static(aitrendPath));
+}
+
 if (fs.existsSync(distPath)) {
   app.use('/blueprint-hub', express.static(distPath));
   app.use(express.static(distPath));

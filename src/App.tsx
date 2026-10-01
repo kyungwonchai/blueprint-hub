@@ -107,13 +107,13 @@ export default function App() {
   };
 
   // Create Blueprint Snapshot
-  const handleCreateSnapshot = async (layoutType: string, slots: { slotId: string; componentId: string }[]) => {
+  const handleCreateSnapshot = async (layoutType: string, slots: { slotId: string; componentId: string; colSpan?: number }[]) => {
     const newId = 'bp_2026_' + Math.random().toString(36).substring(2, 8);
     const selectedComps = cartItems;
 
     const fullCodeBundle = selectedComps.map((c, i) => `// ================= [${i + 1}] Component: ${c.name} (${c.id}) =================\n${c.fullSourceCode}`).join('\n\n');
 
-    const generatedPrompt = `# 🚀 AI-Native Blueprint Code Generation Directive\n\n## 1. Project Blueprint Metadata\n- Blueprint ID: ${newId}\n- Layout Architecture: ${layoutType}\n- Timestamp: ${new Date().toISOString()}\n- Tech Stack: React 19, TypeScript, Tailwind CSS v4, Lucide-React\n\n## 2. Layout Structure\n${slots.map(s => `- Slot [${s.slotId}]: Component <${s.componentId} />`).join('\n')}\n\n## 3. Component Specs & Full Source Codes\n${fullCodeBundle}\n\n## 4. Execution Instruction for AI Agent\n위의 레이아웃 슬롯 구조와 각 컴포넌트 TSX 소스코드를 결합하여, 하나의 완벽하게 동작하는 대시보드 페이지(\`page.tsx\` 또는 \`DashboardApp.tsx\`)로 일체화하여 작성해 주세요. 스타일은 딥 다크 글래스모피즘을 유지해야 합니다.`;
+    const generatedPrompt = `# 🚀 AI-Native Blueprint Code Generation Directive\n\n## 1. Project Blueprint Metadata\n- Blueprint ID: ${newId}\n- Layout Architecture: ${layoutType}\n- Timestamp: ${new Date().toISOString()}\n- Tech Stack: React 19, TypeScript, Tailwind CSS v4, Lucide-React\n\n## 2. Responsive Grid Slot Structure (12-Column Grid)\n${slots.map(s => `- Slot [${s.slotId}]: Component <${s.componentId} /> (Grid Width: ${s.colSpan || 6}/12 cols)`).join('\n')}\n\n## 3. Component Specs & Full Source Codes\n${fullCodeBundle}\n\n## 4. Execution Instruction for AI Agent\n위의 레이아웃 슬롯 구조(너비 비중 포함)와 각 컴포넌트 TSX 소스코드를 결합하여, 하나의 완벽하게 동작하는 대시보드 페이지(\`page.tsx\` 또는 \`DashboardApp.tsx\`)로 일체화하여 작성해 주세요. 스타일은 딥 다크 글래스모피즘을 유지해야 합니다.`;
 
     const snapshotData: BlueprintSnapshot = {
       id: newId,
@@ -123,7 +123,7 @@ export default function App() {
       author: 'kw_architect',
       layout: {
         type: layoutType as any,
-        slots: slots.map(s => ({ slotId: s.slotId, componentId: s.componentId })),
+        slots: slots.map(s => ({ slotId: s.slotId, componentId: s.componentId, colSpan: s.colSpan })),
       },
       components: selectedComps,
       generatedAiPrompt: generatedPrompt,

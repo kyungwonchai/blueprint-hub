@@ -107,23 +107,25 @@ export default function App() {
   };
 
   // Create Blueprint Snapshot
-  const handleCreateSnapshot = async (layoutType: string, slots: { slotId: string; componentId: string; colSpan?: number }[]) => {
+  const handleCreateSnapshot = async (layoutType: string, slots: { slotId: string; componentId: string; x?: number; y?: number; width?: number; height?: number }[]) => {
     const newId = 'bp_2026_' + Math.random().toString(36).substring(2, 8);
     const selectedComps = cartItems;
 
     const fullCodeBundle = selectedComps.map((c, i) => `// ================= [${i + 1}] Component: ${c.name} (${c.id}) =================\n${c.fullSourceCode}`).join('\n\n');
 
-    const generatedPrompt = `# 🚀 AI-Native Blueprint Code Generation Directive\n\n## 1. Project Blueprint Metadata\n- Blueprint ID: ${newId}\n- Layout Architecture: ${layoutType}\n- Timestamp: ${new Date().toISOString()}\n- Tech Stack: React 19, TypeScript, Tailwind CSS v4, Lucide-React\n\n## 2. Responsive Grid Slot Structure (12-Column Grid)\n${slots.map(s => `- Slot [${s.slotId}]: Component <${s.componentId} /> (Grid Width: ${s.colSpan || 6}/12 cols)`).join('\n')}\n\n## 3. Component Specs & Full Source Codes\n${fullCodeBundle}\n\n## 4. Execution Instruction for AI Agent\n위의 레이아웃 슬롯 구조(너비 비중 포함)와 각 컴포넌트 TSX 소스코드를 결합하여, 하나의 완벽하게 동작하는 대시보드 페이지(\`page.tsx\` 또는 \`DashboardApp.tsx\`)로 일체화하여 작성해 주세요. 스타일은 딥 다크 글래스모피즘을 유지해야 합니다.`;
+    const layoutDesc = slots.map(s => `- Slot [${s.slotId}]: Component <${s.componentId} /> | 칠판 위치 (X: ${s.x ?? 0}px, Y: ${s.y ?? 0}px, 너비: ${s.width ?? 400}px, 높이: ${s.height ?? 300}px)`).join('\n');
+
+    const generatedPrompt = `# 🚀 AI-Native Freeform Whiteboard Blueprint Code Generation Directive\n\n## 1. Project Blueprint Metadata\n- Blueprint ID: ${newId}\n- Layout Architecture: Freeform Whiteboard Canvas\n- Timestamp: ${new Date().toISOString()}\n- Tech Stack: React 19, TypeScript, Tailwind CSS v4, Lucide-React\n\n## 2. 칠판 공간 배치도 (Spatial Layout Map)\n${layoutDesc}\n\n## 3. Component Specs & Full Source Codes\n${fullCodeBundle}\n\n## 4. Execution Instruction for AI Agent\n사용자가 칠판(화이트보드)에 자유롭게 배치한 위의 상대적 공간 위치(상단/하단/좌/우 비중)를 바탕으로, 자연스러운 모바일/데스크톱 반응형 대시보드 페이지(\`page.tsx\` 또는 \`App.tsx\`)를 작성해 주세요. 딥 다크 네온 글래스모피즘 룩을 유지해야 합니다.`;
 
     const snapshotData: BlueprintSnapshot = {
       id: newId,
-      title: `${selectedComps.map(c => c.name.slice(0, 10)).join(' + ')} 레이아웃`,
-      description: `${selectedComps.length}개의 최신 2026 UI 컨트롤이 통합된 AI 청사진`,
+      title: `${selectedComps.map(c => c.name.slice(0, 10)).join(' + ')} 칠판 레이아웃`,
+      description: `${selectedComps.length}개의 최신 2026 UI 컨트롤이 배치된 AI 청사진`,
       createdAt: new Date().toISOString(),
       author: 'kw_architect',
       layout: {
         type: layoutType as any,
-        slots: slots.map(s => ({ slotId: s.slotId, componentId: s.componentId, colSpan: s.colSpan })),
+        slots: slots.map(s => ({ slotId: s.slotId, componentId: s.componentId, customProps: { x: s.x, y: s.y, width: s.width, height: s.height } })),
       },
       components: selectedComps,
       generatedAiPrompt: generatedPrompt,

@@ -1,1 +1,5 @@
-node_modules\ndist\n.app.pid\napp.log\nstorage/blueprints.json
+node_modules
+dist
+.app.pid
+app.log
+storage/blueprints.json

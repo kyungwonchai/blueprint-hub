@@ -108,7 +108,7 @@ export const MasterEnterpriseApp: React.FC<MasterEnterpriseAppProps> = ({
               회사 동료들의 뇌리에 1년은 남을 <span className="grad-text">초격차 산업용 관제탑</span>
             </h2>
             <p className="text-xs sm:text-sm text-slate-300 leading-relaxed">
-              단순한 데모가 아닌, 4K 초고화질 비전 AI 카메라 · 3D 카오스 로렌츠 궤적 · D3 코드 다이어그램 · UMAP 잠재 공간 프로젝터 · DevExpress 정밀 제어가 결합된 세상에 없던 통합 엔터프라이즈 종합 앱입니다.
+              단순한 데모가 아닌, 4K 초고화질 비전 AI 카메라 · 3D 카오스 로렌츠 궤적 · D3 코드 다이어그램 · UMAP 잠재 공간 프로젝터 · 엔터프라이즈 정밀 제어가 결합된 세상에 없던 통합 엔터프라이즈 종합 앱입니다.
             </p>
           </div>
 
@@ -120,7 +120,7 @@ export const MasterEnterpriseApp: React.FC<MasterEnterpriseAppProps> = ({
               { id: 'cosmic_math', label: '3. 카오스 & UMAP 수학', icon: Orbit, col: 'from-purple-600 to-pink-600' },
               { id: 'materials_bom', label: '4. BOM 휠 & 수불부', icon: Truck, col: 'from-amber-600 to-orange-600' },
               { id: 'digital_twin', label: '5. 디지털 트윈 & 물리학', icon: Zap, col: 'from-fuchsia-600 to-violet-600' },
-              { id: 'executive_war', label: '6. DevExpress 워룸', icon: FileSpreadsheet, col: 'from-rose-600 to-red-600' },
+              { id: 'executive_war', label: '6. 엔터프라이즈 워룸', icon: FileSpreadsheet, col: 'from-rose-600 to-red-600' },
             ].map(tab => {
               const Icon = tab.icon;
               const isSel = activeTab === tab.id;
@@ -253,11 +253,11 @@ export const MasterEnterpriseApp: React.FC<MasterEnterpriseAppProps> = ({
                   ))}
                 </div>
 
-                {renderTechBadge('DevExpress Master-Detail SCADA', '비전 카메라와 설비 데이터 실시간 동기화', 'datagrid-realtime-pro')}
+                {renderTechBadge('엔터프라이즈 Master-Detail SCADA', '비전 카메라와 설비 데이터 실시간 동기화', 'datagrid-realtime-pro')}
               </div>
             </div>
 
-            {/* Right 2 Cols: Interlinked DevExpress DataGrid + Realtime SPC 관리도 */}
+            {/* Right 2 Cols: Interlinked Enterprise DataGrid + Realtime SPC 관리도 */}
             <div className="lg:col-span-2 space-y-4">
               <div className="p-4 rounded-3xl bg-slate-900/95 border border-white/10 shadow-2xl space-y-3">
                 <div className="flex flex-wrap justify-between items-center gap-2 border-b border-white/10 pb-3">
@@ -322,7 +322,7 @@ export const MasterEnterpriseApp: React.FC<MasterEnterpriseAppProps> = ({
                   </table>
                 </div>
 
-                {renderTechBadge('DevExpress Sticky DataGrid', '행 클릭 시 연동 검사 데이터 자동 갱신', 'table-sticky-column-finance')}
+                {renderTechBadge('엔터프라이즈 Sticky DataGrid', '행 클릭 시 연동 검사 데이터 자동 갱신', 'table-sticky-column-finance')}
               </div>
 
               {/* D3 Sankey Flow & SPC 관리도 Grid */}

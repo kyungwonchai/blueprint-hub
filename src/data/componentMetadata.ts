@@ -2,8 +2,8 @@ import { ComponentItem } from '../types';
 
 export function getComponentMetadata(item: ComponentItem): { releaseEra: string; techOrigin: string } {
   const id = item.id;
-  if (id.startsWith('devexpress-')) {
-    return { releaseEra: 'Enterprise Commercial', techOrigin: 'DevExpress WPF Pro' };
+  if (id.startsWith('devexpress-') || id.startsWith('enterprise-')) {
+    return { releaseEra: 'Enterprise Commercial', techOrigin: 'Enterprise Desktop Standard (WPF/Qt/C#)' };
   }
   if (
     id.startsWith('chart-lorenz') || id.startsWith('chart-umap') || id.startsWith('chart-poincare') ||
@@ -28,7 +28,7 @@ export function getComponentMetadata(item: ComponentItem): { releaseEra: string;
     return { releaseEra: '2026 Awwwards Experimental', techOrigin: 'WebGL/Canvas Shader' };
   }
   if (id.startsWith('ai-') || id.includes('-ai-') || id.includes('commander')) {
-    return { releaseEra: '2026 AI-Native', techOrigin: 'Vercel AI SDK & LLM UX' };
+    return { releaseEra: '2026 AI-Native', techOrigin: 'AI-Native Interface Spec' };
   }
   if (
     id.startsWith('chart-polar') || id.startsWith('chart-ternary') || id.startsWith('chart-voronoi') || 
@@ -38,10 +38,10 @@ export function getComponentMetadata(item: ComponentItem): { releaseEra: string;
     id.startsWith('chart-parliament') || id.startsWith('chart-sankey') || id.startsWith('chart-marimekko') ||
     id.startsWith('chart-hexbin') || id.startsWith('chart-dendrogram') || id.startsWith('chart-bump')
   ) {
-    return { releaseEra: '2025-2026 Advanced SciViz', techOrigin: 'D3.js & Observable HQ' };
+    return { releaseEra: '2025-2026 Advanced SciViz', techOrigin: 'D3.js & Observable SciViz' };
   }
   if (id.startsWith('table-') || id.startsWith('datagrid-')) {
-    return { releaseEra: '2025-2026 Modern Grid', techOrigin: 'AG-Grid Enterprise' };
+    return { releaseEra: '2025-2026 Modern Grid', techOrigin: 'Enterprise DataGrid Standard' };
   }
   return { releaseEra: '2025-2026 Modern Standard', techOrigin: 'Tailwind & Lucide Pro' };
 }

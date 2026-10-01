@@ -142,13 +142,13 @@ export const ComponentRenderer: React.FC<RendererProps> = ({ componentId, isComp
 
 
   
-  // DevExpress WPF Commercial Enterprise Suite
-  if (componentId === 'devexpress-ribbon-command-bar') return <DevExpressRibbonDemo />;
-  if (componentId === 'devexpress-property-grid-inspector') return <DevExpressPropertyGridDemo />;
-  if (componentId === 'devexpress-visual-filter-editor') return <DevExpressFilterEditorDemo />;
-  if (componentId === 'devexpress-visio-diagram-flow') return <DevExpressDiagramDemo />;
-  if (componentId === 'devexpress-docking-layout-mdi') return <DevExpressDockingDemo />;
-  if (componentId === 'devexpress-excel-spreadsheet-matrix') return <DevExpressSpreadsheetDemo />;
+  // Enterprise Commercial Desktop Suite (WPF/Qt/C# Standard)
+  if (componentId === 'enterprise-ribbon-command-bar' || componentId === 'devexpress-ribbon-command-bar') return <DevExpressRibbonDemo />;
+  if (componentId === 'enterprise-property-grid-inspector' || componentId === 'devexpress-property-grid-inspector') return <DevExpressPropertyGridDemo />;
+  if (componentId === 'enterprise-visual-filter-editor' || componentId === 'devexpress-visual-filter-editor') return <DevExpressFilterEditorDemo />;
+  if (componentId === 'enterprise-visio-diagram-flow' || componentId === 'devexpress-visio-diagram-flow') return <DevExpressDiagramDemo />;
+  if (componentId === 'enterprise-docking-layout-mdi' || componentId === 'devexpress-docking-layout-mdi') return <DevExpressDockingDemo />;
+  if (componentId === 'enterprise-excel-spreadsheet-matrix' || componentId === 'devexpress-excel-spreadsheet-matrix') return <DevExpressSpreadsheetDemo />;
 
   // 2. TABLES & PIVOTS (12)
   if (componentId === 'datagrid-realtime-pro') return <DataGridDemo />;

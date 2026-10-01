@@ -529,7 +529,7 @@ export const AiPromptVaultDemo: React.FC = () => {
         <Key className="w-3.5 h-3.5 text-amber-400" />
       </div>
       <div className="p-1.5 rounded-lg bg-amber-500/10 border border-amber-500/20 text-[11px] text-amber-200">
-        📌 2026 DevExpress/PowerBI 컴포넌트 자동 생성 프롬프트
+        📌 2026 엔터프라이즈 고성능 컴포넌트 자동 생성 프롬프트
       </div>
     </div>
   );

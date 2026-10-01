@@ -429,7 +429,7 @@ export default function App() {
                   { id: '2026 Awwwards Experimental', label: '✨ 2026 실험적 셰이더/물리' },
                   { id: '2026 AI-Native', label: '🤖 2026 AI 네이티브' },
                   { id: '2025-2026 Advanced SciViz', label: '📊 2025-2026 D3 과학시각화' },
-                  { id: 'Enterprise Commercial', label: '🏢 DevExpress 엔터프라이즈' },
+                  { id: 'Enterprise Commercial', label: '🏢 엔터프라이즈 상용 표준' },
                 ].map((era) => (
                   <button
                     key={era.id}

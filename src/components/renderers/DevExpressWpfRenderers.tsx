@@ -77,7 +77,7 @@ export const DevExpressPropertyGridDemo: React.FC = () => {
   return (
     <div className="w-full rounded-2xl bg-slate-900/90 backdrop-blur-xl border border-white/10 p-3.5 shadow-2xl space-y-2 text-xs">
       <div className="flex justify-between items-center border-b border-white/10 pb-1.5 font-bold text-white">
-        <span>DevExpress 프로퍼티 그리드 (PropertyGrid)</span>
+        <span>엔터프라이즈 프로퍼티 그리드 (Property Inspector)</span>
         <span className="text-[10px] text-violet-400 font-mono">라인 파라미터</span>
       </div>
       <div className="space-y-1 font-mono text-[11px]">
@@ -113,7 +113,7 @@ export const DevExpressPropertyGridDemo: React.FC = () => {
   );
 };
 
-// 3. DevExpress Visual Filter Editor (Tree Expression Builder)
+// 3. Visual Tree Filter Editor (Expression Builder)
 export const DevExpressFilterEditorDemo: React.FC = () => {
   const [op, setOp] = useState<'AND' | 'OR'>('AND');
   return (
@@ -142,12 +142,12 @@ export const DevExpressFilterEditorDemo: React.FC = () => {
   );
 };
 
-// 4. DevExpress Visio Diagram & Node Flow
+// 4. Interactive Node Flow Diagram
 export const DevExpressDiagramDemo: React.FC = () => {
   return (
     <div className="w-full rounded-2xl bg-slate-900/90 backdrop-blur-xl border border-white/10 p-3.5 shadow-2xl space-y-2 text-xs">
       <div className="flex justify-between items-center border-b border-white/10 pb-1.5 font-bold text-white">
-        <span>Visio 스타일 공정 다이어그램 (Diagram)</span>
+        <span>인터랙티브 노드 공정 다이어그램 (Node Diagram)</span>
         <span className="text-emerald-400 text-[10px]">● 4 Nodes Active</span>
       </div>
       <div className="h-28 w-full bg-slate-950/80 rounded-xl p-2 border border-white/5 relative flex items-center justify-between px-4">
@@ -175,12 +175,12 @@ export const DevExpressDiagramDemo: React.FC = () => {
   );
 };
 
-// 5. DevExpress Docking Layout Manager
+// 5. Multi-Window Docking Layout Manager
 export const DevExpressDockingDemo: React.FC = () => {
   return (
     <div className="w-full rounded-2xl bg-slate-900/90 backdrop-blur-xl border border-white/10 p-3.5 shadow-2xl space-y-2 text-xs">
       <div className="flex justify-between items-center font-bold text-white">
-        <span>WPF 도킹 레이아웃 (Docking MDI)</span>
+        <span>엔터프라이즈 도킹 레이아웃 (Docking MDI)</span>
         <span className="text-slate-400 text-[10px]">패널 드래그 분할</span>
       </div>
       <div className="grid grid-cols-3 gap-1.5 h-24 text-[10px]">
@@ -193,19 +193,19 @@ export const DevExpressDockingDemo: React.FC = () => {
             <span>메인 관제 뷰 (Active Document)</span>
             <span className="text-emerald-400">● 60 FPS</span>
           </div>
-          <span className="text-cyan-300 font-mono">DevExpress Realtime Engine</span>
+          <span className="text-cyan-300 font-mono">Enterprise Realtime Engine</span>
         </div>
       </div>
     </div>
   );
 };
 
-// 6. Excel-grade Spreadsheet Matrix
+// 6. Enterprise Formula Spreadsheet Matrix
 export const DevExpressSpreadsheetDemo: React.FC = () => {
   return (
     <div className="w-full rounded-2xl bg-slate-900/90 backdrop-blur-xl border border-white/10 p-3 shadow-2xl space-y-1.5 text-xs">
       <div className="flex justify-between items-center font-bold text-white">
-        <span className="flex items-center gap-1.5"><FileSpreadsheet className="w-4 h-4 text-emerald-400" /> Excel 스프레드시트 뷰</span>
+        <span className="flex items-center gap-1.5"><FileSpreadsheet className="w-4 h-4 text-emerald-400" /> 엔터프라이즈 스프레드시트 뷰</span>
         <span className="text-emerald-400 text-[10px] font-mono">=SUM(B2:D2)</span>
       </div>
       <div className="overflow-x-auto">

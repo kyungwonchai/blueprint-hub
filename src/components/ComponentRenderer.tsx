@@ -1,4 +1,9 @@
 import { 
+  PolarRoseChartDemo, TernaryPlotDemo, VoronoiMeshDemo, ThermalContourDemo, 
+  HighchartsMatrixDemo, EchartsGaugeClusterDemo, AgGridTreeGroupingDemo, 
+  Anamorphic3DCardDemo, RaymarchingShaderDemo, DroneSwarmFleetDemo 
+} from './renderers/MegaSuiteRenderers';
+import { 
   InteractiveSpotlightCardDemo, LiquidGlassDistortionDemo, 
   MagneticHoverButtonDemo, SoundReactivePulseDemo 
 } from './renderers/TrendingEffectsRenderers';
@@ -116,6 +121,19 @@ export const ComponentRenderer: React.FC<RendererProps> = ({ componentId, isComp
   if (componentId === 'table-file-manager-explorer') return <FileManagerTableDemo />;
   if (componentId === 'table-inventory-stock-batch') return <InventoryStockTableDemo />;
   if (componentId === 'table-leaderboard-ranking') return <LeaderboardTableDemo />;
+
+  
+  // Mega Suite Exotic & Industrial Web Controls
+  if (componentId === 'chart-polar-rose-coxcomb') return <PolarRoseChartDemo />;
+  if (componentId === 'chart-ternary-phase-plot') return <TernaryPlotDemo />;
+  if (componentId === 'chart-voronoi-facility-mesh') return <VoronoiMeshDemo />;
+  if (componentId === 'chart-thermal-contour-map') return <ThermalContourDemo />;
+  if (componentId === 'table-highcharts-heat-matrix') return <HighchartsMatrixDemo />;
+  if (componentId === 'circular-echarts-triple-gauge') return <EchartsGaugeClusterDemo />;
+  if (componentId === 'table-ag-grid-enterprise-grouping') return <AgGridTreeGroupingDemo />;
+  if (componentId === 'theme-anamorphic-3d-depth') return <Anamorphic3DCardDemo />;
+  if (componentId === 'theme-raymarching-liquid-shader') return <RaymarchingShaderDemo />;
+  if (componentId === 'dashboard-autonomous-drone-fleet') return <DroneSwarmFleetDemo />;
 
   // 3. DASHBOARDS & METRICS (12)
   if (componentId === 'circular-gauge-monitor') return <MultiGaugeHardwareDemo />;

@@ -5,10 +5,19 @@ import {
   Settings, RefreshCw, AlertTriangle, Eye, Sliders, Box, Cpu,
   HardDrive, Zap, ChevronRight, ChevronDown, CheckCircle2,
   TrendingUp, TrendingDown, Clock, HelpCircle, Info, Image,
-  Maximize2, Radio, Play, Pause, ExternalLink
+  Maximize2, Radio, Play, Pause, ExternalLink, Orbit, GitBranch,
+  Gauge, Terminal, Wind, Shuffle, FileSpreadsheet
 } from 'lucide-react';
 import { COMPONENTS_DATA } from '../data/componentsData';
 import { ComponentItem } from '../types';
+
+// Import Live High-End Renderers to embed directly in Domain Tabs
+import { DevExpressRibbonDemo, DevExpressSpreadsheetDemo, DevExpressPropertyGridDemo } from './renderers/DevExpressWpfRenderers';
+import { ChordDiagramDemo, ViolinDistributionPlotDemo, ParallelCoordinatesDemo, NetworkTopologyDemo } from './renderers/AdvancedSciVizRenderers';
+import { RidgelineDensityDemo, CorrelationMatrixDemo, SunburstDefectTreeDemo, HoneycombEquipmentMeshDemo } from './renderers/MathematicalVizRenderers';
+import { LorenzAttractorDemo, UmapEmbeddingProjectorDemo, PoincareHyperbolicDiskDemo } from './renderers/CosmicMathVizRenderers';
+import { MagneticFerrofluidCanvasDemo, KineticCyberDialDemo, TactileMatrixSwitcherDemo } from './renderers/CuttingEdgeInteractiveRenderers';
+import { DroneSwarmFleetDemo, VoronoiMeshDemo, ThermalContourDemo } from './renderers/MegaSuiteRenderers';
 
 interface MasterEnterpriseAppProps {
   onAddToCart: (item: ComponentItem) => void;
@@ -21,16 +30,18 @@ export const MasterEnterpriseApp: React.FC<MasterEnterpriseAppProps> = ({
   cartItems,
   onOpenDetailModal,
 }) => {
-  const [activeTab, setActiveTab] = useState<'production' | 'quality' | 'materials' | 'planning'>('production');
+  const [activeTab, setActiveTab] = useState<'mes_live' | 'quality_sci' | 'cosmic_math' | 'materials_bom' | 'digital_twin' | 'executive_war'>('mes_live');
 
-  // Shared Master-Detail Drilldown State (Cross-Filtering Chain Reaction)
-  const [selectedLine, setSelectedLine] = useState<{ id: string; name: string; img: string; speed: string; yield: string; status: string }>({
+  // Shared Master-Detail Drilldown State
+  const [selectedLine, setSelectedLine] = useState<{ id: string; name: string; img: string; speed: string; yield: string; status: string; temp: string; cpk: string }>({
     id: 'LINE-A',
     name: 'LINE-A (초정밀 8K OLED 스마트 조립 로봇 라인)',
     img: 'https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&w=800&q=80',
     speed: '142 bpm',
     yield: '99.8%',
-    status: 'RUNNING'
+    status: 'RUNNING',
+    temp: '41.8°C',
+    cpk: '1.84'
   });
 
   const [selectedLot, setSelectedLot] = useState<string>('LOT-2026-X842');
@@ -39,7 +50,6 @@ export const MasterEnterpriseApp: React.FC<MasterEnterpriseAppProps> = ({
   // Live Auto Production Stream
   const [liveYield, setLiveYield] = useState<number>(99.42);
   const [liveOutput, setLiveOutput] = useState<number>(14280);
-  const [activeShift, setActiveShift] = useState<'주간 A조' | '야간 B조'>('주간 A조');
 
   useEffect(() => {
     const timer = setInterval(() => {
@@ -82,32 +92,35 @@ export const MasterEnterpriseApp: React.FC<MasterEnterpriseAppProps> = ({
 
   return (
     <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 space-y-6 animate-fade-in font-sans">
-      {/* 1. High-Impact Hero Banner with Industrial Cyberpunk Ambience */}
+      
+      {/* 1. Ultra-Impact Header Banner */}
       <div className="relative overflow-hidden rounded-3xl bg-slate-900/90 border border-violet-500/30 shadow-2xl p-6 sm:p-8 backdrop-blur-3xl">
         <div className="absolute top-0 right-0 w-96 h-96 bg-gradient-to-bl from-violet-600/20 via-fuchsia-600/10 to-transparent rounded-full blur-3xl pointer-events-none" />
         <div className="relative z-10 flex flex-wrap items-center justify-between gap-6">
           <div className="space-y-2 max-w-2xl">
             <div className="flex items-center gap-2">
-              <span className="px-3 py-1 rounded-full bg-gradient-to-r from-emerald-500 to-cyan-500 text-black text-[10px] font-black uppercase tracking-wider shadow-lg animate-pulse">
-                ● 2026 Live Autonomous Smart Factory
+              <span className="px-3 py-1 rounded-full bg-gradient-to-r from-emerald-500 via-cyan-500 to-indigo-500 text-black text-[10px] font-black uppercase tracking-wider shadow-lg animate-pulse">
+                ● 2026 World-Class Autonomous Enterprise Hub
               </span>
-              <span className="text-xs text-slate-400 font-mono">Realtime MES / ERP / SCADA Integrated Tower</span>
+              <span className="text-xs text-slate-400 font-mono">Realtime SCADA / Mathematical Physics / Digital Twin</span>
             </div>
             <h2 className="text-2xl sm:text-3xl lg:text-4xl font-black text-white tracking-tight leading-tight">
-              차세대 스마트 제조·품질·자재 <span className="grad-text">초실감 관제탑</span>
+              회사 동료들의 뇌리에 1년은 남을 <span className="grad-text">초격차 산업용 관제탑</span>
             </h2>
             <p className="text-xs sm:text-sm text-slate-300 leading-relaxed">
-              4K 초고화질 설비 비전 영상과 DevExpress Master-Detail 그리드, D3 샌키 유량 차트가 결합된 글로벌 최고 등급의 산업용 실전 소프트웨어 아키텍처를 경험하세요.
+              단순한 데모가 아닌, 4K 초고화질 비전 AI 카메라 · 3D 카오스 로렌츠 궤적 · D3 코드 다이어그램 · UMAP 잠재 공간 프로젝터 · DevExpress 정밀 제어가 결합된 세상에 없던 통합 엔터프라이즈 종합 앱입니다.
             </p>
           </div>
 
-          {/* Domain Tab Switcher */}
+          {/* 6 Large Professional Domain App Switchers */}
           <div className="flex flex-wrap items-center gap-1.5 p-1.5 rounded-2xl bg-black/70 border border-white/15 shadow-2xl">
             {[
-              { id: 'production', label: '생산 라인 MES', icon: Factory, col: 'from-violet-600 to-indigo-600' },
-              { id: 'quality', label: '품질 종합 & 파레토', icon: ShieldCheck, col: 'from-emerald-600 to-teal-600' },
-              { id: 'materials', label: '자재 BOM & 수불', icon: Truck, col: 'from-amber-600 to-orange-600' },
-              { id: 'planning', label: '생산 계획 & 간트', icon: Calendar, col: 'from-fuchsia-600 to-pink-600' }
+              { id: 'mes_live', label: '1. 생산 MES & 4K 비전', icon: Factory, col: 'from-emerald-600 to-teal-600' },
+              { id: 'quality_sci', label: '2. D3 과학 품질 분석', icon: Activity, col: 'from-indigo-600 to-blue-600' },
+              { id: 'cosmic_math', label: '3. 카오스 & UMAP 수학', icon: Orbit, col: 'from-purple-600 to-pink-600' },
+              { id: 'materials_bom', label: '4. BOM 휠 & 수불부', icon: Truck, col: 'from-amber-600 to-orange-600' },
+              { id: 'digital_twin', label: '5. 디지털 트윈 & 물리학', icon: Zap, col: 'from-fuchsia-600 to-violet-600' },
+              { id: 'executive_war', label: '6. DevExpress 워룸', icon: FileSpreadsheet, col: 'from-rose-600 to-red-600' },
             ].map(tab => {
               const Icon = tab.icon;
               const isSel = activeTab === tab.id;
@@ -115,8 +128,8 @@ export const MasterEnterpriseApp: React.FC<MasterEnterpriseAppProps> = ({
                 <button
                   key={tab.id}
                   onClick={() => setActiveTab(tab.id as any)}
-                  className={`flex items-center gap-1.5 px-3.5 py-2 rounded-xl text-xs font-black transition-all ${
-                    isSel ? `bg-gradient-to-r ${tab.col} text-white shadow-lg shadow-violet-900/40` : 'text-slate-400 hover:text-white'
+                  className={`flex items-center gap-1.5 px-3 py-2 rounded-xl text-xs font-black transition-all ${
+                    isSel ? `bg-gradient-to-r ${tab.col} text-white shadow-lg scale-105` : 'text-slate-400 hover:text-white hover:bg-white/5'
                   }`}
                 >
                   <Icon className="w-3.5 h-3.5" />
@@ -163,18 +176,19 @@ export const MasterEnterpriseApp: React.FC<MasterEnterpriseAppProps> = ({
         {/* KPI 4: Active Shift Info */}
         <div className="relative overflow-hidden p-4 rounded-2xl bg-slate-900/95 border border-cyan-500/40 backdrop-blur-2xl shadow-xl flex flex-col justify-between">
           <div className="flex justify-between items-center mb-1">
-            <span className="text-xs font-bold text-slate-300">교대근무 및 설비 가동</span>
-            <span className="text-[10px] text-cyan-400 font-bold">16개 전 라인 가동</span>
+            <span className="text-xs font-bold text-slate-300">공정 능력 지수 (Cpk)</span>
+            <span className="text-[10px] text-cyan-400 font-mono font-bold">Six Sigma Pro</span>
           </div>
-          <div className="text-xl font-black text-white font-mono my-1">{activeShift} (08:00~20:00)</div>
-          {renderTechBadge('Shift Toggle Bar', '근무조 변경 시 작업자 자동 매핑', 'stat-uptime-sla-four-nines')}
+          <div className="text-3xl font-black text-cyan-400 font-mono my-1">1.84 Cpk</div>
+          {renderTechBadge('Cpk Capability Gauge', '공정 능력 지수 6시그마 검증', 'stat-uptime-sla-four-nines')}
         </div>
       </div>
 
-      {/* 3. TAB 1: PRODUCTION MES WITH 4K FACTORY CAM & REALTIME SCADA */}
-      {activeTab === 'production' && (
+      {/* ========================================================================= */}
+      {/* 3. APP 1: PRODUCTION MES WITH 4K FACTORY CAM & REALTIME SCADA */}
+      {/* ========================================================================= */}
+      {activeTab === 'mes_live' && (
         <div className="space-y-6">
-          {/* Main Visual: 4K Smart Factory Live Cam + Realtime Line Telemetry */}
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
             {/* 4K Industrial Camera Feed & Line Switcher */}
             <div className="lg:col-span-1 space-y-4">
@@ -199,7 +213,7 @@ export const MasterEnterpriseApp: React.FC<MasterEnterpriseAppProps> = ({
                   {/* AR HUD Telemetry Box */}
                   <div className="absolute top-2 left-2 p-1.5 rounded-lg bg-black/60 border border-emerald-500/40 font-mono text-[9px] text-emerald-300">
                     <div>CAM-01: {selectedLine.id}</div>
-                    <div>AI Vision: No Defects Detected</div>
+                    <div>온도: {selectedLine.temp} | Cpk: {selectedLine.cpk}</div>
                   </div>
 
                   <div className="absolute bottom-2 inset-x-2 flex justify-between items-end text-white text-xs">
@@ -216,10 +230,10 @@ export const MasterEnterpriseApp: React.FC<MasterEnterpriseAppProps> = ({
                 {/* Line Selector Buttons */}
                 <div className="grid grid-cols-2 gap-2 pt-1">
                   {[
-                    { id: 'LINE-A', name: 'LINE-A (OLED 조립)', img: 'https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&w=800&q=80', speed: '142 bpm', yield: '99.8%', status: 'RUNNING' },
-                    { id: 'LINE-B', name: 'LINE-B (SMT 고속실장)', img: 'https://images.unsplash.com/photo-1581092160607-ee22621dd758?auto=format&fit=crop&w=800&q=80', speed: '185 bpm', yield: '99.4%', status: 'RUNNING' },
-                    { id: 'LINE-C', name: 'LINE-C (광학 클린룸)', img: 'https://images.unsplash.com/photo-1581092335397-9583fe92d232?auto=format&fit=crop&w=800&q=80', speed: '95 bpm', yield: '98.9%', status: 'STANDBY' },
-                    { id: 'LINE-D', name: 'LINE-D (최종 에이징)', img: 'https://images.unsplash.com/photo-1581092580497-e0d23cbdf1dc?auto=format&fit=crop&w=800&q=80', speed: '110 bpm', yield: '99.9%', status: 'RUNNING' }
+                    { id: 'LINE-A', name: 'LINE-A (OLED 조립)', img: 'https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&w=800&q=80', speed: '142 bpm', yield: '99.8%', status: 'RUNNING', temp: '41.8°C', cpk: '1.84' },
+                    { id: 'LINE-B', name: 'LINE-B (SMT 고속실장)', img: 'https://images.unsplash.com/photo-1581092160607-ee22621dd758?auto=format&fit=crop&w=800&q=80', speed: '185 bpm', yield: '99.4%', status: 'RUNNING', temp: '45.2°C', cpk: '1.68' },
+                    { id: 'LINE-C', name: 'LINE-C (광학 클린룸)', img: 'https://images.unsplash.com/photo-1581092335397-9583fe92d232?auto=format&fit=crop&w=800&q=80', speed: '95 bpm', yield: '98.9%', status: 'STANDBY', temp: '22.4°C', cpk: '1.92' },
+                    { id: 'LINE-D', name: 'LINE-D (최종 에이징)', img: 'https://images.unsplash.com/photo-1581092580497-e0d23cbdf1dc?auto=format&fit=crop&w=800&q=80', speed: '110 bpm', yield: '99.9%', status: 'RUNNING', temp: '38.0°C', cpk: '1.95' }
                   ].map(line => (
                     <button
                       key={line.id}
@@ -245,7 +259,6 @@ export const MasterEnterpriseApp: React.FC<MasterEnterpriseAppProps> = ({
 
             {/* Right 2 Cols: Interlinked DevExpress DataGrid + Realtime SPC 관리도 */}
             <div className="lg:col-span-2 space-y-4">
-              {/* DevExpress Sticky DataGrid */}
               <div className="p-4 rounded-3xl bg-slate-900/95 border border-white/10 shadow-2xl space-y-3">
                 <div className="flex flex-wrap justify-between items-center gap-2 border-b border-white/10 pb-3">
                   <div>
@@ -314,7 +327,6 @@ export const MasterEnterpriseApp: React.FC<MasterEnterpriseAppProps> = ({
 
               {/* D3 Sankey Flow & SPC 관리도 Grid */}
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                {/* Sankey Flow */}
                 <div className="p-4 rounded-3xl bg-slate-900/95 border border-white/10 shadow-2xl space-y-2">
                   <div className="flex justify-between items-center text-xs font-bold text-white">
                     <span>{selectedLot} 샌키 에너지/자재 유량</span>
@@ -337,7 +349,6 @@ export const MasterEnterpriseApp: React.FC<MasterEnterpriseAppProps> = ({
                   {renderTechBadge('D3 Sankey Flow Ribbon', '공정 단계별 유량 손실 시각화', 'chart-sankey-flow')}
                 </div>
 
-                {/* Pareto 80/20 Defect Analysis */}
                 <div className="p-4 rounded-3xl bg-slate-900/95 border border-white/10 shadow-2xl space-y-2">
                   <div className="flex justify-between items-center text-xs font-bold text-white">
                     <span>{selectedLot} 불량 유형 파레토</span>
@@ -361,177 +372,84 @@ export const MasterEnterpriseApp: React.FC<MasterEnterpriseAppProps> = ({
         </div>
       )}
 
-      {/* 4. TAB 2: QUALITY (품질 피벗, 나이팅게일 로즈, 6각 레이더) */}
-      {activeTab === 'quality' && (
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-          {/* PowerBI Multi-Dimensional Quality Pivot */}
-          <div className="p-5 rounded-3xl bg-slate-900/95 border border-white/10 shadow-2xl space-y-3">
-            <div className="flex justify-between items-center border-b border-white/10 pb-2">
-              <h3 className="text-xs font-black text-white">품질 피벗 매트릭스 (공정 x 불량원인 x 손실액)</h3>
-              <span className="text-[10px] text-violet-400 font-mono font-bold">PowerBI Pivot Matrix</span>
-            </div>
-            <table className="w-full text-left text-[11px] text-slate-300">
-              <thead className="bg-white/[0.03] text-slate-400 font-bold font-mono">
-                <tr>
-                  <th className="p-2">공정 단계</th>
-                  <th className="p-2 text-right">검사수량</th>
-                  <th className="p-2 text-right">불량수량</th>
-                  <th className="p-2 text-right">손실금액</th>
-                  <th className="p-2 text-right text-emerald-400">합격률</th>
-                </tr>
-              </thead>
-              <tbody className="divide-y divide-white/5 font-mono">
-                <tr>
-                  <td className="p-2 font-bold text-white font-sans">1단계: 증착 (CVD)</td>
-                  <td className="p-2 text-right">24,000</td>
-                  <td className="p-2 text-right text-rose-400">12</td>
-                  <td className="p-2 text-right">$2,400</td>
-                  <td className="p-2 text-right text-emerald-300 font-bold">99.95%</td>
-                </tr>
-                <tr>
-                  <td className="p-2 font-bold text-white font-sans">2단계: 노광/에칭</td>
-                  <td className="p-2 text-right">23,988</td>
-                  <td className="p-2 text-right text-rose-400">28</td>
-                  <td className="p-2 text-right">$5,600</td>
-                  <td className="p-2 text-right text-emerald-300 font-bold">99.88%</td>
-                </tr>
-                <tr>
-                  <td className="p-2 font-bold text-white font-sans">3단계: 모듈 본딩</td>
-                  <td className="p-2 text-right">23,960</td>
-                  <td className="p-2 text-right text-rose-400">8</td>
-                  <td className="p-2 text-right">$1,200</td>
-                  <td className="p-2 text-right text-emerald-300 font-bold">99.96%</td>
-                </tr>
-              </tbody>
-            </table>
-            {renderTechBadge('PowerBI Cross-Tab Pivot', '다차원 롤업 집계 및 손실액 산출', 'table-pivot-matrix-analysis')}
+      {/* ========================================================================= */}
+      {/* 4. APP 2: D3 SCIENTIFIC QUALITY & CORRELATION */}
+      {/* ========================================================================= */}
+      {activeTab === 'quality_sci' && (
+        <div className="space-y-6">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+            <ChordDiagramDemo />
+            <ViolinDistributionPlotDemo />
           </div>
-
-          {/* Nightingale Rose Chart */}
-          <div className="p-5 rounded-3xl bg-slate-900/95 border border-white/10 shadow-2xl space-y-3">
-            <div className="flex justify-between items-center border-b border-white/10 pb-2">
-              <h3 className="text-xs font-black text-white">나이팅게일 로즈 차트 (Polar Rose Distribution)</h3>
-              <span className="text-[10px] text-cyan-400 font-mono font-bold">극좌표계 부채꼴 면적</span>
-            </div>
-            <div className="h-44 w-full flex items-center justify-center">
-              <svg viewBox="0 0 160 160" className="w-full h-full max-w-[150px]">
-                <circle cx="80" cy="80" r="60" fill="none" stroke="rgba(255,255,255,0.05)" strokeWidth="1" />
-                <circle cx="80" cy="80" r="40" fill="none" stroke="rgba(255,255,255,0.05)" strokeWidth="1" />
-                <path d="M 80 80 L 80 20 A 60 60 0 0 1 122 38 Z" fill="rgba(139,92,246,0.6)" stroke="#8b5cf6" />
-                <path d="M 80 80 L 122 38 A 60 60 0 0 1 140 80 Z" fill="rgba(6,182,212,0.6)" stroke="#06b6d4" />
-                <path d="M 80 80 L 140 80 A 45 45 0 0 1 112 112 Z" fill="rgba(245,158,11,0.6)" stroke="#f59e0b" />
-                <path d="M 80 80 L 112 112 A 30 30 0 0 1 80 110 Z" fill="rgba(16,185,129,0.6)" stroke="#10b981" />
-                <path d="M 80 80 L 80 110 A 50 50 0 0 1 45 115 Z" fill="rgba(239,68,68,0.6)" stroke="#ef4444" />
-              </svg>
-            </div>
-            {renderTechBadge('Nightingale Rose Chart', '분기별 원인별 극좌표 부채꼴 면적 비교', 'chart-polar-rose-coxcomb')}
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+            <ParallelCoordinatesDemo />
+            <CorrelationMatrixDemo />
           </div>
         </div>
       )}
 
-      {/* 5. TAB 3: MATERIALS (자재 BOM 트리 & 수불부) */}
-      {activeTab === 'materials' && (
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-          {/* Multi-Level BOM Tree List */}
-          <div className="p-5 rounded-3xl bg-slate-900/95 border border-white/10 shadow-2xl space-y-3">
-            <div className="flex justify-between items-center border-b border-white/10 pb-2">
-              <h3 className="text-xs font-black text-white">계층형 자재 명세서 (Multi-Level BOM Tree)</h3>
-              <span className="text-[10px] text-amber-400 font-mono">BOM Level: 3</span>
-            </div>
-            <div className="space-y-1 text-xs">
-              <div className="p-2 rounded-xl bg-violet-600/20 text-violet-200 font-bold flex items-center justify-between">
-                <span>📂 [Top Parent] OLED-65-GEN4 완제품</span>
-                <span className="font-mono text-[10px]">재고 480 EA</span>
-              </div>
-              <div className="pl-6 space-y-1 text-[11px] text-slate-300">
-                <div className="p-1.5 rounded bg-white/[0.02] flex justify-between">
-                  <span>├─ 📁 Display Sub-Assembly (Level 1)</span>
-                  <span className="font-mono text-cyan-400">1,200 EA</span>
-                </div>
-                <div className="pl-6 space-y-1 text-[10px] text-slate-400">
-                  <div className="p-1 rounded bg-slate-950 flex justify-between">
-                    <span>└── 📄 OLED Glass Panel (SKU-892)</span>
-                    <span className="font-mono text-emerald-400 font-bold">2,400 EA (충분)</span>
-                  </div>
-                  <div className="p-1 rounded bg-slate-950 flex justify-between">
-                    <span>└── 📄 Driver IC Module (SKU-102)</span>
-                    <span className="font-mono text-rose-400 font-bold">120 EA (발주필요!)</span>
-                  </div>
-                </div>
-              </div>
-            </div>
-            {renderTechBadge('DevExpress Tree List Grid', '다단계 BOM 전개 및 재고 부족 부품 경고', 'table-expandable-tree-rows')}
+      {/* ========================================================================= */}
+      {/* 5. APP 3: COSMIC CHAOS & UMAP HIGH-DIMENSIONAL MATH */}
+      {/* ========================================================================= */}
+      {activeTab === 'cosmic_math' && (
+        <div className="space-y-6">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+            <LorenzAttractorDemo />
+            <UmapEmbeddingProjectorDemo />
           </div>
-
-          {/* ROP Automatic Reorder Console */}
-          <div className="p-5 rounded-3xl bg-slate-900/95 border border-white/10 shadow-2xl space-y-3">
-            <div className="flex justify-between items-center border-b border-white/10 pb-2">
-              <h3 className="text-xs font-black text-white">안전 재고 수불 및 자동 발주 (ROP)</h3>
-              <span className="text-[10px] text-emerald-400 font-mono">Auto Purchase Order</span>
-            </div>
-            <div className="space-y-2 text-xs">
-              {[
-                { sku: 'SKU-102 (Driver IC)', cur: 120, safety: 500, status: '발주요청 완료 (납기 2일)' },
-                { sku: 'SKU-892 (Glass Panel)', cur: 2400, safety: 1000, status: '안전재고 확보' },
-                { sku: 'SKU-441 (FPCB 케이블)', cur: 3800, safety: 2000, status: '안전재고 확보' }
-              ].map(item => (
-                <div key={item.sku} className="p-3 rounded-2xl bg-slate-950 border border-white/5 flex justify-between items-center">
-                  <div>
-                    <span className="font-bold text-white block">{item.sku}</span>
-                    <span className="text-[10px] text-slate-400">{item.status}</span>
-                  </div>
-                  <div className="text-right font-mono">
-                    <span className="text-xs font-bold text-cyan-300">{item.cur} EA</span>
-                    <span className="text-[9px] text-slate-500 block">안전: {item.safety} EA</span>
-                  </div>
-                </div>
-              ))}
-            </div>
-            {renderTechBadge('Inventory Stock Table', '재고 소진율 예측 기반 조달 자동화', 'table-inventory-stock-batch')}
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+            <PoincareHyperbolicDiskDemo />
+            <SunburstDefectTreeDemo />
           </div>
         </div>
       )}
 
-      {/* 6. TAB 4: PLANNING (간트 스케줄러) */}
-      {activeTab === 'planning' && (
-        <div className="p-6 rounded-3xl bg-slate-900/95 border border-white/10 shadow-2xl space-y-4">
-          <div className="flex justify-between items-center border-b border-white/10 pb-3">
-            <div>
-              <h3 className="text-xs font-black text-white">주간 생산 계획 및 설비 로드 간트 차트 (Gantt Scheduler)</h3>
-              <span className="text-[10px] text-slate-400">설비별 가동 부하 및 납기 스케줄</span>
-            </div>
-            <span className="px-2.5 py-1 rounded-lg bg-violet-600/30 text-violet-200 border border-violet-500/40 text-[10px] font-bold">
-              계획 준수율 98.4%
-            </span>
+      {/* ========================================================================= */}
+      {/* 6. APP 4: MATERIALS BOM DEPENDENCY & REORDER */}
+      {/* ========================================================================= */}
+      {activeTab === 'materials_bom' && (
+        <div className="space-y-6">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+            <RidgelineDensityDemo />
+            <HoneycombEquipmentMeshDemo />
           </div>
-
-          <div className="space-y-3 font-mono text-xs">
-            {[
-              { line: 'LINE-A 조립', job: 'WO-8820: OLED 65" 3,000대', start: '월 08:00', end: '수 18:00', pct: '75%', col: 'bg-violet-600' },
-              { line: 'LINE-B 실장', job: 'WO-8821: SMT 메인보드 5,000대', start: '화 10:00', end: '목 14:00', pct: '50%', col: 'bg-cyan-600' },
-              { line: 'LINE-C 광학', job: 'WO-8822: 4K 렌즈 2,000대', start: '목 08:00', end: '금 20:00', pct: '10%', col: 'bg-fuchsia-600' }
-            ].map(g => (
-              <div key={g.line} className="p-3.5 rounded-2xl bg-slate-950/80 border border-white/5 space-y-2">
-                <div className="flex justify-between items-center text-slate-300 font-sans">
-                  <span className="font-bold text-white text-xs">{g.line}</span>
-                  <span className="text-[11px] text-cyan-300 font-mono">{g.job}</span>
-                </div>
-                <div className="w-full bg-slate-800 h-3.5 rounded-full overflow-hidden relative">
-                  <div className={`h-full rounded-full ${g.col} shadow-lg`} style={{ width: g.pct }} />
-                </div>
-                <div className="flex justify-between text-[10px] text-slate-500">
-                  <span>시작: {g.start}</span>
-                  <span>진척도: {g.pct}</span>
-                  <span>종료: {g.end}</span>
-                </div>
-              </div>
-            ))}
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+            <NetworkTopologyDemo />
+            <DevExpressPropertyGridDemo />
           </div>
-          {renderTechBadge('Interactive Gantt Schedule', '생산 작업지시(WO) 실시간 일정 조정', 'theme-bento-grid-card-layout')}
         </div>
       )}
 
-      {/* 7. Drilldown Tech Spec Modal */}
+      {/* ========================================================================= */}
+      {/* 7. APP 5: DIGITAL TWIN, DRONE FLEET & PHYSICS SHADER */}
+      {/* ========================================================================= */}
+      {activeTab === 'digital_twin' && (
+        <div className="space-y-6">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+            <DroneSwarmFleetDemo />
+            <MagneticFerrofluidCanvasDemo />
+          </div>
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+            <KineticCyberDialDemo />
+            <TactileMatrixSwitcherDemo />
+          </div>
+        </div>
+      )}
+
+      {/* ========================================================================= */}
+      {/* 8. APP 6: DEVEXPRESS EXECUTIVE WAR ROOM & SPREADSHEET */}
+      {/* ========================================================================= */}
+      {activeTab === 'executive_war' && (
+        <div className="space-y-6">
+          <DevExpressRibbonDemo />
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+            <DevExpressSpreadsheetDemo />
+            <DevExpressPropertyGridDemo />
+          </div>
+        </div>
+      )}
+
+      {/* 9. Drilldown Tech Spec Modal */}
       {drilldownModal && (
         <div className="fixed inset-0 z-50 bg-black/85 backdrop-blur-xl flex items-center justify-center p-4">
           <div className="w-full max-w-lg rounded-3xl bg-slate-900 border border-violet-500/50 p-6 shadow-2xl space-y-4 animate-scale-up">

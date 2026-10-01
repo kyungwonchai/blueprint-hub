@@ -1,3 +1,7 @@
+import { 
+  DevExpressRibbonDemo, DevExpressPropertyGridDemo, DevExpressFilterEditorDemo, 
+  DevExpressDiagramDemo, DevExpressDockingDemo, DevExpressSpreadsheetDemo 
+} from './renderers/DevExpressWpfRenderers';
 import React from 'react';
 import { Sparkles } from 'lucide-react';
 
@@ -80,6 +84,15 @@ export const ComponentRenderer: React.FC<RendererProps> = ({ componentId, isComp
   if (componentId === 'chart-boxplot-outlier') return <BoxplotOutlierDemo />;
   if (componentId === 'chart-bullet-performance') return <BulletPerformanceDemo />;
 
+
+  
+  // DevExpress WPF Commercial Enterprise Suite
+  if (componentId === 'devexpress-ribbon-command-bar') return <DevExpressRibbonDemo />;
+  if (componentId === 'devexpress-property-grid-inspector') return <DevExpressPropertyGridDemo />;
+  if (componentId === 'devexpress-visual-filter-editor') return <DevExpressFilterEditorDemo />;
+  if (componentId === 'devexpress-visio-diagram-flow') return <DevExpressDiagramDemo />;
+  if (componentId === 'devexpress-docking-layout-mdi') return <DevExpressDockingDemo />;
+  if (componentId === 'devexpress-excel-spreadsheet-matrix') return <DevExpressSpreadsheetDemo />;
 
   // 2. TABLES & PIVOTS (12)
   if (componentId === 'datagrid-realtime-pro') return <DataGridDemo />;

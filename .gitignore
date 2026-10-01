@@ -3,3 +3,15 @@ dist
 .app.pid
 app.log
 storage/blueprints.json
+
+node_modules/
+dist/
+build/
+target/
+.venv/
+__pycache__/
+*.log
+*.mp4
+*.mkv
+*.zip
+*.tar.gz

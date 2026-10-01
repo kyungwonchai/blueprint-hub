@@ -5,8 +5,24 @@ export function getComponentMetadata(item: ComponentItem): { releaseEra: string;
   if (id.startsWith('devexpress-')) {
     return { releaseEra: 'Enterprise Commercial', techOrigin: 'DevExpress WPF Pro' };
   }
-  if (id.startsWith('chart-lorenz') || id.startsWith('chart-umap') || id.startsWith('chart-poincare')) {
-    return { releaseEra: '2026 Cosmic Math', techOrigin: 'Astrophysics & Manifolds' };
+  if (
+    id.startsWith('chart-lorenz') || id.startsWith('chart-umap') || id.startsWith('chart-poincare') ||
+    id.startsWith('math-quantum') || id.startsWith('math-fourier') || id.startsWith('math-kinetic') ||
+    id.startsWith('math-lattice') || id.startsWith('science-reaction') || id.startsWith('science-michelson')
+  ) {
+    return { releaseEra: '2026 Cosmic Math', techOrigin: 'Physics ODE & Quantum Mechanics' };
+  }
+  if (
+    id.startsWith('sensor-lidar') || id.startsWith('sensor-gyroscope') || id.startsWith('sensor-acoustic') ||
+    id.startsWith('sensor-laser') || id.startsWith('sensor-thermal') || id.startsWith('sensor-ultrasonic')
+  ) {
+    return { releaseEra: '2026 AI-Native', techOrigin: 'Industrial Telemetry & Robotics' };
+  }
+  if (
+    id.startsWith('qc-') || id.startsWith('viz-defect') || id.startsWith('math-dynamic-voronoi') ||
+    id.startsWith('project-critical-path') || id.startsWith('system-worker-pool') || id.startsWith('control-maglev')
+  ) {
+    return { releaseEra: '2025-2026 Advanced SciViz', techOrigin: 'Six Sigma & MES SCADA' };
   }
   if (id.startsWith('theme-magnetic') || id.startsWith('nav-kinetic') || id.startsWith('feedback-tactile') || id.startsWith('trending-')) {
     return { releaseEra: '2026 Awwwards Experimental', techOrigin: 'WebGL/Canvas Shader' };

@@ -24,6 +24,22 @@ import {
   DevExpressRibbonDemo, DevExpressPropertyGridDemo, DevExpressFilterEditorDemo, 
   DevExpressDiagramDemo, DevExpressDockingDemo, DevExpressSpreadsheetDemo 
 } from './renderers/DevExpressWpfRenderers';
+import {
+  QuantumOrbitalManifoldDemo, DefectSankeyCascadeDemo, 
+  GyroscopeInertialHorizonDemo, AcousticSpectrogramDemo
+} from './renderers/CreativeAIControlsWave1';
+import {
+  SixSigmaDynamicGaugeDemo, LaserMicrometerDemo, 
+  ThermalInfraredPalletDemo, WorkerPoolThreadMonitorDemo
+} from './renderers/CreativeAIControlsWave2';
+import {
+  LidarPointcloudRadarDemo, KineticTensionSpringDiagramDemo,
+  VoronoiCellTessellationDemo, FourierWaveSynthSpectraDemo,
+  MagneticLevitationPidLoopDemo, ChemicalReactionKineticsDemo,
+  CellularAutomataFluidDemo, NeuralWeightMatrixInspectorDemo,
+  CpkCpProcessCapabilityDemo, PiezoelectricUltrasonicDopplerDemo,
+  GanttCriticalPathCpmDemo, OptoelectronicInterferometerDemo
+} from './renderers/CreativeAIControlsWave3';
 import React from 'react';
 import { Sparkles } from 'lucide-react';
 
@@ -270,6 +286,28 @@ export const ComponentRenderer: React.FC<RendererProps> = ({ componentId, isComp
   if (componentId === 'theme-magnetic-ferrofluid-canvas') return <MagneticFerrofluidCanvasDemo />;
   if (componentId === 'nav-kinetic-cyberpunk-dial') return <KineticCyberDialDemo />;
   if (componentId === 'feedback-tactile-brutalism-switcher') return <TactileMatrixSwitcherDemo />;
+
+  // 2026 Creative AI & Deep Tech SciViz Suite (20 Bespoke Controls)
+  if (componentId === 'math-quantum-orbital-manifold') return <QuantumOrbitalManifoldDemo />;
+  if (componentId === 'viz-defect-sankey-cascade') return <DefectSankeyCascadeDemo />;
+  if (componentId === 'sensor-gyroscope-inertial-horizon') return <GyroscopeInertialHorizonDemo />;
+  if (componentId === 'sensor-acoustic-spectrogram-waterfall') return <AcousticSpectrogramDemo />;
+  if (componentId === 'qc-six-sigma-dynamic-gauge') return <SixSigmaDynamicGaugeDemo />;
+  if (componentId === 'sensor-laser-micrometer-caliper') return <LaserMicrometerDemo />;
+  if (componentId === 'sensor-thermal-infrared-matrix') return <ThermalInfraredPalletDemo />;
+  if (componentId === 'system-worker-pool-thread-monitor') return <WorkerPoolThreadMonitorDemo />;
+  if (componentId === 'sensor-lidar-pointcloud-radar') return <LidarPointcloudRadarDemo />;
+  if (componentId === 'math-kinetic-tension-spring') return <KineticTensionSpringDiagramDemo />;
+  if (componentId === 'math-dynamic-voronoi-tessellation') return <VoronoiCellTessellationDemo />;
+  if (componentId === 'math-fourier-wave-synthesis') return <FourierWaveSynthSpectraDemo />;
+  if (componentId === 'control-maglev-pid-loop') return <MagneticLevitationPidLoopDemo />;
+  if (componentId === 'science-reaction-kinetics-ode') return <ChemicalReactionKineticsDemo />;
+  if (componentId === 'math-lattice-boltzmann-automata') return <CellularAutomataFluidDemo />;
+  if (componentId === 'ai-neural-weight-matrix-tensor') return <NeuralWeightMatrixInspectorDemo />;
+  if (componentId === 'qc-cpk-process-capability-bell') return <CpkCpProcessCapabilityDemo />;
+  if (componentId === 'sensor-ultrasonic-doppler-flow') return <PiezoelectricUltrasonicDopplerDemo />;
+  if (componentId === 'project-critical-path-cpm-dag') return <GanttCriticalPathCpmDemo />;
+  if (componentId === 'science-michelson-interferometer') return <OptoelectronicInterferometerDemo />;
 
   return null;
 };

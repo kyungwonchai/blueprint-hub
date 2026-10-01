@@ -19,7 +19,15 @@ import {
 } from 'lucide-react';
 
 export default function App() {
-  const [currentTab, setCurrentTab] = useState<MainTabMode>('catalog');
+  const [currentTab, setCurrentTab] = useState<MainTabMode>('master');
+  const [currentTheme, setCurrentTheme] = useState<string>(() => {
+    return localStorage.getItem('k_blueprint_theme') || 'cyber-violet';
+  });
+
+  const handleSelectTheme = (themeId: string) => {
+    setCurrentTheme(themeId);
+    localStorage.setItem('k_blueprint_theme', themeId);
+  };
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedCategory, setSelectedCategory] = useState<CategoryId>('all');
   
@@ -294,6 +302,8 @@ export default function App() {
         currentUser={currentUser}
         currentBoardTitle={currentBoard.title}
         saveStatus={saveStatus}
+        currentTheme={currentTheme}
+        onSelectTheme={handleSelectTheme}
         onOpenCart={() => setIsCartOpen(true)}
         onOpenBoardManager={() => setIsBoardManagerOpen(true)}
         onOpenRecentBlueprints={() => setIsRecentOpen(true)}

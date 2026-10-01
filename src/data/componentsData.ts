@@ -1,33 +1,55 @@
 import { ComponentItem } from '../types';
 
-export const THEME_PRESETS = [
+export interface ThemePreset {
+  id: string;
+  name: string;
+  bg: string;
+  accent: string;
+  sub: string;
+}
+
+export const THEME_PRESETS: ThemePreset[] = [
   {
-    "id": "cyber-violet",
-    "name": "Cyber Violet",
-    "bg": "#08090f",
-    "accent": "#8b5cf6",
-    "sub": "#d946ef"
+    id: "cyber-violet",
+    name: "Cyber Violet (네온 바이올렛)",
+    bg: "#08090f",
+    accent: "#8b5cf6",
+    sub: "#d946ef"
   },
   {
-    "id": "neon-emerald",
-    "name": "Neon Emerald",
-    "bg": "#060d0a",
-    "accent": "#10b981",
-    "sub": "#06b6d4"
+    id: "neon-emerald",
+    name: "Neon Matrix (사이버 에메랄드)",
+    bg: "#050d09",
+    accent: "#10b981",
+    sub: "#06b6d4"
   },
   {
-    "id": "amber-gold",
-    "name": "Amber Luxury",
-    "bg": "#0d0a06",
-    "accent": "#f59e0b",
-    "sub": "#ef4444"
+    id: "deep-ocean",
+    name: "Deep Titanium (엔터프라이즈 네이비)",
+    bg: "#070c14",
+    accent: "#3b82f6",
+    sub: "#38bdf8"
   },
   {
-    "id": "deep-slate",
-    "name": "Deep Minimal",
-    "bg": "#0f172a",
-    "accent": "#3b82f6",
-    "sub": "#6366f1"
+    id: "amber-gold",
+    name: "Amber Quartz (황금 앰버 럭셔리)",
+    bg: "#0d0a06",
+    accent: "#f59e0b",
+    sub: "#ef4444"
+  },
+  {
+    id: "obsidian-crimson",
+    name: "Obsidian Flame (옵시디언 크림슨)",
+    bg: "#0f0709",
+    accent: "#f43f5e",
+    sub: "#fb923c"
+  },
+  {
+    id: "clean-slate",
+    name: "Modern Slate (초미니멀 모노 슬레이트)",
+    bg: "#0f172a",
+    accent: "#94a3b8",
+    sub: "#cbd5e1"
   }
 ];
 

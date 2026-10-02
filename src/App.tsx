@@ -10,6 +10,7 @@ import { TechStackTab } from './components/TechStackTab';
 import { StorageGuideTab } from './components/StorageGuideTab';
 import { WebTechExpoTab } from './components/WebTechExpoTab';
 import { MasterEnterpriseApp } from './components/MasterEnterpriseApp';
+import { ThemeStudioTab } from './components/ThemeStudioTab';
 import { BoardManagerModal } from './components/BoardManagerModal';
 import { COMPONENTS_DATA } from './data/componentsData';
 import { getComponentMetadata } from './data/componentMetadata';
@@ -354,6 +355,14 @@ export default function App() {
           onOpenBoardManager={() => setIsBoardManagerOpen(true)}
           onCreateSnapshot={handleCreateSnapshot}
           onRemoveItem={handleRemoveCartItem}
+        />
+      )}
+
+      {currentTab === 'themes' && (
+        <ThemeStudioTab
+          currentTheme={currentTheme}
+          onSelectTheme={handleSelectTheme}
+          onAddToCart={toggleCart}
         />
       )}
 

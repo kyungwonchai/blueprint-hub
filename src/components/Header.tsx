@@ -7,7 +7,7 @@ import {
 import { CATEGORIES, THEME_PRESETS, ThemePreset } from '../data/componentsData';
 import { CategoryId } from '../types';
 
-export type MainTabMode = 'master' | 'catalog' | 'canvas' | 'expo' | 'techstack' | 'storage';
+export type MainTabMode = 'master' | 'catalog' | 'themes' | 'canvas' | 'expo' | 'techstack' | 'storage';
 
 interface HeaderProps {
   currentTab: MainTabMode;
@@ -143,6 +143,18 @@ export const Header: React.FC<HeaderProps> = ({
           >
             <Layers className="w-3.5 h-3.5" />
             <span>글로벌 마스터 카탈로그</span>
+          </button>
+
+          <button
+            onClick={() => setCurrentTab('themes')}
+            className={`flex items-center gap-1.5 px-3.5 py-1.5 rounded-xl text-xs font-bold transition-all ${
+              currentTab === 'themes'
+                ? 'bg-gradient-to-r from-purple-600 to-pink-600 text-white shadow-lg'
+                : 'text-slate-400 hover:text-white'
+            }`}
+          >
+            <Palette className="w-3.5 h-3.5 text-pink-300" />
+            <span>🎨 테마 스튜디오</span>
           </button>
 
           <button

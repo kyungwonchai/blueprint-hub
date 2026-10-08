@@ -128,3 +128,35 @@ code, pre, .font-mono {
 .animate-pulse-glow {
   animation: pulseGlow 4s infinite ease-in-out;
 }
+
+/* 4K Vision Camera Laser Scanline */
+@keyframes laserScan {
+  0% { transform: translateY(-100%); opacity: 0; }
+  15% { opacity: 0.8; }
+  85% { opacity: 0.8; }
+  100% { transform: translateY(1000%); opacity: 0; }
+}
+.animate-laser-scan {
+  animation: laserScan 3.5s linear infinite;
+  will-change: transform;
+}
+
+/* Subtle Floating Breathing */
+@keyframes subtleFloat {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-3px); }
+}
+.animate-subtle-float {
+  animation: subtleFloat 5s ease-in-out infinite;
+}
+
+/* Modern Card Shimmer Border */
+@keyframes borderShimmer {
+  0% { border-color: rgba(255, 255, 255, 0.1); }
+  50% { border-color: rgba(139, 92, 246, 0.4); }
+  100% { border-color: rgba(255, 255, 255, 0.1); }
+}
+.animate-border-shimmer {
+  animation: borderShimmer 4s ease-in-out infinite;
+}
+

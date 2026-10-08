@@ -35,13 +35,13 @@ export const MasterEnterpriseApp: React.FC<MasterEnterpriseAppProps> = ({
   // Shared Master-Detail Drilldown State
   const [selectedLine, setSelectedLine] = useState<{ id: string; name: string; img: string; speed: string; yield: string; status: string; temp: string; cpk: string }>({
     id: 'LINE-A',
-    name: 'LINE-A (초정밀 8K OLED 스마트 조립 로봇 라인)',
-    img: 'https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&w=800&q=80',
+    name: 'LINE-A (스마트 클린룸 & AI 로보틱스 관제)',
+    img: 'https://images.unsplash.com/photo-1581092334651-ddf26d9a09d0?auto=format&fit=crop&w=1200&q=80',
     speed: '142 bpm',
     yield: '99.8%',
     status: 'RUNNING',
-    temp: '41.8°C',
-    cpk: '1.84'
+    temp: '21.5°C',
+    cpk: '1.92'
   });
 
   const [selectedLot, setSelectedLot] = useState<string>('LOT-2026-X842');
@@ -144,42 +144,42 @@ export const MasterEnterpriseApp: React.FC<MasterEnterpriseAppProps> = ({
       {/* 2. Top Smart Factory KPI Tiles (Interlinked & Glowing) */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
         {/* KPI 1: Realtime Yield */}
-        <div className="relative overflow-hidden p-4 rounded-2xl bg-slate-900/95 border border-emerald-500/40 backdrop-blur-2xl shadow-xl flex flex-col justify-between">
+        <div className="group relative overflow-hidden p-4 rounded-2xl bg-slate-900/95 border border-emerald-500/30 hover:border-emerald-400/80 backdrop-blur-2xl shadow-xl flex flex-col justify-between hover:-translate-y-1 hover:shadow-[0_10px_25px_rgba(16,185,129,0.15)] transition-all duration-300">
           <div className="flex justify-between items-center mb-1">
             <span className="text-xs font-bold text-slate-300">종합 공정 수율 (OEE)</span>
             <span className="text-[10px] text-emerald-400 font-mono font-bold">목표 99.0%</span>
           </div>
-          <div className="text-3xl font-black text-white font-mono my-1">{liveYield}%</div>
+          <div className="text-3xl font-black text-white font-mono my-1 tracking-tight">{liveYield}%</div>
           {renderTechBadge('Micro-Gauge Sparkline', '실시간 SVG 동적 보간 렌더링', 'chart-sparkline-mini-badge')}
         </div>
 
         {/* KPI 2: Total Output */}
-        <div className="relative overflow-hidden p-4 rounded-2xl bg-slate-900/95 border border-violet-500/40 backdrop-blur-2xl shadow-xl flex flex-col justify-between">
+        <div className="group relative overflow-hidden p-4 rounded-2xl bg-slate-900/95 border border-violet-500/30 hover:border-violet-400/80 backdrop-blur-2xl shadow-xl flex flex-col justify-between hover:-translate-y-1 hover:shadow-[0_10px_25px_rgba(139,92,246,0.15)] transition-all duration-300">
           <div className="flex justify-between items-center mb-1">
             <span className="text-xs font-bold text-slate-300">금일 누적 양품 생산량</span>
             <span className="text-[10px] text-violet-400 font-mono font-bold">진척률 104%</span>
           </div>
-          <div className="text-3xl font-black text-white font-mono my-1">{liveOutput.toLocaleString()} EA</div>
+          <div className="text-3xl font-black text-white font-mono my-1 tracking-tight">{liveOutput.toLocaleString()} EA</div>
           {renderTechBadge('Progress Stepper Tile', '목표 대비 달성률 동적 채움', 'stat-revenue-growth-gradient')}
         </div>
 
         {/* KPI 3: Defect Rate PPM */}
-        <div className="relative overflow-hidden p-4 rounded-2xl bg-slate-900/95 border border-amber-500/40 backdrop-blur-2xl shadow-xl flex flex-col justify-between">
+        <div className="group relative overflow-hidden p-4 rounded-2xl bg-slate-900/95 border border-amber-500/30 hover:border-amber-400/80 backdrop-blur-2xl shadow-xl flex flex-col justify-between hover:-translate-y-1 hover:shadow-[0_10px_25px_rgba(245,158,11,0.15)] transition-all duration-300">
           <div className="flex justify-between items-center mb-1">
             <span className="text-xs font-bold text-slate-300">불량률 (PPM 관제)</span>
             <span className="text-[10px] text-emerald-400 font-mono font-bold">-18 PPM</span>
           </div>
-          <div className="text-3xl font-black text-amber-400 font-mono my-1">42 PPM</div>
+          <div className="text-3xl font-black text-amber-400 font-mono my-1 tracking-tight">42 PPM</div>
           {renderTechBadge('PPM Anomaly Monitor', '임계치 초과 시 자동 Alert 뱃지', 'stat-server-latency-ms')}
         </div>
 
         {/* KPI 4: Active Shift Info */}
-        <div className="relative overflow-hidden p-4 rounded-2xl bg-slate-900/95 border border-cyan-500/40 backdrop-blur-2xl shadow-xl flex flex-col justify-between">
+        <div className="group relative overflow-hidden p-4 rounded-2xl bg-slate-900/95 border border-cyan-500/30 hover:border-cyan-400/80 backdrop-blur-2xl shadow-xl flex flex-col justify-between hover:-translate-y-1 hover:shadow-[0_10px_25px_rgba(6,182,212,0.15)] transition-all duration-300">
           <div className="flex justify-between items-center mb-1">
             <span className="text-xs font-bold text-slate-300">공정 능력 지수 (Cpk)</span>
             <span className="text-[10px] text-cyan-400 font-mono font-bold">Six Sigma Pro</span>
           </div>
-          <div className="text-3xl font-black text-cyan-400 font-mono my-1">1.84 Cpk</div>
+          <div className="text-3xl font-black text-cyan-400 font-mono my-1 tracking-tight">1.84 Cpk</div>
           {renderTechBadge('Cpk Capability Gauge', '공정 능력 지수 6시그마 검증', 'stat-uptime-sla-four-nines')}
         </div>
       </div>
@@ -192,48 +192,101 @@ export const MasterEnterpriseApp: React.FC<MasterEnterpriseAppProps> = ({
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
             {/* 4K Industrial Camera Feed & Line Switcher */}
             <div className="lg:col-span-1 space-y-4">
-              <div className="p-4 rounded-3xl bg-slate-900/95 border border-white/10 shadow-2xl space-y-3">
+              <div className="p-4 rounded-3xl bg-slate-900/95 border border-white/10 shadow-2xl space-y-3 animate-border-shimmer">
                 <div className="flex justify-between items-center border-b border-white/10 pb-2">
                   <h3 className="text-xs font-black text-white flex items-center gap-1.5">
                     <Radio className="w-4 h-4 text-rose-500 animate-pulse" />
-                    스마트 팩토리 4K 비전 감시캠
+                    <span>스마트 팩토리 4K 비전 감시캠</span>
                   </h3>
-                  <span className="text-[10px] text-emerald-400 font-mono font-bold">● LIVE 60 FPS</span>
+                  <span className="text-[10px] text-emerald-400 font-mono font-bold flex items-center gap-1">
+                    <span className="w-2 h-2 rounded-full bg-emerald-400 animate-ping" />
+                    <span>LIVE 60 FPS</span>
+                  </span>
                 </div>
 
-                {/* 4K Photo with Augmented Reality HUD Overlay */}
-                <div className="relative rounded-2xl overflow-hidden h-48 border border-white/20 group">
+                {/* 4K Photo with Augmented Reality HUD Overlay & Laser Scanline */}
+                <div className="relative rounded-2xl overflow-hidden h-52 border border-white/20 group shadow-inner bg-black">
                   <img
                     src={selectedLine.img}
                     alt="Factory Line Cam"
-                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 filter brightness-95 contrast-105"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-transparent" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/95 via-black/20 to-transparent" />
                   
+                  {/* Laser Scanline Beam Animation */}
+                  <div className="absolute inset-x-0 h-1 bg-gradient-to-r from-transparent via-cyan-400 to-transparent opacity-80 shadow-[0_0_12px_#06b6d4] pointer-events-none animate-laser-scan" />
+
                   {/* AR HUD Telemetry Box */}
-                  <div className="absolute top-2 left-2 p-1.5 rounded-lg bg-black/60 border border-emerald-500/40 font-mono text-[9px] text-emerald-300">
-                    <div>CAM-01: {selectedLine.id}</div>
+                  <div className="absolute top-2.5 left-2.5 p-2 rounded-xl bg-black/75 border border-cyan-500/40 backdrop-blur-md font-mono text-[9px] text-cyan-300 space-y-0.5 shadow-lg">
+                    <div className="flex items-center gap-1.5">
+                      <span className="w-1.5 h-1.5 rounded-full bg-emerald-400" />
+                      <span className="font-bold">AI CAM: {selectedLine.id}</span>
+                    </div>
                     <div>온도: {selectedLine.temp} | Cpk: {selectedLine.cpk}</div>
                   </div>
 
-                  <div className="absolute bottom-2 inset-x-2 flex justify-between items-end text-white text-xs">
+                  {/* AR HUD Target Bounding Box */}
+                  <div className="absolute top-8 right-6 w-20 h-14 border border-dashed border-emerald-400/80 rounded-lg flex items-start justify-end p-1 pointer-events-none animate-subtle-float">
+                    <span className="text-[8px] font-mono font-bold bg-emerald-500/80 text-black px-1 rounded">
+                      PASS 99.9%
+                    </span>
+                  </div>
+
+                  {/* Bottom Line Info Bar */}
+                  <div className="absolute bottom-2.5 inset-x-3 flex justify-between items-end text-white text-xs">
                     <div>
-                      <span className="font-extrabold block text-sm">{selectedLine.name}</span>
-                      <span className="text-[10px] text-cyan-300 font-mono">가동 속도: {selectedLine.speed}</span>
+                      <span className="font-black block text-sm tracking-tight drop-shadow-md">{selectedLine.name}</span>
+                      <span className="text-[10px] text-cyan-300 font-mono">라인 속도: {selectedLine.speed} · 수율: {selectedLine.yield}</span>
                     </div>
-                    <span className="px-2 py-0.5 rounded bg-emerald-500 text-black font-black text-[10px]">
+                    <span className="px-2.5 py-1 rounded-lg bg-emerald-500 text-black font-black text-[10px] shadow-lg">
                       {selectedLine.status}
                     </span>
                   </div>
                 </div>
 
-                {/* Line Selector Buttons */}
+                {/* Line Selector Buttons (High-Tech Cleanroom & Robotic Presets) */}
                 <div className="grid grid-cols-2 gap-2 pt-1">
                   {[
-                    { id: 'LINE-A', name: 'LINE-A (OLED 조립)', img: 'https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&w=800&q=80', speed: '142 bpm', yield: '99.8%', status: 'RUNNING', temp: '41.8°C', cpk: '1.84' },
-                    { id: 'LINE-B', name: 'LINE-B (SMT 고속실장)', img: 'https://images.unsplash.com/photo-1581092160607-ee22621dd758?auto=format&fit=crop&w=800&q=80', speed: '185 bpm', yield: '99.4%', status: 'RUNNING', temp: '45.2°C', cpk: '1.68' },
-                    { id: 'LINE-C', name: 'LINE-C (광학 클린룸)', img: 'https://images.unsplash.com/photo-1581092335397-9583fe92d232?auto=format&fit=crop&w=800&q=80', speed: '95 bpm', yield: '98.9%', status: 'STANDBY', temp: '22.4°C', cpk: '1.92' },
-                    { id: 'LINE-D', name: 'LINE-D (최종 에이징)', img: 'https://images.unsplash.com/photo-1581092580497-e0d23cbdf1dc?auto=format&fit=crop&w=800&q=80', speed: '110 bpm', yield: '99.9%', status: 'RUNNING', temp: '38.0°C', cpk: '1.95' }
+                    { 
+                      id: 'LINE-A', 
+                      name: 'LINE-A (클린룸 AI 관제)', 
+                      img: 'https://images.unsplash.com/photo-1581092334651-ddf26d9a09d0?auto=format&fit=crop&w=1200&q=80', 
+                      speed: '142 bpm', 
+                      yield: '99.8%', 
+                      status: 'RUNNING', 
+                      temp: '21.5°C', 
+                      cpk: '1.92' 
+                    },
+                    { 
+                      id: 'LINE-B', 
+                      name: 'LINE-B (6축 로봇 암 실장)', 
+                      img: 'https://images.unsplash.com/photo-1563770660941-20978e870e26?auto=format&fit=crop&w=1200&q=80', 
+                      speed: '185 bpm', 
+                      yield: '99.6%', 
+                      status: 'RUNNING', 
+                      temp: '32.4°C', 
+                      cpk: '1.88' 
+                    },
+                    { 
+                      id: 'LINE-C', 
+                      name: 'LINE-C (나노 레이저 검사)', 
+                      img: 'https://images.unsplash.com/photo-1581092162384-8987c1d64718?auto=format&fit=crop&w=1200&q=80', 
+                      speed: '95 bpm', 
+                      yield: '99.9%', 
+                      status: 'STANDBY', 
+                      temp: '20.8°C', 
+                      cpk: '1.98' 
+                    },
+                    { 
+                      id: 'LINE-D', 
+                      name: 'LINE-D (사이버네틱 오토메이션)', 
+                      img: 'https://images.unsplash.com/photo-1485827404703-89b55fcc595e?auto=format&fit=crop&w=1200&q=80', 
+                      speed: '120 bpm', 
+                      yield: '99.7%', 
+                      status: 'RUNNING', 
+                      temp: '28.0°C', 
+                      cpk: '1.95' 
+                    }
                   ].map(line => (
                     <button
                       key={line.id}
@@ -241,14 +294,14 @@ export const MasterEnterpriseApp: React.FC<MasterEnterpriseAppProps> = ({
                       className={`p-2.5 rounded-xl text-left border transition-all text-xs font-bold ${
                         selectedLine.id === line.id
                           ? 'bg-violet-600 text-white border-violet-400 shadow-lg shadow-violet-900/40'
-                          : 'bg-slate-950 text-slate-300 border-white/5 hover:bg-white/5'
+                          : 'bg-slate-950 text-slate-300 border-white/5 hover:bg-white/5 hover:border-white/20'
                       }`}
                     >
                       <div className="flex justify-between items-center">
                         <span>{line.id}</span>
                         <span className="text-[9px] font-mono text-cyan-300">{line.yield}</span>
                       </div>
-                      <span className="text-[10px] text-slate-400 block truncate">{line.name.split('(')[1]?.replace(')', '') || line.name}</span>
+                      <span className="text-[10px] text-slate-400 block truncate mt-0.5">{line.name.split('(')[1]?.replace(')', '') || line.name}</span>
                     </button>
                   ))}
                 </div>

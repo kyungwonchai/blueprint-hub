@@ -5,8 +5,8 @@ import {
   Sparkles, Shield, Cpu, RefreshCw, ZoomIn, ZoomOut, Download, Maximize2
 } from 'lucide-react';
 
-// 1. DevExpress Ribbon Command Bar
-export const DevExpressRibbonDemo: React.FC = () => {
+// 1. Enterprise Ribbon Command Bar
+export const EnterpriseRibbonDemo: React.FC = () => {
   const [activeTab, setActiveTab] = useState<'home' | 'data' | 'view'>('home');
   return (
     <div className="w-full rounded-2xl bg-slate-900/95 backdrop-blur-2xl border border-white/10 shadow-2xl overflow-hidden text-xs">
@@ -65,8 +65,8 @@ export const DevExpressRibbonDemo: React.FC = () => {
   );
 };
 
-// 2. DevExpress PropertyGrid Inspector
-export const DevExpressPropertyGridDemo: React.FC = () => {
+// 2. Enterprise PropertyGrid Inspector
+export const EnterprisePropertyGridDemo: React.FC = () => {
   const [props, setProps] = useState({
     lineSpeed: '142 bpm',
     targetYield: '99.8%',
@@ -114,7 +114,7 @@ export const DevExpressPropertyGridDemo: React.FC = () => {
 };
 
 // 3. Visual Tree Filter Editor (Expression Builder)
-export const DevExpressFilterEditorDemo: React.FC = () => {
+export const EnterpriseFilterEditorDemo: React.FC = () => {
   const [op, setOp] = useState<'AND' | 'OR'>('AND');
   return (
     <div className="w-full rounded-2xl bg-slate-900/90 backdrop-blur-xl border border-white/10 p-3.5 shadow-2xl space-y-2 text-xs">
@@ -143,7 +143,7 @@ export const DevExpressFilterEditorDemo: React.FC = () => {
 };
 
 // 4. Interactive Node Flow Diagram
-export const DevExpressDiagramDemo: React.FC = () => {
+export const EnterpriseDiagramDemo: React.FC = () => {
   return (
     <div className="w-full rounded-2xl bg-slate-900/90 backdrop-blur-xl border border-white/10 p-3.5 shadow-2xl space-y-2 text-xs">
       <div className="flex justify-between items-center border-b border-white/10 pb-1.5 font-bold text-white">
@@ -176,7 +176,7 @@ export const DevExpressDiagramDemo: React.FC = () => {
 };
 
 // 5. Multi-Window Docking Layout Manager
-export const DevExpressDockingDemo: React.FC = () => {
+export const EnterpriseDockingDemo: React.FC = () => {
   return (
     <div className="w-full rounded-2xl bg-slate-900/90 backdrop-blur-xl border border-white/10 p-3.5 shadow-2xl space-y-2 text-xs">
       <div className="flex justify-between items-center font-bold text-white">
@@ -201,7 +201,7 @@ export const DevExpressDockingDemo: React.FC = () => {
 };
 
 // 6. Enterprise Formula Spreadsheet Matrix
-export const DevExpressSpreadsheetDemo: React.FC = () => {
+export const EnterpriseSpreadsheetDemo: React.FC = () => {
   return (
     <div className="w-full rounded-2xl bg-slate-900/90 backdrop-blur-xl border border-white/10 p-3 shadow-2xl space-y-1.5 text-xs">
       <div className="flex justify-between items-center font-bold text-white">
@@ -232,3 +232,12 @@ export const DevExpressSpreadsheetDemo: React.FC = () => {
     </div>
   );
 };
+
+// Also export aliases for compatibility
+export const DevExpressRibbonDemo = EnterpriseRibbonDemo;
+export const DevExpressPropertyGridDemo = EnterprisePropertyGridDemo;
+export const DevExpressFilterEditorDemo = EnterpriseFilterEditorDemo;
+export const DevExpressDiagramDemo = EnterpriseDiagramDemo;
+export const DevExpressDockingDemo = EnterpriseDockingDemo;
+export const DevExpressSpreadsheetDemo = EnterpriseSpreadsheetDemo;
+

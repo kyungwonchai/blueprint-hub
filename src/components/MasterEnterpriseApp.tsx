@@ -12,7 +12,7 @@ import { COMPONENTS_DATA } from '../data/componentsData';
 import { ComponentItem } from '../types';
 
 // Import Live High-End Renderers to embed directly in Domain Tabs
-import { DevExpressRibbonDemo, DevExpressSpreadsheetDemo, DevExpressPropertyGridDemo } from './renderers/DevExpressWpfRenderers';
+import { EnterpriseRibbonDemo, EnterpriseSpreadsheetDemo, EnterprisePropertyGridDemo } from './renderers/EnterpriseSuiteRenderers';
 import { ChordDiagramDemo, ViolinDistributionPlotDemo, ParallelCoordinatesDemo, NetworkTopologyDemo } from './renderers/AdvancedSciVizRenderers';
 import { RidgelineDensityDemo, CorrelationMatrixDemo, SunburstDefectTreeDemo, HoneycombEquipmentMeshDemo } from './renderers/MathematicalVizRenderers';
 import { LorenzAttractorDemo, UmapEmbeddingProjectorDemo, PoincareHyperbolicDiskDemo } from './renderers/CosmicMathVizRenderers';
@@ -415,7 +415,7 @@ export const MasterEnterpriseApp: React.FC<MasterEnterpriseAppProps> = ({
           </div>
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
             <NetworkTopologyDemo />
-            <DevExpressPropertyGridDemo />
+            <EnterprisePropertyGridDemo />
           </div>
         </div>
       )}
@@ -437,14 +437,14 @@ export const MasterEnterpriseApp: React.FC<MasterEnterpriseAppProps> = ({
       )}
 
       {/* ========================================================================= */}
-      {/* 8. APP 6: DEVEXPRESS EXECUTIVE WAR ROOM & SPREADSHEET */}
+      {/* 8. APP 6: ENTERPRISE EXECUTIVE WAR ROOM & SPREADSHEET */}
       {/* ========================================================================= */}
       {activeTab === 'executive_war' && (
         <div className="space-y-6">
-          <DevExpressRibbonDemo />
+          <EnterpriseRibbonDemo />
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-            <DevExpressSpreadsheetDemo />
-            <DevExpressPropertyGridDemo />
+            <EnterpriseSpreadsheetDemo />
+            <EnterprisePropertyGridDemo />
           </div>
         </div>
       )}

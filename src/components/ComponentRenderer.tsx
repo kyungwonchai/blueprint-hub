@@ -100,7 +100,8 @@ import {
   RichHoverTooltipDemo, CookieConsentDemo, StarRatingDemo, OfflineToastDemo,
   ThemePaletteDemo, GlassmorphismDemo, NeonGlowDemo, TypographyScaleDemo,
   GradientMeshDemo, BorderBeamDemo, ThemeToggleDemo, GridDotMatrixDemo,
-  NeumorphismDemo, BentoGridDemo, ClaymorphismDemo, NoiseOverlayDemo
+  NeumorphismDemo, BentoGridDemo, ClaymorphismDemo, NoiseOverlayDemo,
+  ArtlistCinemaDemo
 } from './renderers/NavFeedbackThemeRenderers';
 
 interface RendererProps {
@@ -296,6 +297,7 @@ export const ComponentRenderer: React.FC<RendererProps> = ({ componentId, isComp
   if (componentId === 'theme-bento-grid-card-layout') return <BentoGridDemo />;
   if (componentId === 'theme-claymorphism-3d-card') return <ClaymorphismDemo />;
   if (componentId === 'theme-noise-texture-overlay') return <NoiseOverlayDemo />;
+  if (componentId === 'theme-artlist-cinema-spec') return <ArtlistCinemaDemo />;
   
   // 2026 Cutting-Edge Interactive & Canvas Physics
   if (componentId === 'theme-magnetic-ferrofluid-canvas') return <MagneticFerrofluidCanvasDemo />;

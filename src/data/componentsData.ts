@@ -171,6 +171,16 @@ export const THEME_PRESETS: ThemePreset[] = [
     border: "#00f2fe44",
     cardBg: "#0b152d",
     desc: "초전도체 양자 플럭스를 연상시키는 일렉트릭 블루"
+  },
+  {
+    id: "artlist-cinema",
+    name: "Artlist Cinema (아트리스트 옵시디언 옐로우)",
+    bg: "#0d0d0f",
+    accent: "#ffea00",
+    sub: "#ffaa00",
+    border: "#ffea0044",
+    cardBg: "#141418",
+    desc: "Artlist.io 영감의 시네마틱 딥 옵시디언 블랙 & 고대비 일렉트릭 옐로우 미디어 디자인 시스템"
   }
 ];
 
@@ -3216,8 +3226,32 @@ export const COMPONENTS_DATA: ComponentItem[] = [
     "previewType": "theme-noise-texture-overlay",
     "aiPromptGuidance": "SVG feTurbulence 필터를 사용한 모던 노이즈 텍스처 오버레이입니다.",
     "fullSourceCode": "import React, { useState, useEffect, useRef } from 'react';\nimport { Sparkles, Layers, Box, Terminal, Activity, Zap, Check, Eye } from 'lucide-react';\n\nexport const NoiseOverlayDemo: React.FC = () => (\n  <div className=\"rounded-2xl bg-slate-950 border border-white/10 p-4 shadow-2xl flex items-center justify-between text-xs\">\n    <div><span className=\"font-bold text-white block\">아날로그 노이즈 텍스처</span><span className=\"text-[10px] text-slate-400\">Film Grain Overlay</span></div>\n    <span className=\"px-2 py-0.5 rounded bg-white/10 text-slate-300 font-mono text-[10px]\">Grain 15%</span>\n  </div>\n);"
-  }
-,
+  },
+  {
+    "id": "theme-artlist-cinema-spec",
+    "name": "Artlist.io 시네마틱 옵시디언 & 일렉트릭 옐로우 미디어 스위트",
+    "category": "themes",
+    "tags": [
+      "theme",
+      "artlist",
+      "cinema",
+      "yellow",
+      "waveform",
+      "media-player",
+      "dark-mode",
+      "아트리스트",
+      "시네마틱",
+      "일렉트릭옐로우"
+    ],
+    "description": "Artlist.io 스타일의 딥 옵시디언 다크(#0d0d0f), 고대비 일렉트릭 옐로우(#ffea00) 미디어 플레이어, 오디오 파형(Waveform), 라이센스 태그 및 시네마틱 뱃지.",
+    "complexity": "Medium",
+    "dependencies": [
+      "lucide-react"
+    ],
+    "previewType": "theme-artlist-cinema-spec",
+    "aiPromptGuidance": "Artlist.io 미디어 플랫폼 스타일의 딥 다크(#0d0d0f) 배경과 일렉트릭 옐로우(#ffea00) 강조색을 적용한 고품격 미디어 트랙 플레이어 및 시네마틱 UI 컴포넌트를 구현하세요.",
+    "fullSourceCode": "import React, { useState } from 'react';\nimport { Play, Pause, Volume2, Sparkles, Music, Film, Check, Download, Bookmark } from 'lucide-react';\n\nexport const ArtlistCinemaDemo: React.FC = () => {\n  const [isPlaying, setIsPlaying] = useState(false);\n  return (\n    <div className=\"w-full rounded-2xl bg-[#0d0d0f] border border-white/10 p-4 shadow-2xl space-y-3\">\n      <div className=\"flex items-center justify-between border-b border-white/5 pb-2.5\">\n        <div className=\"flex items-center gap-2\">\n          <span className=\"w-2 h-2 rounded-full bg-[#ffea00] shadow-[0_0_8px_#ffea00]\" />\n          <span className=\"text-xs font-black tracking-wider text-white uppercase\">ARTLIST CINEMA PRO</span>\n        </div>\n        <span className=\"text-[10px] px-2 py-0.5 rounded-full bg-[#ffea00]/15 text-[#ffea00] font-mono font-bold\">PRO MEDIA LICENSE</span>\n      </div>\n      <div className=\"flex items-center gap-3 bg-[#141418] p-3 rounded-xl border border-white/5\">\n        <button onClick={() => setIsPlaying(!isPlaying)} className=\"w-10 h-10 rounded-full bg-[#ffea00] hover:bg-[#fff033] text-black flex items-center justify-center font-bold shadow-[0_0_15px_rgba(255,234,0,0.4)] transition-transform active:scale-95\">\n          {isPlaying ? <Pause className=\"w-4 h-4 fill-black\" /> : <Play className=\"w-4 h-4 fill-black ml-0.5\" />}\n        </button>\n        <div className=\"flex-1 min-w-0\">\n          <div className=\"flex items-center justify-between text-xs font-bold text-white mb-1\">\n            <span className=\"truncate\">Neon Genesis Cyberpunk Odyssey</span>\n            <span className=\"text-[11px] font-mono text-[#ffea00]\">02:48</span>\n          </div>\n          <div className=\"flex items-end gap-[2px] h-6 w-full\">\n            {[40,65,30,80,95,70,45,60,85,100,75,50,90,65,40,80,55,95,70,85,60,40,75,90,50,65,40].map((h, i) => (\n              <div key={i} className={`flex-1 rounded-full transition-all ${i < 12 ? 'bg-[#ffea00] shadow-[0_0_6px_#ffea00]' : 'bg-white/20'}`} style={{ height: `${h}%` }} />\n            ))}\n          </div>\n        </div>\n      </div>\n    </div>\n  );\n};"
+  },
   {
   "id": "chart-chord-matrix-flow",
   "name": "공정간 원자재 이동 매트릭스 (D3 Chord Diagram)",

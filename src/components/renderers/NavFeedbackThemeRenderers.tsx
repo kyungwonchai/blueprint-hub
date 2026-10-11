@@ -424,3 +424,50 @@ export const NoiseOverlayDemo: React.FC = () => (
     <span className="px-2 py-0.5 rounded bg-white/10 text-slate-300 font-mono text-[10px]">Grain 15%</span>
   </div>
 );
+
+// 13. Artlist Cinema Media Suite
+export const ArtlistCinemaDemo: React.FC = () => {
+  const [isPlaying, setIsPlaying] = useState(false);
+  return (
+    <div className="w-full rounded-2xl bg-[#0d0d0f] border border-white/10 p-4 shadow-2xl space-y-3">
+      <div className="flex items-center justify-between border-b border-white/5 pb-2.5">
+        <div className="flex items-center gap-2">
+          <span className="w-2 h-2 rounded-full bg-[#ffea00] shadow-[0_0_8px_#ffea00]" />
+          <span className="text-xs font-black tracking-wider text-white uppercase">ARTLIST CINEMA PRO</span>
+        </div>
+        <span className="text-[10px] px-2 py-0.5 rounded-full bg-[#ffea00]/15 text-[#ffea00] font-mono font-bold">PRO MEDIA LICENSE</span>
+      </div>
+      <div className="flex items-center gap-3 bg-[#141418] p-3 rounded-xl border border-white/5">
+        <button 
+          onClick={() => setIsPlaying(!isPlaying)} 
+          className="w-10 h-10 rounded-full bg-[#ffea00] hover:bg-[#fff033] text-black flex items-center justify-center font-bold shadow-[0_0_15px_rgba(255,234,0,0.4)] transition-transform active:scale-95 shrink-0"
+        >
+          {isPlaying ? (
+            <div className="flex gap-1 items-center justify-center">
+              <span className="w-1 h-3.5 bg-black rounded-sm" />
+              <span className="w-1 h-3.5 bg-black rounded-sm" />
+            </div>
+          ) : (
+            <span className="text-black font-black text-xs ml-0.5">▶</span>
+          )}
+        </button>
+        <div className="flex-1 min-w-0">
+          <div className="flex items-center justify-between text-xs font-bold text-white mb-1">
+            <span className="truncate">Neon Genesis Cyberpunk Odyssey</span>
+            <span className="text-[11px] font-mono text-[#ffea00]">02:48</span>
+          </div>
+          <div className="flex items-end gap-[2px] h-6 w-full">
+            {[40, 65, 30, 80, 95, 70, 45, 60, 85, 100, 75, 50, 90, 65, 40, 80, 55, 95, 70, 85, 60, 40, 75, 90, 50, 65, 40].map((h, i) => (
+              <div 
+                key={i} 
+                className={`flex-1 rounded-full transition-all ${i < 12 ? 'bg-[#ffea00] shadow-[0_0_6px_#ffea00]' : 'bg-white/20'}`} 
+                style={{ height: `${h}%` }} 
+              />
+            ))}
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+};
+

@@ -33,8 +33,9 @@ start_app() {
   fi
 
   echo "🚀 [BlueprintHub] 서버 구동 중..."
-  nohup /usr/bin/node "$APP_DIR/server.mjs" > "$LOG_FILE" 2>&1 &
+  nohup node "$APP_DIR/server.mjs" >> "$LOG_FILE" 2>&1 &
   NEW_PID=$!
+  disown $NEW_PID 2>/dev/null || true
   echo $NEW_PID > "$PID_FILE"
   echo "✅ [BlueprintHub] 실행 완료 (PID: $NEW_PID, Port: $PORT)"
   echo "🔗 Local: http://172.30.1.70:$PORT/blueprint-hub/"

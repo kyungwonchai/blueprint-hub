@@ -119,14 +119,14 @@ export default {
                 ● 2026 Design Token & Theme Matrix
               </span>
               <span className="text-xs text-slate-400 font-mono tracking-widest">
-                16 Curated Industry Color Systems
+                17 Curated Industry Color Systems
               </span>
             </div>
             <h2 className="text-2xl sm:text-3xl lg:text-4xl font-black text-white tracking-tight leading-tight">
               디자인 시스템 <span className="grad-text">테마 & 팔레트 스튜디오</span>
             </h2>
             <p className="text-xs sm:text-sm text-slate-300 leading-relaxed">
-              16가지 업계 최고 수준의 테마 프리셋을 실시간으로 전환하며, 표·차트·KPI 카드가 적용되는 인터랙티브 라이브 샘플을 확인하고 원하는 테마를 장바구니에 담아 청사진으로 내보내세요.
+              17가지 업계 최고 수준의 테마 프리셋(Artlist.io 시네마틱 옐로우 포함)을 실시간으로 전환하며, 표·차트·KPI 카드가 적용되는 인터랙티브 라이브 샘플을 확인하고 원하는 테마를 장바구니에 담아 청사진으로 내보내세요.
             </p>
           </div>
 
@@ -160,12 +160,12 @@ export default {
         </div>
       </div>
 
-      {/* 16 Themes Palette Grid (Card Selector) */}
+      {/* 17 Themes Palette Grid (Card Selector) */}
       <div className="space-y-3">
         <div className="flex justify-between items-center">
           <h3 className="text-base font-black text-white flex items-center gap-2">
             <Palette className="w-4 h-4 text-violet-400" />
-            <span>16가지 큐레이티드 테마 프리셋 선택 (16 Theme Presets)</span>
+            <span>17가지 큐레이티드 테마 프리셋 선택 (17 Theme Presets)</span>
           </h3>
           <span className="text-xs font-mono text-slate-400">클릭 시 전체 샘플앱에 실시간 동적 적용</span>
         </div>

@@ -17,32 +17,35 @@ build_app() {
 }
 
 start_app() {
-  if [ -f "$PID_FILE" ]; then
-    PID=$(cat "$PID_FILE")
-    if ps -p "$PID" > /dev/null 2>&1; then
-      echo "⚠️ [BlueprintHub] 이미 실행 중입니다. (PID: $PID, Port: $PORT)"
-      return 0
-    fi
-  fi
-
   # 혹시 포트 점유 중인 다른 프로세스 정리
   OLD_PID=$(lsof -ti :$PORT 2>/dev/null)
   if [ -n "$OLD_PID" ]; then
     echo "⚠️ 포트 $PORT 점유 프로세스($OLD_PID) 정리 중..."
     kill -9 $OLD_PID 2>/dev/null || true
+    sleep 1
   fi
 
   echo "🚀 [BlueprintHub] 서버 구동 중..."
-  nohup node "$APP_DIR/server.mjs" >> "$LOG_FILE" 2>&1 &
-  NEW_PID=$!
-  disown $NEW_PID 2>/dev/null || true
-  echo $NEW_PID > "$PID_FILE"
-  echo "✅ [BlueprintHub] 실행 완료 (PID: $NEW_PID, Port: $PORT)"
+  systemctl --user stop blueprint-hub.service 2>/dev/null || true
+  systemd-run --user --unit=blueprint-hub node "$APP_DIR/server.mjs" > /dev/null 2>&1
+  sleep 1
+
+  PORT_PID=$(lsof -ti :$PORT 2>/dev/null)
+  if [ -n "$PORT_PID" ]; then
+    echo $PORT_PID > "$PID_FILE"
+    echo "✅ [BlueprintHub] 실행 완료 (PID: $PORT_PID, Port: $PORT)"
+  else
+    nohup node "$APP_DIR/server.mjs" >> "$LOG_FILE" 2>&1 &
+    NEW_PID=$!
+    echo $NEW_PID > "$PID_FILE"
+    echo "✅ [BlueprintHub] nohup 실행 완료 (PID: $NEW_PID, Port: $PORT)"
+  fi
   echo "🔗 Local: http://172.30.1.70:$PORT/blueprint-hub/"
   echo "🌐 Public: https://kwopi.duckdns.org/blueprint-hub/"
 }
 
 stop_app() {
+  systemctl --user stop blueprint-hub.service 2>/dev/null || true
   if [ -f "$PID_FILE" ]; then
     PID=$(cat "$PID_FILE")
     echo "🛑 [BlueprintHub] 서버 종료 중 (PID: $PID)..."

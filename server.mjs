@@ -251,6 +251,25 @@ function handlePostBlueprint(req, res) {
   app.get(`${prefix}/api/blueprints/:id`, handleGetBlueprintById);
   app.post(`${prefix}/api/blueprints`, handlePostBlueprint);
   
+  // Telemetry Stream API (from blue.py)
+  app.get(`${prefix}/api/telemetry`, (req, res) => {
+    const yieldVal = Number((98.1 + Math.random() * 1.3).toFixed(2));
+    const cpkVal = Number((1.55 + Math.random() * 0.25).toFixed(2));
+    const uphVal = Math.floor(1380 + Math.random() * 80);
+    const vacuumVal = Number((0.11 + Math.random() * 0.03).toFixed(2));
+    const defectPpm = Number((12.0 + Math.random() * 4.0).toFixed(1));
+    res.json({
+      status: 'ok',
+      line: req.query.line || 'LINE-A',
+      yield: yieldVal,
+      cpk: cpkVal,
+      uph: uphVal,
+      vacuum: vacuumVal,
+      defectPpm: defectPpm,
+      time: new Date().toISOString()
+    });
+  });
+
   // Health
   app.get(`${prefix}/api/health`, (req, res) => {
     res.json({ status: 'ok', service: 'blueprint-hub', time: new Date().toISOString() });

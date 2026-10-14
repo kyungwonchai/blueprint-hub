@@ -181,6 +181,26 @@ export const THEME_PRESETS: ThemePreset[] = [
     border: "#ffea0044",
     cardBg: "#141418",
     desc: "Artlist.io 영감의 시네마틱 딥 옵시디언 블랙 & 고대비 일렉트릭 옐로우 미디어 디자인 시스템"
+  },
+  {
+    id: "higgsfield-lime",
+    name: "Higgsfield AI Studio (네온 라임 & 흑요석)",
+    bg: "#070709",
+    accent: "#D4FF00",
+    sub: "#7C3AED",
+    border: "#D4FF0044",
+    cardBg: "#0f0f14",
+    desc: "Higgsfield AI 영감의 초저투명도(4.5%) 크리스탈 글래스 & 네온 라임 시네마틱 룩"
+  },
+  {
+    id: "artlist-amber-pro",
+    name: "Artlist Cinema Amber (시네마틱 앰버 & 티타늄)",
+    bg: "#08090d",
+    accent: "#F5A623",
+    sub: "#38bdf8",
+    border: "#F5A62344",
+    cardBg: "#11131a",
+    desc: "Artlist.io 시네마틱 앰버 골드 글로우 & 티타늄 서피스 시스템"
   }
 ];
 

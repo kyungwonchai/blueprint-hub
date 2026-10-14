@@ -2,12 +2,13 @@ import React, { useState } from 'react';
 import { 
   Sparkles, Search, ShoppingBag, LayoutTemplate, Layers, 
   History, Terminal, RefreshCw, X, Folder, Zap, Database, User, 
-  CloudCheck, CheckCircle2, Compass, Palette, Maximize2, Minimize2 
+  CloudCheck, CheckCircle2, Compass, Palette, Maximize2, Minimize2,
+  Sliders, Cpu
 } from 'lucide-react';
 import { CATEGORIES, THEME_PRESETS, ThemePreset } from '../data/componentsData';
 import { CategoryId } from '../types';
 
-export type MainTabMode = 'master' | 'catalog' | 'themes' | 'canvas' | 'expo' | 'techstack' | 'storage';
+export type MainTabMode = 'master' | 'studio' | 'fab' | 'catalog' | 'themes' | 'canvas' | 'expo' | 'techstack' | 'storage';
 
 interface HeaderProps {
   currentTab: MainTabMode;
@@ -131,6 +132,30 @@ export const Header: React.FC<HeaderProps> = ({
           >
             <Sparkles className="w-3.5 h-3.5 text-emerald-300" />
             <span>🏭 실전 MES 관제</span>
+          </button>
+
+          <button
+            onClick={() => setCurrentTab('studio')}
+            className={`flex items-center gap-1.5 px-3.5 py-1.5 rounded-xl text-xs font-bold transition-all ${
+              currentTab === 'studio'
+                ? 'bg-gradient-to-r from-cyan-600 to-indigo-600 text-white shadow-lg shadow-cyan-900/40'
+                : 'text-slate-400 hover:text-white'
+            }`}
+          >
+            <Sliders className="w-3.5 h-3.5 text-cyan-300" />
+            <span>🛠️ 디자인 스튜디오 PRO</span>
+          </button>
+
+          <button
+            onClick={() => setCurrentTab('fab')}
+            className={`flex items-center gap-1.5 px-3.5 py-1.5 rounded-xl text-xs font-bold transition-all ${
+              currentTab === 'fab'
+                ? 'bg-gradient-to-r from-indigo-600 to-cyan-600 text-white shadow-lg shadow-indigo-900/40'
+                : 'text-slate-400 hover:text-white'
+            }`}
+          >
+            <Cpu className="w-3.5 h-3.5 text-cyan-300" />
+            <span>🔬 팹 텔레메트리</span>
           </button>
 
           <button

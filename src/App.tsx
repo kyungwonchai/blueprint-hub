@@ -11,6 +11,8 @@ import { StorageGuideTab } from './components/StorageGuideTab';
 import { WebTechExpoTab } from './components/WebTechExpoTab';
 import { MasterEnterpriseApp } from './components/MasterEnterpriseApp';
 import { ThemeStudioTab } from './components/ThemeStudioTab';
+import { DesignStudioTab } from './components/DesignStudioTab';
+import { FabTelemetryStudioTab } from './components/FabTelemetryStudioTab';
 import { BoardManagerModal } from './components/BoardManagerModal';
 import { COMPONENTS_DATA } from './data/componentsData';
 import { getComponentMetadata } from './data/componentMetadata';
@@ -343,6 +345,19 @@ export default function App() {
           onAddToCart={toggleCart}
           cartItems={cartItems}
           onOpenDetailModal={(item) => setActiveDemoItem(item)}
+        />
+      )}
+
+      {currentTab === 'studio' && (
+        <DesignStudioTab
+          currentTheme={currentTheme}
+          onAddToCart={toggleCart}
+        />
+      )}
+
+      {currentTab === 'fab' && (
+        <FabTelemetryStudioTab
+          onAddToCart={toggleCart}
         />
       )}
 

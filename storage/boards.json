@@ -5,7 +5,7 @@
     "description": "네온 지표 카드 + 실시간 RPS 스트림 차트 + 데이터그리드 배치",
     "author": "kw",
     "isPublic": true,
-    "updatedAt": "2026-10-14T13:08:20.006Z",
+    "updatedAt": "2026-10-20T06:34:36.406Z",
     "createdAt": "2026-10-01T14:44:03.752Z",
     "items": [
       {
@@ -14,11 +14,11 @@
         "name": "2026 네온 글래스 KPI 지표 카드",
         "category": "stats",
         "type": "component",
-        "x": 380,
-        "y": 60,
+        "x": 520,
+        "y": 340,
         "width": 450,
         "height": 280,
-        "zIndex": 104
+        "zIndex": 102
       },
       {
         "id": "slot_grid_1",
@@ -45,6 +45,18 @@
         "zIndex": 4,
         "stickyText": "💡 AI에게 지시할 때:\n- 다크 테마 일관성 유지\n- 초당 60fps 부드러운 차트 렌더링",
         "stickyColor": "#fef08a"
+      },
+      {
+        "id": "widget_chart-poincare-hyperbolic-disk_1792477898239",
+        "componentId": "chart-poincare-hyperbolic-disk",
+        "name": "푸앵카레 쌍곡면 비유클리드 트리 (Poincaré Hyperbolic Disk)",
+        "category": "charts",
+        "type": "component",
+        "x": 20,
+        "y": 120,
+        "width": 460,
+        "height": 320,
+        "zIndex": 101
       }
     ]
   }

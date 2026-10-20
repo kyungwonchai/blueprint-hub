@@ -150,12 +150,12 @@ export const ComponentRenderer: React.FC<RendererProps> = ({ componentId, isComp
 
   
   // Enterprise Commercial Desktop Suite (WPF/Qt/C# Standard)
-  if (componentId === 'enterprise-ribbon-command-bar' || componentId === 'devexpress-ribbon-command-bar') return <EnterpriseRibbonDemo />;
-  if (componentId === 'enterprise-property-grid-inspector' || componentId === 'devexpress-property-grid-inspector') return <EnterprisePropertyGridDemo />;
-  if (componentId === 'enterprise-visual-filter-editor' || componentId === 'devexpress-visual-filter-editor') return <EnterpriseFilterEditorDemo />;
-  if (componentId === 'enterprise-visio-diagram-flow' || componentId === 'devexpress-visio-diagram-flow') return <EnterpriseDiagramDemo />;
-  if (componentId === 'enterprise-docking-layout-mdi' || componentId === 'devexpress-docking-layout-mdi') return <EnterpriseDockingDemo />;
-  if (componentId === 'enterprise-excel-spreadsheet-matrix' || componentId === 'devexpress-excel-spreadsheet-matrix') return <EnterpriseSpreadsheetDemo />;
+  if (componentId === 'enterprise-ribbon-command-bar' || componentId === 'enterprise-ribbon-command-bar') return <EnterpriseRibbonDemo />;
+  if (componentId === 'enterprise-property-grid-inspector' || componentId === 'enterprise-property-grid-inspector') return <EnterprisePropertyGridDemo />;
+  if (componentId === 'enterprise-visual-filter-editor' || componentId === 'enterprise-visual-filter-editor') return <EnterpriseFilterEditorDemo />;
+  if (componentId === 'enterprise-visio-diagram-flow' || componentId === 'enterprise-visio-diagram-flow') return <EnterpriseDiagramDemo />;
+  if (componentId === 'enterprise-docking-layout-mdi' || componentId === 'enterprise-docking-layout-mdi') return <EnterpriseDockingDemo />;
+  if (componentId === 'enterprise-excel-spreadsheet-matrix' || componentId === 'enterprise-excel-spreadsheet-matrix') return <EnterpriseSpreadsheetDemo />;
 
   // 2. TABLES & PIVOTS (12 + Complex Enterprise Grids)
   if (componentId === 'datagrid-realtime-pro') return <DataGridDemo />;

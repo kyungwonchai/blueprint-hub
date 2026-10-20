@@ -2,7 +2,7 @@ import { ComponentItem } from '../types';
 
 export function getComponentMetadata(item: ComponentItem): { releaseEra: string; techOrigin: string } {
   const id = item.id;
-  if (id.startsWith('devexpress-') || id.startsWith('enterprise-')) {
+  if (id.startsWith('enterprise-') || id.startsWith('enterprise-')) {
     return { releaseEra: 'Enterprise Commercial', techOrigin: 'Enterprise Desktop Standard (WPF/Qt/C#)' };
   }
   if (

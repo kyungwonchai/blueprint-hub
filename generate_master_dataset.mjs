@@ -6,7 +6,7 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 // Here we define rich distinct rendering code and distinctive full source TSX for every single control
-// DevExpress / PowerBI / Excel / AntDesign / Tremor inspired comprehensive controls
+// 2026 Enterprise Industrial Grade Comprehensive Controls
 
 export const ALL_COMPONENTS_SPEC = [
   // 1. CHARTS & INFOGRAPHICS (Each with its completely unique SVG / Canvas / Layout)
@@ -143,7 +143,7 @@ export const ALL_COMPONENTS_SPEC = [
     aiPromptGuidance: '테이블 행 또는 카드 내부에 삽입되는 인라인 미니 스파크라인 그래프입니다.'
   },
 
-  // 2. TABLES, DATAGRIDS & PIVOTS (DevExpress / PowerBI / Excel Grade)
+  // 2. TABLES, DATAGRIDS & PIVOTS (Enterprise Industrial Grade)
   {
     id: 'datagrid-realtime-pro',
     name: '2026 엔터프라이즈 리얼타임 데이터그리드 (정렬/다중선택)',

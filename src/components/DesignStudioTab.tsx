@@ -17,7 +17,7 @@ export type StudioSubTool =
   | 'shadow' 
   | 'contrast' 
   | 'clamp' 
-  | 'higgsfield' 
+  | 'quantum-dock' 
   | 'table' 
   | 'chart' 
   | 'bento' 
@@ -222,7 +222,7 @@ export const DesignStudioTab: React.FC<DesignStudioTabProps> = ({
 }`;
 
   // =========================================================================
-  // 5. Higgsfield & Artlist AI 독 & 버튼 상태
+  // 5. Quantum AI 독 & 버튼 시스템 상태
   // =========================================================================
   const [promptText, setPromptText] = useState<string>('Cinematic aerial drone shot of neon semiconductor fabrication plant in 2026, anamorphic lens 35mm, ultra-clean reflections, 60fps');
   const [activeCamPreset, setActiveCamPreset] = useState<string>('Dynamic Crane');
@@ -367,7 +367,7 @@ export const DesignStudioTab: React.FC<DesignStudioTabProps> = ({
               디자인 스튜디오 <span className="grad-text">연습공간 & UI 인터랙티브 랩</span>
             </h1>
             <p className="text-xs sm:text-sm text-slate-300 max-w-3xl leading-relaxed">
-              글래스모피즘 스펙큘러 조명, 3D 다중 레이어 그림자, WCAG 2.1 명도 대비 및 APCA 검증기, 반응형 Fluid Typography, Higgsfield/Artlist AI 독 & 버튼, 네온 SVG 차트, 벤토 그리드, 마우스 스포트라이트, 오로라 프랙탈 노이즈를 실시간 파라미터로 즉시 테스트하고 완성된 코드를 추출하세요.
+              글래스모피즘 스펙큘러 조명, 3D 다중 레이어 그림자, WCAG 2.1 명도 대비 및 APCA 검증기, 반응형 Fluid Typography, Quantum AI 인터랙티브 독 & 버튼, 네온 SVG 차트, 벤토 그리드, 마우스 스포트라이트, 오로라 프랙탈 노이즈를 실시간 파라미터로 즉시 테스트하고 완성된 코드를 추출하세요.
             </p>
           </div>
 
@@ -397,7 +397,7 @@ export const DesignStudioTab: React.FC<DesignStudioTabProps> = ({
             { id: 'shadow', label: '다중 레이어 섀도우', icon: Move, badge: '3D' },
             { id: 'contrast', label: 'WCAG 명도대비 & APCA', icon: Contrast, badge: 'A11y' },
             { id: 'clamp', label: '반응형 Clamp() 타이포', icon: Type, badge: 'Math' },
-            { id: 'higgsfield', label: 'Higgsfield & Artlist AI 독', icon: Sparkles, badge: 'AI' },
+            { id: 'quantum-dock', label: 'Quantum AI 인터랙티브 독', icon: Sparkles, badge: 'AI' },
             { id: 'table', label: '모던 데이터 테이블', icon: Table, badge: 'Grid' },
             { id: 'chart', label: 'SVG 네온 차트 스튜디오', icon: BarChart2, badge: 'Neon' },
             { id: 'bento', label: '벤토 그리드 아키텍트', icon: LayoutGrid, badge: 'Bento' },
@@ -1118,9 +1118,9 @@ export const DesignStudioTab: React.FC<DesignStudioTabProps> = ({
         )}
 
         {/* ========================================================================= */}
-        {/* 5. Higgsfield & Artlist AI 독 & 버튼 시스템                              */}
+        {/* 5. Quantum AI 인터랙티브 독 & 버튼 시스템                              */}
         {/* ========================================================================= */}
-        {activeTool === 'higgsfield' && (
+        {activeTool === 'quantum-dock' && (
           <div className="space-y-8">
             {/* 1. Floating Glass Navbar Preview */}
             <div className="w-full flex justify-center">
@@ -1195,7 +1195,7 @@ export const DesignStudioTab: React.FC<DesignStudioTabProps> = ({
                     Crisp Glass Button
                   </button>
                   <button className="px-4 py-2 rounded-xl bg-[#D4FF00] hover:bg-[#E2FF4D] text-black text-xs font-black shadow-[0_0_18px_rgba(212,255,0,0.35)] transition-all">
-                    Higgsfield Lime CTA
+                    Quantum Lime CTA
                   </button>
                 </div>
                 <div className="flex flex-wrap gap-3">
@@ -1268,7 +1268,7 @@ export const DesignStudioTab: React.FC<DesignStudioTabProps> = ({
                   />
                   <div className="relative z-10 space-y-2">
                     <span className="px-2 py-0.5 rounded-full text-[10px] font-mono bg-[#D4FF00]/15 text-[#D4FF00] font-black border border-[#D4FF00]/30">
-                      HIGGSFIELD ENGINE
+                      QUANTUM AI ENGINE
                     </span>
                     <h3 className="text-base font-black text-white">Specular Top-Edge Lighting</h3>
                     <p className="text-xs text-slate-300 leading-relaxed">

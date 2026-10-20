@@ -183,14 +183,14 @@ export const THEME_PRESETS: ThemePreset[] = [
     desc: "Artlist.io 영감의 시네마틱 딥 옵시디언 블랙 & 고대비 일렉트릭 옐로우 미디어 디자인 시스템"
   },
   {
-    id: "higgsfield-lime",
-    name: "Higgsfield AI Studio (네온 라임 & 흑요석)",
+    id: "quantum-lime",
+    name: "Quantum AI Studio (네온 라임 & 흑요석)",
     bg: "#070709",
     accent: "#D4FF00",
     sub: "#7C3AED",
     border: "#D4FF0044",
     cardBg: "#0f0f14",
-    desc: "Higgsfield AI 영감의 초저투명도(4.5%) 크리스탈 글래스 & 네온 라임 시네마틱 룩"
+    desc: "초정밀 초저투명도(4.5%) 크리스탈 글래스 & 네온 라임 시네마틱 룩"
   },
   {
     id: "artlist-amber-pro",

@@ -233,11 +233,4 @@ export const EnterpriseSpreadsheetDemo: React.FC = () => {
   );
 };
 
-// Also export aliases for compatibility
-export const DevExpressRibbonDemo = EnterpriseRibbonDemo;
-export const DevExpressPropertyGridDemo = EnterprisePropertyGridDemo;
-export const DevExpressFilterEditorDemo = EnterpriseFilterEditorDemo;
-export const DevExpressDiagramDemo = EnterpriseDiagramDemo;
-export const DevExpressDockingDemo = EnterpriseDockingDemo;
-export const DevExpressSpreadsheetDemo = EnterpriseSpreadsheetDemo;
 

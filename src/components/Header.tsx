@@ -3,12 +3,12 @@ import {
   Sparkles, Search, ShoppingBag, LayoutTemplate, Layers, 
   History, Terminal, RefreshCw, X, Folder, Zap, Database, User, 
   CloudCheck, CheckCircle2, Compass, Palette, Maximize2, Minimize2,
-  Sliders, Cpu
+  Sliders, Cpu, Download, FileCode
 } from 'lucide-react';
 import { CATEGORIES, THEME_PRESETS, ThemePreset } from '../data/componentsData';
 import { CategoryId } from '../types';
 
-export type MainTabMode = 'master' | 'studio' | 'fab' | 'catalog' | 'themes' | 'canvas' | 'expo' | 'techstack' | 'storage';
+export type MainTabMode = 'master' | 'studio' | 'fab' | 'catalog' | 'themes' | 'canvas' | 'expo' | 'techstack' | 'storage' | 'source';
 
 interface HeaderProps {
   currentTab: MainTabMode;
@@ -229,6 +229,18 @@ export const Header: React.FC<HeaderProps> = ({
             <Database className="w-3.5 h-3.5 text-cyan-300" />
             <span className="hidden sm:inline">스토리지 가이드</span>
           </button>
+          <button
+            onClick={() => setCurrentTab('source')}
+            className={`flex items-center gap-1.5 px-3.5 py-1.5 rounded-xl text-xs font-bold transition-all ${
+              currentTab === 'source'
+                ? 'bg-gradient-to-r from-emerald-600 to-teal-600 text-white shadow-lg shadow-emerald-900/40 ring-1 ring-emerald-400/50'
+                : 'text-emerald-400 hover:text-emerald-300 hover:bg-emerald-500/10'
+            }`}
+            title="전체 소스코드 열람 & ZIP 즉시 다운로드"
+          >
+            <Download className="w-3.5 h-3.5" />
+            <span className="font-extrabold">⚡ 소스코드/다운로드</span>
+          </button>
         </nav>
 
         {/* Right Tools (Theme Dropdown, Fullscreen, Search, Cart, Board Manager) */}
@@ -271,6 +283,17 @@ export const Header: React.FC<HeaderProps> = ({
               </div>
             )}
           </div>
+
+                    {/* Quick ZIP Download Link */}
+          <a
+            href="/blueprint-hub/download"
+            download="blueprint-hub-source.zip"
+            className="hidden sm:flex items-center gap-1.5 px-2.5 py-1.5 rounded-xl bg-emerald-500/15 hover:bg-emerald-500/25 border border-emerald-500/30 text-emerald-300 hover:text-white text-xs font-extrabold transition-all shadow-md active:scale-95"
+            title="로그인 없이 ZIP 다운로드"
+          >
+            <Download className="w-3.5 h-3.5 text-emerald-400" />
+            <span>ZIP 다운로드</span>
+          </a>
 
           {/* Fullscreen Wide Monitor Toggle */}
           <button

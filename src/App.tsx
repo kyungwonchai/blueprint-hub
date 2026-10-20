@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useMemo, useRef } from 'react';
 import { Header, MainTabMode } from './components/Header';
+import { SourceCodeTab } from './components/SourceCodeTab';
 import { ComponentCard } from './components/ComponentCard';
 import { LiveDemoModal } from './components/LiveDemoModal';
 import { CartDrawer } from './components/CartDrawer';
@@ -23,7 +24,16 @@ import {
 } from 'lucide-react';
 
 export default function App() {
-  const [currentTab, setCurrentTab] = useState<MainTabMode>('master');
+  const [currentTab, setCurrentTab] = useState<MainTabMode>(() => {
+    try {
+      const params = new URLSearchParams(window.location.search);
+      const tabParam = params.get('tab');
+      if (tabParam === 'source' || window.location.pathname.endsWith('/source') || window.location.hash === '#source') {
+        return 'source';
+      }
+    } catch (e) {}
+    return 'master';
+  });
   const [currentTheme, setCurrentTheme] = useState<string>(() => {
     return localStorage.getItem('k_blueprint_theme') || 'cyber-violet';
   });
@@ -388,6 +398,11 @@ export default function App() {
       {currentTab === 'storage' && (
         <StorageGuideTab />
       )}
+
+      {currentTab === 'source' && (
+        <SourceCodeTab />
+      )}
+
 
       {currentTab === 'expo' && (
         <WebTechExpoTab />

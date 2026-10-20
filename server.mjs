@@ -1,3 +1,4 @@
+import { execSync } from 'child_process';
 import express from 'express';
 import cors from 'cors';
 import fs from 'fs';
@@ -236,6 +237,83 @@ function handlePostBlueprint(req, res) {
   res.json({ success: true, blueprint: blueprintData });
 }
 
+
+// ==========================================
+// 3. Source Code Explorer & Download APIs
+// ==========================================
+
+function handleGetSourceFiles(req, res) {
+  const baseDir = __dirname;
+  const result = [];
+  
+  function scan(dir) {
+    const list = fs.readdirSync(dir, { withFileTypes: true });
+    for (const item of list) {
+      if (item.name === 'node_modules' || item.name === '.git' || item.name === 'dist') continue;
+      const full = path.join(dir, item.name);
+      if (item.isDirectory()) {
+        scan(full);
+      } else {
+        if (item.name.endsWith('.zip') || item.name.endsWith('.pid') || item.name.endsWith('.log')) continue;
+        const rel = path.relative(baseDir, full);
+        const stat = fs.statSync(full);
+        result.push({
+          path: rel,
+          size: stat.size,
+          mtime: stat.mtime
+        });
+      }
+    }
+  }
+  try {
+    scan(baseDir);
+    result.sort((a, b) => a.path.localeCompare(b.path));
+    res.json({ total: result.length, files: result });
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+}
+
+function handleGetSourceContent(req, res) {
+  const filePath = req.query.file;
+  if (!filePath) return res.status(400).json({ error: 'file query parameter required' });
+  const safePath = path.normalize(filePath).replace(/^(\.\.(\/|\\|$))+/, '');
+  const fullPath = path.join(__dirname, safePath);
+  
+  if (!fullPath.startsWith(__dirname)) {
+    return res.status(403).json({ error: 'Access denied' });
+  }
+  if (!fs.existsSync(fullPath) || fs.statSync(fullPath).isDirectory()) {
+    return res.status(404).json({ error: 'File not found' });
+  }
+  try {
+    const content = fs.readFileSync(fullPath, 'utf-8');
+    res.setHeader('Content-Type', 'text/plain; charset=utf-8');
+    res.send(content);
+  } catch (e) {
+    res.status(500).json({ error: e.message });
+  }
+}
+
+function handleDownloadSourceZip(req, res) {
+  const zipName = 'blueprint-hub-source.zip';
+  const zipPath = path.join(__dirname, 'storage', zipName);
+  
+  try {
+    execSync(`git -C "${__dirname}" archive --prefix=blueprint-hub/ --format=zip HEAD -o "${zipPath}"`, { timeout: 15000 });
+    res.download(zipPath, zipName, (err) => {
+      if (err) console.error('Error sending zip:', err.message);
+    });
+  } catch (err) {
+    console.error('git archive error:', err.message);
+    if (fs.existsSync(zipPath)) {
+      res.download(zipPath, zipName);
+    } else {
+      res.status(500).json({ error: 'Failed to generate zip: ' + err.message });
+    }
+  }
+}
+
 // Register API routes for both root and /blueprint-hub/ prefix
 ['', '/blueprint-hub'].forEach((prefix) => {
   // Boards
@@ -269,6 +347,12 @@ function handlePostBlueprint(req, res) {
       time: new Date().toISOString()
     });
   });
+
+  // Source Code Explorer & Direct Download
+  app.get(`${prefix}/api/source/files`, handleGetSourceFiles);
+  app.get(`${prefix}/api/source/content`, handleGetSourceContent);
+  app.get(`${prefix}/api/source/download`, handleDownloadSourceZip);
+  app.get(`${prefix}/download`, handleDownloadSourceZip);
 
   // Health
   app.get(`${prefix}/api/health`, (req, res) => {

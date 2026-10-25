@@ -17,3 +17,5 @@ __pycache__/
 *.tar.gz
 
 .system_generated/
+*.pid
+*.py[cod]

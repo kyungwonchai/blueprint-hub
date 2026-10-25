@@ -5,7 +5,7 @@
     "description": "네온 지표 카드 + 실시간 RPS 스트림 차트 + 데이터그리드 배치",
     "author": "kw",
     "isPublic": true,
-    "updatedAt": "2026-10-20T06:34:36.406Z",
+    "updatedAt": "2026-10-22T00:04:53.459Z",
     "createdAt": "2026-10-01T14:44:03.752Z",
     "items": [
       {
@@ -14,8 +14,8 @@
         "name": "2026 네온 글래스 KPI 지표 카드",
         "category": "stats",
         "type": "component",
-        "x": 520,
-        "y": 340,
+        "x": 640,
+        "y": 300,
         "width": 450,
         "height": 280,
         "zIndex": 102
@@ -52,11 +52,23 @@
         "name": "푸앵카레 쌍곡면 비유클리드 트리 (Poincaré Hyperbolic Disk)",
         "category": "charts",
         "type": "component",
-        "x": 20,
-        "y": 120,
+        "x": 60,
+        "y": 200,
         "width": 460,
         "height": 320,
         "zIndex": 101
+      },
+      {
+        "id": "widget_chart-sparkline-mini-badge_1792627492948",
+        "componentId": "chart-sparkline-mini-badge",
+        "name": "초소형 7일간 추세 인라인 미니 스파크라인 (Sparkline) 뱃지",
+        "category": "charts",
+        "type": "component",
+        "x": 160,
+        "y": 180,
+        "width": 460,
+        "height": 320,
+        "zIndex": 5
       }
     ]
   }

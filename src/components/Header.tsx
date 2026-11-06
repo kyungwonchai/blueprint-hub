@@ -67,7 +67,7 @@ export const Header: React.FC<HeaderProps> = ({
   const activeThemeObj = THEME_PRESETS.find(t => t.id === currentTheme) || THEME_PRESETS[0];
 
   return (
-    <header className="sticky top-0 z-40 w-full backdrop-blur-2xl bg-black/85 border-b border-white/10 shadow-2xl transition-colors duration-500">
+    <header className="sticky top-0 z-40 w-full backdrop-blur-2xl bg-black/85 border-b border-white/10 shadow-2xl transition-colors duration-500 pt-[env(safe-area-inset-top,0px)]">
       {/* Top Banner & Main Nav Bar */}
       <div className="w-full px-4 sm:px-6 lg:px-8 py-3 flex flex-wrap items-center justify-between gap-4">
         
@@ -125,7 +125,7 @@ export const Header: React.FC<HeaderProps> = ({
         </div>
 
         {/* Navigation Tabs */}
-        <nav className="flex items-center gap-1 bg-black/60 p-1.5 rounded-2xl border border-white/10 shadow-inner">
+        <nav className="flex items-center gap-1 bg-black/60 p-1.5 rounded-2xl border border-white/10 shadow-inner overflow-x-auto max-w-full scrollbar-none w-full xl:w-auto">
           <button
             onClick={() => setCurrentTab('master')}
             className={`flex items-center gap-1.5 px-3.5 py-1.5 rounded-xl text-xs font-bold transition-all ${
@@ -248,7 +248,7 @@ export const Header: React.FC<HeaderProps> = ({
         </nav>
 
         {/* Right Tools (Theme Dropdown, Fullscreen, Search, Cart, Board Manager) */}
-        <div className="flex items-center gap-2">
+        <div className="flex items-center gap-2 overflow-x-auto max-w-full scrollbar-none py-1">
           {/* Live Dynamic Theme Selector */}
           <div className="relative">
             <button

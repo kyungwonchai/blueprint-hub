@@ -15,6 +15,8 @@ import { ThemeStudioTab } from './components/ThemeStudioTab';
 import { DesignStudioTab } from './components/DesignStudioTab';
 import { FabTelemetryStudioTab } from './components/FabTelemetryStudioTab';
 import { BoardManagerModal } from './components/BoardManagerModal';
+import { AiPromptStudioModal } from './components/AiPromptStudioModal';
+import { GlassTokenBuilderModal } from './components/GlassTokenBuilderModal';
 import { COMPONENTS_DATA } from './data/componentsData';
 import { getComponentMetadata } from './data/componentMetadata';
 import { ComponentItem, CategoryId, BlueprintSnapshot, BoardData, CanvasBoardItem } from './types';
@@ -67,6 +69,8 @@ export default function App() {
   const [activeSnapshot, setActiveSnapshot] = useState<BlueprintSnapshot | null>(null);
   const [isRecentOpen, setIsRecentOpen] = useState(false);
   const [recentBlueprints, setRecentBlueprints] = useState<BlueprintSnapshot[]>([]);
+  const [isPromptStudioOpen, setIsPromptStudioOpen] = useState(false);
+  const [isTokenBuilderOpen, setIsTokenBuilderOpen] = useState(false);
 
   // Cart state
   const [cartItems, setCartItems] = useState<ComponentItem[]>(() => {
@@ -347,6 +351,8 @@ export default function App() {
         onOpenCart={() => setIsCartOpen(true)}
         onOpenBoardManager={() => setIsBoardManagerOpen(true)}
         onOpenRecentBlueprints={() => setIsRecentOpen(true)}
+        onOpenPromptStudio={() => setIsPromptStudioOpen(true)}
+        onOpenTokenBuilder={() => setIsTokenBuilderOpen(true)}
       />
 
       {/* Main Tab View Switcher */}
@@ -589,6 +595,19 @@ export default function App() {
         onClose={() => setIsRecentOpen(false)}
         blueprints={recentBlueprints}
         onSelectBlueprint={(bp) => setActiveSnapshot(bp)}
+      />
+
+      {/* 2026 AI Prompt Studio Modal */}
+      <AiPromptStudioModal
+        isOpen={isPromptStudioOpen}
+        onClose={() => setIsPromptStudioOpen(false)}
+        cartItems={cartItems}
+      />
+
+      {/* 2026 Glassmorphism & Neon Token Builder Modal */}
+      <GlassTokenBuilderModal
+        isOpen={isTokenBuilderOpen}
+        onClose={() => setIsTokenBuilderOpen(false)}
       />
 
       {/* Global Footer */}

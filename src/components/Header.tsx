@@ -26,6 +26,8 @@ interface HeaderProps {
   onOpenCart: () => void;
   onOpenBoardManager: () => void;
   onOpenRecentBlueprints: () => void;
+  onOpenPromptStudio?: () => void;
+  onOpenTokenBuilder?: () => void;
 }
 
 export const Header: React.FC<HeaderProps> = ({
@@ -44,6 +46,8 @@ export const Header: React.FC<HeaderProps> = ({
   onOpenCart,
   onOpenBoardManager,
   onOpenRecentBlueprints,
+  onOpenPromptStudio,
+  onOpenTokenBuilder,
 }) => {
   const [isThemeOpen, setIsThemeOpen] = useState(false);
   const [isFullscreen, setIsFullscreen] = useState(false);
@@ -284,7 +288,31 @@ export const Header: React.FC<HeaderProps> = ({
             )}
           </div>
 
-                    {/* Quick ZIP Download Link */}
+                    {/* AI Blueprint Prompt Studio Button */}
+          {onOpenPromptStudio && (
+            <button
+              onClick={onOpenPromptStudio}
+              className="flex items-center gap-1.5 px-2.5 py-1.5 rounded-xl bg-violet-600/20 hover:bg-violet-600/30 border border-violet-500/40 text-violet-300 hover:text-white text-xs font-bold transition-all shadow-md active:scale-95"
+              title="AI 블루프린트 프롬프트 스튜디오 & 코드 번들러"
+            >
+              <Sparkles className="w-3.5 h-3.5 text-fuchsia-400" />
+              <span className="hidden xl:inline">AI 프롬프트</span>
+            </button>
+          )}
+
+          {/* Glass & Neon Token Builder Button */}
+          {onOpenTokenBuilder && (
+            <button
+              onClick={onOpenTokenBuilder}
+              className="flex items-center gap-1.5 px-2.5 py-1.5 rounded-xl bg-cyan-600/20 hover:bg-cyan-600/30 border border-cyan-500/40 text-cyan-300 hover:text-white text-xs font-bold transition-all shadow-md active:scale-95"
+              title="글래스모피즘 & 네온 토큰 실시간 빌더"
+            >
+              <Sliders className="w-3.5 h-3.5 text-cyan-400" />
+              <span className="hidden xl:inline">토큰 빌더</span>
+            </button>
+          )}
+
+          {/* Quick ZIP Download Link */}
           <a
             href="/blueprint-hub/download"
             download="blueprint-hub-source.zip"

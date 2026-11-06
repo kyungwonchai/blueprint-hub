@@ -25,6 +25,81 @@ interface MasterEnterpriseAppProps {
   onOpenDetailModal: (item: ComponentItem) => void;
 }
 
+const FACTORY_LINES = [
+  { 
+    id: 'LINE-A', 
+    name: 'LINE-A (양자 초전도 큐비트 코어 관제)', 
+    badge: '15mK 극저온 양자 챔버',
+    img: 'https://images.unsplash.com/photo-1635070041078-e363dbe005cb?auto=format&fit=crop&w=1400&q=85', 
+    speed: '100 GHz Qubit Clock', 
+    yield: '99.98%', 
+    status: 'RUNNING', 
+    temp: '-273.14°C', 
+    cpk: '2.15',
+    detail: '황금 희석 냉동기(Golden Chandelier) 초전도 큐비트 코히런스 실시간 관제'
+  },
+  { 
+    id: 'LINE-B', 
+    name: 'LINE-B (뉴럴 AI 데이터 센터 & 광학 메쉬)', 
+    badge: '초고속 광학 스위칭 패브릭',
+    img: 'https://images.unsplash.com/photo-1558494949-ef010cbdcc31?auto=format&fit=crop&w=1400&q=85', 
+    speed: '4.8 PFLOPS', 
+    yield: '99.85%', 
+    status: 'RUNNING', 
+    temp: '18.2°C', 
+    cpk: '1.96',
+    detail: '딥 옵시디언 서버 랙 및 초고속 광 트랜시버 실시간 데이터 라우팅'
+  },
+  { 
+    id: 'LINE-C', 
+    name: 'LINE-C (서브미크론 정밀 레이저 로보틱스)', 
+    badge: '나노 펨토초 레이저 절단',
+    img: 'https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&w=1400&q=85', 
+    speed: '240 bpm', 
+    yield: '99.92%', 
+    status: 'RUNNING', 
+    temp: '21.0°C', 
+    cpk: '2.08',
+    detail: '6축 다관절 로봇 암 & 펨토초 레이저 미세 가공 정렬 상태'
+  },
+  { 
+    id: 'LINE-D', 
+    name: 'LINE-D (차세대 EUV 실리콘 웨이퍼 칩셋)', 
+    badge: '2나노 GAA 원자현미경 검사',
+    img: 'https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=1400&q=85', 
+    speed: '98 bpm', 
+    yield: '99.99%', 
+    status: 'INSPECTING', 
+    temp: '20.4°C', 
+    cpk: '2.25',
+    detail: '초미세 실리콘 회로 패턴 발광 및 원자 단위 결함 제로 전수 검사'
+  },
+  { 
+    id: 'LINE-E', 
+    name: 'LINE-E (사이버네틱 궤도 텔레메트리 관제)', 
+    badge: '저궤도 메쉬 위성 링크',
+    img: 'https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=1400&q=85', 
+    speed: '100 Gbps', 
+    yield: '99.95%', 
+    status: 'SYNCED', 
+    temp: '12.5°C', 
+    cpk: '1.99',
+    detail: '우주 궤도 노드와 글로벌 지상국 간 위상 제어 데이터 스트림'
+  },
+  { 
+    id: 'LINE-F', 
+    name: 'LINE-F (심층 신경망 텐서 격자 클러스터)', 
+    badge: '하이브리드 뉴로모픽 코어',
+    img: 'https://images.unsplash.com/photo-1620712943543-bcc4688e7485?auto=format&fit=crop&w=1400&q=85', 
+    speed: '1,280 TOPS', 
+    yield: '99.82%', 
+    status: 'TUNING', 
+    temp: '26.8°C', 
+    cpk: '1.89',
+    detail: '3D 뉴로모픽 격자 결합 자율 학습 추론 가속기'
+  }
+];
+
 export const MasterEnterpriseApp: React.FC<MasterEnterpriseAppProps> = ({
   onAddToCart,
   cartItems,
@@ -32,17 +107,10 @@ export const MasterEnterpriseApp: React.FC<MasterEnterpriseAppProps> = ({
 }) => {
   const [activeTab, setActiveTab] = useState<'mes_live' | 'quality_sci' | 'cosmic_math' | 'materials_bom' | 'digital_twin' | 'executive_war'>('mes_live');
 
-  // Shared Master-Detail Drilldown State
-  const [selectedLine, setSelectedLine] = useState<{ id: string; name: string; img: string; speed: string; yield: string; status: string; temp: string; cpk: string }>({
-    id: 'LINE-A',
-    name: 'LINE-A (스마트 클린룸 & AI 로보틱스 관제)',
-    img: 'https://images.unsplash.com/photo-1581092334651-ddf26d9a09d0?auto=format&fit=crop&w=1200&q=80',
-    speed: '142 bpm',
-    yield: '99.8%',
-    status: 'RUNNING',
-    temp: '21.5°C',
-    cpk: '1.92'
-  });
+  // Shared Master-Detail Drilldown State (Default: Quantum Qubit Chandelier)
+  const [selectedLine, setSelectedLine] = useState<typeof FACTORY_LINES[0]>(FACTORY_LINES[0]);
+  const [visionFilter, setVisionFilter] = useState<'optical' | 'thermal' | 'nvg' | 'cyber'>('optical');
+  const [isScanlineActive, setIsScanlineActive] = useState<boolean>(true);
 
   const [selectedLot, setSelectedLot] = useState<string>('LOT-2026-X842');
   const [drilldownModal, setDrilldownModal] = useState<{ title: string; tech: string; details: any } | null>(null);
@@ -193,42 +261,86 @@ export const MasterEnterpriseApp: React.FC<MasterEnterpriseAppProps> = ({
             {/* 4K Industrial Camera Feed & Line Switcher */}
             <div className="lg:col-span-1 space-y-4">
               <div className="p-4 rounded-3xl bg-slate-900/95 border border-white/10 shadow-2xl space-y-3 animate-border-shimmer">
-                <div className="flex justify-between items-center border-b border-white/10 pb-2">
-                  <h3 className="text-xs font-black text-white flex items-center gap-1.5">
-                    <Radio className="w-4 h-4 text-rose-500 animate-pulse" />
-                    <span>스마트 팩토리 4K 비전 감시캠</span>
-                  </h3>
-                  <span className="text-[10px] text-emerald-400 font-mono font-bold flex items-center gap-1">
-                    <span className="w-2 h-2 rounded-full bg-emerald-400 animate-ping" />
-                    <span>LIVE 60 FPS</span>
-                  </span>
+                <div className="flex flex-wrap justify-between items-center border-b border-white/10 pb-2 gap-2">
+                  <div className="flex items-center gap-2">
+                    <h3 className="text-xs font-black text-white flex items-center gap-1.5">
+                      <Radio className="w-4 h-4 text-rose-500 animate-pulse" />
+                      <span>스마트 팹 4K 비전 AR 감시캠</span>
+                    </h3>
+                    <span className="text-[10px] text-emerald-400 font-mono font-bold flex items-center gap-1">
+                      <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-ping" />
+                      <span>60 FPS</span>
+                    </span>
+                  </div>
+
+                  {/* Vision Filter Mode Selector */}
+                  <div className="flex items-center gap-1 bg-black/60 p-1 rounded-xl border border-white/10">
+                    {[
+                      { id: 'optical', label: '📷 광학' },
+                      { id: 'thermal', label: '🌡️ 열화상' },
+                      { id: 'nvg', label: '🟢 야간' },
+                      { id: 'cyber', label: '⚡ 엣지' },
+                    ].map(f => (
+                      <button
+                        key={f.id}
+                        onClick={() => setVisionFilter(f.id as any)}
+                        className={`px-1.5 py-0.5 rounded-lg text-[9px] font-bold transition-all ${
+                          visionFilter === f.id
+                            ? 'bg-cyan-500 text-black shadow-sm font-black'
+                            : 'text-slate-400 hover:text-white hover:bg-white/5'
+                        }`}
+                      >
+                        {f.label}
+                      </button>
+                    ))}
+                    <button
+                      onClick={() => setIsScanlineActive(!isScanlineActive)}
+                      title="레이저 스캔라인 토글"
+                      className={`px-1.5 py-0.5 rounded-lg text-[9px] font-mono font-bold transition-all ${
+                        isScanlineActive ? 'bg-rose-500/30 text-rose-300 border border-rose-500/40' : 'text-slate-600 hover:text-slate-400'
+                      }`}
+                    >
+                      SCAN
+                    </button>
+                  </div>
                 </div>
 
                 {/* 4K Photo with Augmented Reality HUD Overlay & Laser Scanline */}
-                <div className="relative rounded-2xl overflow-hidden h-52 border border-white/20 group shadow-inner bg-black">
+                <div className="relative rounded-2xl overflow-hidden h-56 border border-white/20 group shadow-inner bg-black">
                   <img
                     src={selectedLine.img}
-                    alt="Factory Line Cam"
-                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 filter brightness-95 contrast-105"
+                    alt={selectedLine.name}
+                    className={`w-full h-full object-cover group-hover:scale-105 transition-all duration-700 ${
+                      visionFilter === 'thermal'
+                        ? 'hue-rotate-[190deg] saturate-[300%] contrast-[160%] brightness-[1.1]'
+                        : visionFilter === 'nvg'
+                        ? 'brightness-[1.15] contrast-[140%] sepia-[100%] hue-rotate-[90deg] saturate-[400%]'
+                        : visionFilter === 'cyber'
+                        ? 'contrast-[150%] saturate-[200%] invert-[20%] hue-rotate-[260deg]'
+                        : 'filter brightness-95 contrast-105'
+                    }`}
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/95 via-black/20 to-transparent" />
                   
                   {/* Laser Scanline Beam Animation */}
-                  <div className="absolute inset-x-0 h-1 bg-gradient-to-r from-transparent via-cyan-400 to-transparent opacity-80 shadow-[0_0_12px_#06b6d4] pointer-events-none animate-laser-scan" />
+                  {isScanlineActive && (
+                    <div className="absolute inset-x-0 h-1 bg-gradient-to-r from-transparent via-cyan-400 to-transparent opacity-80 shadow-[0_0_12px_#06b6d4] pointer-events-none animate-laser-scan" />
+                  )}
 
                   {/* AR HUD Telemetry Box */}
-                  <div className="absolute top-2.5 left-2.5 p-2 rounded-xl bg-black/75 border border-cyan-500/40 backdrop-blur-md font-mono text-[9px] text-cyan-300 space-y-0.5 shadow-lg">
+                  <div className="absolute top-2.5 left-2.5 p-2 rounded-xl bg-black/80 border border-cyan-500/40 backdrop-blur-md font-mono text-[9px] text-cyan-300 space-y-0.5 shadow-lg">
                     <div className="flex items-center gap-1.5">
-                      <span className="w-1.5 h-1.5 rounded-full bg-emerald-400" />
+                      <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
                       <span className="font-bold">AI CAM: {selectedLine.id}</span>
+                      <span className="text-[8px] px-1 rounded bg-cyan-500/20 text-cyan-200">{visionFilter.toUpperCase()}</span>
                     </div>
                     <div>온도: {selectedLine.temp} | Cpk: {selectedLine.cpk}</div>
                   </div>
 
                   {/* AR HUD Target Bounding Box */}
-                  <div className="absolute top-8 right-6 w-20 h-14 border border-dashed border-emerald-400/80 rounded-lg flex items-start justify-end p-1 pointer-events-none animate-subtle-float">
+                  <div className="absolute top-8 right-6 w-24 h-16 border border-dashed border-emerald-400/80 rounded-lg flex items-start justify-end p-1 pointer-events-none animate-subtle-float">
                     <span className="text-[8px] font-mono font-bold bg-emerald-500/80 text-black px-1 rounded">
-                      PASS 99.9%
+                      PASS 99.98%
                     </span>
                   </div>
 
@@ -245,49 +357,8 @@ export const MasterEnterpriseApp: React.FC<MasterEnterpriseAppProps> = ({
                 </div>
 
                 {/* Line Selector Buttons (High-Tech Cleanroom & Robotic Presets) */}
-                <div className="grid grid-cols-2 gap-2 pt-1">
-                  {[
-                    { 
-                      id: 'LINE-A', 
-                      name: 'LINE-A (클린룸 AI 관제)', 
-                      img: 'https://images.unsplash.com/photo-1581092334651-ddf26d9a09d0?auto=format&fit=crop&w=1200&q=80', 
-                      speed: '142 bpm', 
-                      yield: '99.8%', 
-                      status: 'RUNNING', 
-                      temp: '21.5°C', 
-                      cpk: '1.92' 
-                    },
-                    { 
-                      id: 'LINE-B', 
-                      name: 'LINE-B (6축 로봇 암 실장)', 
-                      img: 'https://images.unsplash.com/photo-1563770660941-20978e870e26?auto=format&fit=crop&w=1200&q=80', 
-                      speed: '185 bpm', 
-                      yield: '99.6%', 
-                      status: 'RUNNING', 
-                      temp: '32.4°C', 
-                      cpk: '1.88' 
-                    },
-                    { 
-                      id: 'LINE-C', 
-                      name: 'LINE-C (나노 레이저 검사)', 
-                      img: 'https://images.unsplash.com/photo-1581092162384-8987c1d64718?auto=format&fit=crop&w=1200&q=80', 
-                      speed: '95 bpm', 
-                      yield: '99.9%', 
-                      status: 'STANDBY', 
-                      temp: '20.8°C', 
-                      cpk: '1.98' 
-                    },
-                    { 
-                      id: 'LINE-D', 
-                      name: 'LINE-D (사이버네틱 오토메이션)', 
-                      img: 'https://images.unsplash.com/photo-1485827404703-89b55fcc595e?auto=format&fit=crop&w=1200&q=80', 
-                      speed: '120 bpm', 
-                      yield: '99.7%', 
-                      status: 'RUNNING', 
-                      temp: '28.0°C', 
-                      cpk: '1.95' 
-                    }
-                  ].map(line => (
+                <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-2 gap-2 pt-1">
+                  {FACTORY_LINES.map(line => (
                     <button
                       key={line.id}
                       onClick={() => setSelectedLine(line)}
@@ -298,10 +369,12 @@ export const MasterEnterpriseApp: React.FC<MasterEnterpriseAppProps> = ({
                       }`}
                     >
                       <div className="flex justify-between items-center">
-                        <span>{line.id}</span>
+                        <span className="font-mono">{line.id}</span>
                         <span className="text-[9px] font-mono text-cyan-300">{line.yield}</span>
                       </div>
-                      <span className="text-[10px] text-slate-400 block truncate mt-0.5">{line.name.split('(')[1]?.replace(')', '') || line.name}</span>
+                      <span className="text-[10px] text-slate-400 block truncate mt-0.5">
+                        {line.name.split('(')[1]?.replace(')', '') || line.name}
+                      </span>
                     </button>
                   ))}
                 </div>

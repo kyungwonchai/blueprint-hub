@@ -245,5 +245,99 @@ const lineGenerator = d3.line<number>()
 const pathD = lineGenerator(data);
 // <path d={pathD} stroke="#8b5cf6" fill="none" />`,
     aiDirectiveTemplate: `"D3.js의 scaleLinear와 d3.line 곡선 생성기를 사용하여, 부드러운 스플라인 곡선과 영역 채우기를 제공하는 데이터 시각화 컴포넌트를 작성해줘."`
+  },
+  {
+    id: 'tauri-2-rust',
+    name: 'Tauri 2.0 + Rust (초경량 크로스플랫폼 네이티브 엔진)',
+    category: 'Frontend',
+    yearTrend: '2026 Electron 대체 1순위 (초소형 15MB 번들, 메모리 30MB)',
+    tagline: 'OS 웹뷰 직접 바인딩 + Rust 시스템 보안/성능, 데스크톱/모바일 동시 빌드',
+    badge: 'Native Hybrid',
+    pros: [
+      'Electron 대비 1/10 수준의 극단적으로 작은 설치 파일 및 제로 메모리 누수',
+      'Rust 백엔드 IPC 통신으로 OS 시스템 레벨 고속 연산 및 하드웨어 포트 제어',
+      '단일 코드베이스로 Windows, macOS, Linux, Android, iOS 멀티타깃 배포'
+    ],
+    cons: [
+      '시스템 레벨 기능 확장을 위해 Rust 언어 지식 및 FFI 바인딩 필요'
+    ],
+    bundleSize: '~12 MB (Installer)',
+    performanceScore: 98,
+    aiEaseScore: 91,
+    whenToUse: '공장 현장 MES 태블릿, 고성능 데스크톱 트레이딩 클라이언트, 가벼운 사내 툴 배포 시.',
+    sampleCode: `// Tauri 2.0 Frontend Command Invocation
+import { invoke } from '@tauri-apps/api/core';
+
+async function queryHardwareTelemetry() {
+  const telemetry = await invoke('get_cleanroom_telemetry', { lineId: 'LINE-A' });
+  console.log('Hardware Response:', telemetry);
+}`,
+    aiDirectiveTemplate: `"Tauri 2.0과 React 19, TypeScript를 기반으로 가벼운 데스크톱 전용 앱을 설계해줘. Rust 백엔드와 invoke 명령어를 주고받는 타입 안전 IPC 인터페이스를 작성해줘."`
+  },
+  {
+    id: 'duckdb-wasm-arrow',
+    name: 'DuckDB-Wasm + Apache Arrow (브라우저 인메모리 OLAP)',
+    category: 'Data Visualization',
+    yearTrend: '2026 클라이언트 데이터 웨어하우스의 혁명',
+    tagline: '서버 왕복 없이 브라우저에서 1,000만 행 SQL 즉시 쿼리 및 분석',
+    badge: 'Browser OLAP',
+    pros: [
+      '브라우저 WebAssembly 상에서 작동하는 풀스펙 벡터화 컬럼형 SQL 엔진',
+      'Parquet, CSV, Arrow IPC 파일을 제로 네트워크 지연으로 즉각 분석',
+      '서버 비용을 90% 이상 절감하면서 사용자에게 즉각적인 인터랙티브 필터링 경험 제공'
+    ],
+    cons: [
+      '초기 Wasm 바이너리 로딩 시간(~8MB) 및 대용량 데이터 시 클라이언트 메모리 사용량 증가'
+    ],
+    bundleSize: '~6.8 MB (Wasm Binary)',
+    performanceScore: 99,
+    aiEaseScore: 89,
+    whenToUse: '수백만 건의 불량 로그 전수 분석, 엑셀/Parquet 대용량 파일 즉석 대시보드, 서버 부하 없는 BI 분석.',
+    sampleCode: `// DuckDB-Wasm In-Browser SQL Execution
+import * as duckdb from '@duckdb/duckdb-wasm';
+
+const conn = await db.connect();
+const result = await conn.query(\`
+  SELECT line_id, AVG(yield_rate) as avg_yield, COUNT(*) as lot_count
+  FROM read_parquet('telemetry_2026.parquet')
+  GROUP BY line_id
+  ORDER BY avg_yield DESC;
+\`);
+console.table(result.toArray());`,
+    aiDirectiveTemplate: `"DuckDB-Wasm과 Apache Arrow를 사용하여, 수십만 행의 클린룸 센서 데이터를 브라우저 로컬에서 SQL 집계하여 실시간 차트로 렌더링하는 컴포넌트를 작성해줘."`
+  },
+  {
+    id: 'nodejs-express-typescript',
+    name: 'Node.js Express / Fastify + TypeScript (실시간 마이크로서비스)',
+    category: 'Backend',
+    yearTrend: '2026 풀스택 일원화 표준 백엔드',
+    tagline: '프론트엔드와 100% 동일한 타입 공유, Zero-Downtime Hot Reload, 경량 REST/WS API',
+    badge: 'Microservice Core',
+    pros: [
+      '프론트엔드와 백엔드 간 TypeScript 인터페이스 공유로 API 스키마 불일치 0%',
+      '초경량 메모리 점유 및 수만 개 WebSocket/SSE 실시간 텔레메트리 스트림 동시 브로드캐스트',
+      'NPM 생태계의 풍부한 라이브러리와 간결한 Docker 컨테이너 배포'
+    ],
+    cons: [
+      'CPU 집약적 과학/행렬 연산 시 Worker Threads 분리 또는 Rust/Python 모듈 연동 권장'
+    ],
+    bundleSize: 'N/A (Backend Service)',
+    performanceScore: 94,
+    aiEaseScore: 99,
+    whenToUse: '실시간 관제 대시보드 백엔드, 블루프린트 스냅샷 API, 사내 데이터 동기화 서비스.',
+    sampleCode: `// Node.js Express 4.21 TypeScript Router
+import express, { Request, Response } from 'express';
+
+const app = express();
+app.use(express.json());
+
+app.get('/api/telemetry/live', (req: Request, res: Response) => {
+  res.json({
+    timestamp: new Date().toISOString(),
+    status: 'OPTIMAL',
+    activeLines: ['LINE-A', 'LINE-B', 'LINE-C']
+  });
+});`,
+    aiDirectiveTemplate: `"Node.js Express와 TypeScript를 기반으로 REST API 및 SSE 스트림 엔드포인트를 구현해줘. 요청 검증과 오류 처리 미들웨어를 견고하게 구성해줘."`
   }
 ];

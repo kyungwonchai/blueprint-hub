@@ -14,6 +14,19 @@ export interface WebTechExpoItem {
 
 export const WEB_TECH_EXPO_DATA: WebTechExpoItem[] = [
   {
+    id: 'ai-now-keynote-slides',
+    title: '⓪ AI는 지금 — 차세대 3D WebGL 키노트 라이브 데모',
+    category: 'Anamorphic & 3D',
+    badge: '3D WebGL Keynote',
+    thumbnail: 'https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=600&q=80',
+    tagline: 'Three.js 기반의 무한 공간 카메라 트랜지션과 키네틱 타이포그래피 슬라이드',
+    demoUrl: '/blueprint-hub/aitrend/00-slides/index.html',
+    techKeywords: ['Three.js', 'Kinetic Typography', 'Camera Spline Path', 'Interactive 3D Stage', 'WebGL'],
+    worldInsight: '정적인 PPT나 슬라이드쇼를 탈피하여 브라우저 GPU 3D 공간 안에서 인터랙티브하게 청중을 압도하는 차세대 프레젠테이션 UX입니다.',
+    howItWorks: 'WebGL 카메라 좌표계를 3차원 베지어 곡선으로 보간 이동시키고, 실시간 파티클 배경과 3D 텍스트 레이어를 60FPS로 렌더링합니다.',
+    aiDirectivePrompt: `"Three.js 공간 카메라 워킹과 동적 3D 파티클 배경을 가진 웹 키노트 슬라이드 시스템을 제작해줘."`
+  },
+  {
     id: 'weather-raytrace',
     title: '① 천문 시뮬레이션 기반 레이트레이스 실시간 기상예보',
     category: 'Cosmology & Weather',
